@@ -1,0 +1,68 @@
+:global(.CatButton) {
+  --disabledOpacity: 0.5;
+  --focusColor: var(--focus-color);
+  font-family: "Archivo", sans-serif;
+  font-stretch: 125%;
+}
+
+:global(.CatButton.CatButton--size--sm) {
+  --paddingY: 2px;
+  --paddingX: 8px;
+  --innerGap: 2px;
+  --fontSize: 12px;
+  --lineHeight: 1.5;
+  --borderWidth: 2px;
+}
+
+:global(.CatButton.CatButton--size--lg) {
+  --paddingY: 4px;
+  --paddingX: 12px;
+  --innerGap: 5px;
+  --fontSize: 16px;
+  --lineHeight: 1.5;
+  --borderWidth: 2px;
+}
+
+:global(.CatButton.CatButton--shape--straight) {
+  --borderRadius: 0;
+}
+
+:global(.CatButton.CatButton--shape--rounded) {
+  --borderRadius: 12px;
+}
+
+:global(.CatButton.CatButton--theme--primary.CatButton--variant--contained) {
+  --background: var(--bg-primary-100);
+  --hoverBackground: var(--bg-primary-200);
+  --activeBackground: var(--bg-primary-300);
+  --borderColor: var(--transparent);
+  --color: var(--text-color-base);
+  --hoverColor: var(--text-color-base);
+}
+
+:global(.CatButton.CatButton--theme--primary.CatButton--variant--outlined) {
+  --background: var(--transparent);
+  --hoverBackground: var(--bg-primary-200);
+  --activeBackground: var(--bg-primary-300);
+  --borderColor: var(--line-primary-100);
+  --color: var(--text-color-base);
+  --hoverColor: var(--text-color-base);
+}
+
+:global(.CatButton.CatButton--theme--secondary.CatButton--variant--contained) {
+  --background: var(--bg-control-100);
+  --hoverBackground: var(--bg-control-200);
+  --activeBackground: var(--bg-control-300);
+  --borderColor: var(--transparent);
+  --color: var(--text-color-base);
+  --hoverColor: var(--text-color-base);
+}
+
+:global(.CatButton.CatButton--theme--secondary.CatButton--variant--outlined) {
+  --background: var(--transparent);
+  --hoverBackground: var(--bg-control-200);
+  --activeBackground: var(--bg-control-300);
+  --borderColor: var(--line-control-100);
+  --color: var(--text-color-base);
+  --hoverColor: var(--text-color-base);
+}
