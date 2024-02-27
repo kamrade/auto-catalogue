@@ -1,6 +1,18 @@
 <script lang="ts">
+	import type { MouseEventHandler } from 'svelte/elements';
+
 	export let value: boolean = false;
-	export let onClick: (v: boolean) => void = (v: boolean) => (value = v);
+	export let onClick: ((v: boolean) => void) | null = null;
+
+	const clickHandler: MouseEventHandler<HTMLInputElement> = (e: MouseEvent) => {
+		let checked = (e?.target as HTMLInputElement).checked;
+
+		if (onClick) {
+			onClick(checked);
+		} else {
+			value = checked;
+		}
+	};
 </script>
 
 <label class="Checkbox">
@@ -8,7 +20,7 @@
 		<span class="CheckboxLabel"><slot name="prefix" /></span>
 	{/if}
 	<span class={`CheckboxIndicator CheckboxIndicator--${value ? 'on' : 'off'}`}></span>
-	<input class="Checkbox--el" checked={value} type="checkbox" on:click={() => onClick(!value)} />
+	<input class="Checkbox--el" checked={value} type="checkbox" on:click={clickHandler} />
 	{#if $$slots.default}
 		<span class="CheckboxLabel"><slot /></span>
 	{/if}

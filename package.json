@@ -37,6 +37,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@kamrade/svelte-dynamic-button": "0.0.7"
+		"@kamrade/svelte-dynamic-button": "0.0.8"
 	}
 }

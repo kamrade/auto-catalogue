@@ -8,13 +8,16 @@
   --bg-control-300: #E9E9E9;
   --bg-control-400: #E1E1E1;
 
+  --line-base-100: #E5E5E5;
   --line-primary-100: #B9DF4C;
   --line-control-100: #CDCDCD;
+  
 
   --text-color-base: #000000;
   --text-color-inv: #FFFFFF;
   --text-color-secondary: #727272;
   --text-color-muted: #AFAFAF;
+  --text-color-inv-primary: #C9ED62;
 
   --transparent: transparent;
 
@@ -22,4 +25,22 @@
 
   --animations-speed: 0.2s;
   --animations-low-speed: 0.5s;
+
+  --zindex-dropdown: 1000;
+  --zindex-sticky: 1020;
+  --zindex-fixed: 1030;
+  --zindex-offcanvas-backdrop: 1040;
+  --zindex-offcanvas: 1045;
+  --zindex-modal-backdrop: 1050;
+  --zindex-modal: 1055;
+  --zindex-popover: 1070;
+  --zindex-tooltip: 1080;
+  --zindex-toast: 1090;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1.0rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
 }

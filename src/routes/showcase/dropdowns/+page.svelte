@@ -1,0 +1,67 @@
+<script lang="ts">
+  import { Button, Portal, Dropdown } from '$lib';
+  import { options, optionsLg } from '$lib/data/dropdown-data';
+  import type { SelectOption } from '$lib';
+
+  let refs: HTMLDivElement[] = [];
+  let value = '';
+  let dropdownVisible: boolean[] = [];
+
+  const handleOptionClick = (e: MouseEvent, option: SelectOption, index: number) => {
+    value = option.text + ' | ' + option.value;
+    dropdownVisible[index] = false;
+  };
+  const hideDropdown = (index: number) => (dropdownVisible[index] = false);
+</script>
+
+<h1>Dropdowns</h1>
+
+<div class="selected-value">Value: {value}</div>
+
+<div
+  class="button-with-dropdown"
+  style={`margin: 1rem 0;display: inline-block;`}
+  bind:this={refs[0]}
+>
+  <Button props={{ theme: 'primary', onClick: () => (dropdownVisible[0] = !dropdownVisible[0]) }}>
+    <i class="ri-arrow-down-s-line" slot="suffix" />
+    Button with Dropdown</Button
+  >
+  <div>
+    {#if dropdownVisible[0]}
+      <Portal>
+        <Dropdown
+          parentEl={refs[0]}
+          {options}
+          handleOptionClick={(e, option) => handleOptionClick(e, option, 0)}
+          hideDropdown={() => hideDropdown(0)}
+        />
+      </Portal>
+    {/if}
+  </div>
+</div>
+
+<div
+  class="button-with-dropdown"
+  style={`margin: 1rem 0;display: inline-block;`}
+  bind:this={refs[1]}
+>
+  <Button props={{ theme: 'primary', onClick: () => (dropdownVisible[1] = !dropdownVisible[1]) }}>
+    <i class="ri-arrow-down-s-line" slot="suffix" />
+    Another Button with Dropdown</Button
+  >
+  <div>
+    {#if dropdownVisible[1]}
+      <Portal>
+        <Dropdown
+          parentEl={refs[1]}
+          options={optionsLg}
+          handleOptionClick={(e, option) => handleOptionClick(e, option, 1)}
+          hideDropdown={() => hideDropdown(1)}
+          width={200}
+          maxHeight={200}
+        />
+      </Portal>
+    {/if}
+  </div>
+</div>
