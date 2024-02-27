@@ -1,10 +1,14 @@
 <script lang="ts">
-  import { Checkbox } from '$lib';
+  import { Checkbox, Hr } from '$lib';
+
+  let value = false;
+  const changeValue = (v: boolean) => (value = v);
 </script>
 
 <h1>Checkers</h1>
-<div style="padding: 12px 0; max-width: 300px">
-  <Checkbox>
+
+<div style="padding: 12px 0; max-width: 500px">
+  <Checkbox name="test_name_1">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fermentum tincidunt pulvinar.
     Donec finibus semper sapien a tempus. Sed varius, lorem vel ultrices fringilla, nibh nisi
     elementum mauris, id mollis purus lorem et nisl. Etiam varius orci et sagittis tincidunt.
@@ -14,6 +18,21 @@
   </Checkbox>
 </div>
 
+<Hr />
+
 <div style="padding: 12px 0">
-  <Checkbox><svelte:fragment slot="prefix">Prefix</svelte:fragment></Checkbox>
+  <Checkbox name="test_name_2"><svelte:fragment slot="prefix">Prefix</svelte:fragment></Checkbox>
+</div>
+
+<Hr />
+
+<div style="padding: 12px 0">
+  <label for="single_checkbox_1">This is a single Checkbox:</label>
+  <Checkbox id="single_checkbox_1" name="single_checkbox_1" />
+</div>
+
+<Hr />
+
+<div style="padding: 12px 0">
+  <Checkbox id="single_checkbox_2" name="single_checkbox_2" />
 </div>

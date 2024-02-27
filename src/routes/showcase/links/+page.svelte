@@ -6,7 +6,7 @@
 
 <h1>Links</h1>
 <div style="padding: 12px 0;">
-  <Checkbox value={isLoading} onClick={toggleIsLoading}>Disable</Checkbox>
+  <Checkbox name="disable" value={isLoading} onClick={toggleIsLoading}>Disable</Checkbox>
 </div>
 
 <Button props={{ theme: 'primary', variant: 'contained', loading: isLoading }}>
