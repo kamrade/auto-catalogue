@@ -3,7 +3,7 @@
 ### Checkbox
 
 - [x] Check/uncheck animations
-- [ ] Add name or ID
+- [x] Add name or ID
 
 ### Dropdown
 
@@ -11,7 +11,8 @@
 - [x] Max height
 - [ ] Appearing animation
 - [ ] Position in the DOM. Now it goes to the end of the body element. Is it ok or not...
-- [ ] Highlight current selected value.. optional.
+- [-] Highlight current selected value.. optional.
+- [ ] Options with Icon
 
 ### Hr
 

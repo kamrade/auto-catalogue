@@ -2,10 +2,12 @@ import type { SelectOption } from '$lib';
 
 export const options: SelectOption[] = [{
   text: 'First',
-  value: 'first'
+  value: 'first',
+  icon: 'ri-mail-add-line'
 }, {
   text: 'Second',
-  value: 'second'
+  value: 'second',
+  icon: 'ri-award-line'
 }];
 
 export const optionsLg: SelectOption[] = [{

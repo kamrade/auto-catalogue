@@ -3,21 +3,20 @@
   import type { SelectOption } from './Dropdown.js';
   import { clickOutsideObject } from '$lib/utils/click-outside-handler';
 
-  const dropdownGap = 4;
-
   export let parentEl: HTMLElement | null = null;
-  export let dropdownElement: HTMLElement | null = null;
   export let options: SelectOption[] = [];
   export let handleOptionClick: (e: MouseEvent, option: SelectOption) => void = () => null;
-  export let showIcon = true;
   export let hideDropdown: () => void;
   export let width = 0;
   export let maxHeight = 0;
+  export let selected: SelectOption | null = null;
 
+  let dropdownElement: HTMLElement | null = null;
+
+  const dropdownGap = 4;
   let innerWidth = 0;
   let innerHeight = 0;
   let scrollY = 0;
-
   let x: number;
   let y: number;
   let height: number;
@@ -69,17 +68,14 @@
           on:mouseup={(e) => handleOptionClick(e, option)}
         >
           {#if option?.icon}
-            {#if showIcon}
-              <img
-                class="Dropdown-option-icon"
-                src={option?.icon}
-                alt={`Flag${option?.icon}`}
-                width={32}
-                height={32}
-              />
-            {/if}
+            <i class={option.icon}></i>
           {/if}
-          {option.text}
+          <span class="Dropdown-text">
+            {option.text}
+          </span>
+          {#if selected?.value === option.value}
+            <i class="ri-check-line" />
+          {/if}
         </li>
       {/each}
     </ul>
@@ -124,6 +120,10 @@
       &:hover {
         background-color: var(--bg-control-300);
       }
+    }
+
+    .Dropdown-text {
+      flex-grow: 2;
     }
 
     .Dropdown-option-icon {

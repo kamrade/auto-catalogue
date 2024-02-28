@@ -4,10 +4,12 @@
   import type { SelectOption } from '$lib';
 
   let refs: HTMLDivElement[] = [];
+  let selected: SelectOption[] = [];
   let value = '';
   let dropdownVisible: boolean[] = [];
 
   const handleOptionClick = (e: MouseEvent, option: SelectOption, index: number) => {
+    selected[index] = option;
     value = option.text + ' | ' + option.value;
     dropdownVisible[index] = false;
   };
@@ -31,6 +33,7 @@
     {#if dropdownVisible[0]}
       <Portal>
         <Dropdown
+          selected={selected[0]}
           parentEl={refs[0]}
           {options}
           handleOptionClick={(e, option) => handleOptionClick(e, option, 0)}
@@ -54,6 +57,7 @@
     {#if dropdownVisible[1]}
       <Portal>
         <Dropdown
+          selected={selected[1]}
           parentEl={refs[1]}
           options={optionsLg}
           handleOptionClick={(e, option) => handleOptionClick(e, option, 1)}
