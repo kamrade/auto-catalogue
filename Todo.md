@@ -11,8 +11,12 @@
 - [x] Max height
 - [ ] Appearing animation
 - [ ] Position in the DOM. Now it goes to the end of the body element. Is it ok or not...
-- [-] Highlight current selected value.. optional.
+- [-] Highlight current selected value.
 - [ ] Options with Icon
+
+- [ ] Component: dropdown with list of checkbox
+- [ ] Component large Menu
+- [ ] Show Menu on:hover
 
 ### Hr
 
