@@ -4,6 +4,7 @@
   export let value: boolean = false;
   export let onClick: ((v: boolean) => void) | null = null;
   export let name: string;
+  export let disabled: boolean = false;
 
   const clickHandler: MouseEventHandler<HTMLInputElement> = (e: MouseEvent) => {
     let checked = (e?.target as HTMLInputElement).checked;
@@ -16,12 +17,13 @@
   };
 </script>
 
-<label class="Checkbox">
+<label class={`Checkbox ${disabled ? 'Checkbox-disabled' : ''}`}>
   {#if $$slots.prefix}
     <span class="CheckboxLabel"><slot name="prefix" /></span>
   {/if}
   <span class={`CheckboxIndicator CheckboxIndicator--${value ? 'on' : 'off'}`}></span>
   <input
+    {disabled}
     {name}
     class="Checkbox--el"
     checked={value}
@@ -37,9 +39,13 @@
 <style lang="scss">
   .Checkbox {
     position: relative;
-    display: flex;
+    display: inline-flex;
     gap: 0.5em;
     cursor: pointer;
+
+    &.Checkbox-disabled {
+      opacity: 0.5;
+    }
 
     &:focus-within {
       .CheckboxIndicator {
@@ -47,7 +53,7 @@
       }
     }
 
-    &:hover {
+    &:not(.Checkbox-disabled):hover {
       .CheckboxIndicator {
         transform: scale(1.1);
       }

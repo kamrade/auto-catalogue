@@ -7,10 +7,14 @@
 - [x] Component:Dropdown. Max height
 
 - [x] Component:Dropdown. Options with Icon
-- [-] Component:Dropdown. Highlight current selected value.
+- [x] Component:Dropdown. Highlight current selected value.
+
+- [x] Component:Checkbox. Single Checkbox
+- [ ] Component:Checkbox. Disabled, ID, Autofocus,
+
+- [ ] Component:Dropdown. Multiselection with checkboxes
 - [ ] Component:Dropdown. Appearing animation
 - [ ] Component:Dropdown. Position in the DOM. Now it goes to the end of the body element. Is it ok or not...
-
 
 - [ ] Component:Dropdown List of Checkboxes
 - [ ] Component large Menu

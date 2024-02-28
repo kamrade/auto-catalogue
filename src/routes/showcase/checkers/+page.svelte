@@ -8,7 +8,7 @@
 <h1>Checkers</h1>
 
 <div style="padding: 12px 0; max-width: 500px">
-  <Checkbox name="test_name_1">
+  <Checkbox disabled name="test_name_1">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fermentum tincidunt pulvinar.
     Donec finibus semper sapien a tempus. Sed varius, lorem vel ultrices fringilla, nibh nisi
     elementum mauris, id mollis purus lorem et nisl. Etiam varius orci et sagittis tincidunt.
@@ -28,7 +28,7 @@
 
 <div style="padding: 12px 0">
   <label for="single_checkbox_1">This is a single Checkbox:</label>
-  <Checkbox id="single_checkbox_1" name="single_checkbox_1" />
+  <div><Checkbox id="single_checkbox_1" name="single_checkbox_1" /></div>
 </div>
 
 <Hr />
