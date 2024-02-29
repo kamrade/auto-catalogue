@@ -45,6 +45,10 @@
 
     &.Checkbox-disabled {
       opacity: 0.5;
+      cursor: not-allowed;
+      .CheckboxIndicator {
+        background: var(--bg-control-400);
+      }
     }
 
     &:focus-within {
@@ -70,6 +74,7 @@
       border: 1px solid var(--line-control-100);
       transform-origin: 50% 50%;
       transition: all var(--animations-speed) ease-in-out;
+      cursor: pointer;
 
       &::after {
         content: '';
