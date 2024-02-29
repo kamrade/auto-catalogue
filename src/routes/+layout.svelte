@@ -2,20 +2,24 @@
   import { Container, Link } from '$lib';
 </script>
 
-<header class="header">
-  <Container>
-    <div class="header-content">
-      <b><Link inverted={true} href="/">Home</Link></b>
-      <b><Link inverted={true} href="/showcase">Showcase</Link></b>
-    </div>
-  </Container>
-</header>
+<div class="App">
+  <header class="header-main">
+    <Container>
+      <div class="header-content">
+        <b><Link inverted={true} href="/">Home</Link></b>
+        <b><Link inverted={true} href="/showcase">Showcase</Link></b>
+      </div>
+    </Container>
+  </header>
 
-<slot />
+  <slot />
+</div>
 
 <style lang="scss">
-  @import '../styles/variables.scss';
-  .header {
+
+  @import '../styles/global.scss';
+
+  .header-main {
     background-color: #000;
     color: #fff;
     .header-content {

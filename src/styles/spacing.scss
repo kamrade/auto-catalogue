@@ -1,0 +1,31 @@
+$props: "m", "p";
+$dirs: "t", "b", "l", "r";
+$bi-dirs: "y", "x";
+$props-map: ("m": "margin", "p": "padding");
+$dirs-map: ("t": "top", "b": "bottom", "l": "left", "r": "right");
+
+@each $prop in $props {
+  
+  @each $dir in $dirs {
+    @for $i from 1 through 6 {
+      :global( .#{ $prop }#{ $dir }-#{ $i } ) { // .mt-1
+        #{ map-get($props-map, $prop) }-#{map-get( $dirs-map, $dir )}: var( --space-#{$i} );
+      }
+    }
+  }
+
+  @each $bi-dir in $bi-dirs {
+    @for $i from 1 through 6 {
+      :global( .#{ $prop }#{ $bi-dir }-#{ $i } ) {
+        @if $bi-dir == "y" {
+          #{ map-get($props-map, $prop) }-top: var( --space-#{$i} );
+          #{ map-get($props-map, $prop )}-bottom: var( --space-#{$i} );
+        }
+        @if $bi-dir == "x" {
+          #{ map-get($props-map, $prop) }-left: var( --space-#{$i} );
+          #{ map-get($props-map, $prop )}-right: var( --space-#{$i} );
+        }
+      }
+    }
+  }
+}

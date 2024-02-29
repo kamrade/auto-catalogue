@@ -6,3 +6,4 @@ export * from './components/Hr';
 export * from './components/Container';
 export * from './components/Link';
 export * from './components/Select';
+export * from './components/TextInput';

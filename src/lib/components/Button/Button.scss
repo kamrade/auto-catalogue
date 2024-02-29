@@ -50,9 +50,9 @@
 }
 
 :global(.CatButton.CatButton--theme--secondary.CatButton--variant--contained) {
-  --background: var(--bg-control-100);
-  --hoverBackground: var(--bg-control-200);
-  --activeBackground: var(--bg-control-300);
+  --background: var(--bg-control-200);
+  --hoverBackground: var(--bg-control-300);
+  --activeBackground: var(--bg-control-400);
   --borderColor: var(--transparent);
   --color: var(--text-color-base);
   --hoverColor: var(--text-color-base);

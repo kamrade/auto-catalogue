@@ -5,18 +5,19 @@
   export let options: SelectOption[] = [];
   export let width = 0;
   export let maxHeight = 0;
-  
+  export let value: SelectOption;
+  export let onChange: (e: MouseEvent, option: SelectOption) => void;
   
   let ref: HTMLDivElement;
-  let selected: SelectOption;
   
   let dropdownVisible: boolean;
 
-  const handleOptionClick = (e: MouseEvent, option: SelectOption, index: number) => {
-    selected = option;
+  const handleOptionClick = (e: MouseEvent, option: SelectOption) => {
+    // value = option;
+    onChange && onChange(e, option);
     dropdownVisible = false;
   };
-  const hideDropdown = (index: number) => (dropdownVisible = false);
+  const hideDropdown = () => (dropdownVisible = false);
 </script>
 
 <div
@@ -25,17 +26,22 @@
   bind:this={ref}
 >
 
-  <Button props={{ theme: 'primary', onClick: () => (dropdownVisible = !dropdownVisible) }}>
+  <Button props={{ theme: 'secondary', onClick: () => (dropdownVisible = !dropdownVisible) }} on:focus={() => console.log('focus')}>
     <i class="ri-arrow-down-s-line" slot="suffix" />
-    <slot />
+    <span><slot/></span>
+    {#if !value}
+      <span style="color: gray">Select value</span>
+    {:else}
+      {value.text}
+    {/if}
   </Button>
 
   {#if dropdownVisible}
     <Portal>
-      <Dropdown {width} {maxHeight} selected={selected}
+      <Dropdown {width} {maxHeight} selected={value}
         parentEl={ref} {options}
-        handleOptionClick={(e, option) => handleOptionClick(e, option, 0)}
-        hideDropdown={() => hideDropdown(0)}
+        handleOptionClick={(e, option) => handleOptionClick(e, option)}
+        hideDropdown={() => hideDropdown()}
       />
     </Portal>
   {/if}
