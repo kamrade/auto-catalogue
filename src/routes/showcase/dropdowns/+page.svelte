@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Portal, Dropdown } from '$lib';
+  import { Button, Portal, Dropdown, Select } from '$lib';
   import { options, optionsLg } from '$lib/data/dropdown-data';
   import type { SelectOption } from '$lib';
 
@@ -19,6 +19,10 @@
 <h1>Dropdowns</h1>
 
 <div class="selected-value">Value: {value}</div>
+
+<div style="margin-bottom: 1rem;">
+  <Select options={optionsLg} width={300} maxHeight={200}>Test</Select>
+</div>
 
 <div
   class="button-with-dropdown"

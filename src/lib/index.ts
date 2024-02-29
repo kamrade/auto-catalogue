@@ -5,3 +5,4 @@ export * from './components/Portal';
 export * from './components/Hr';
 export * from './components/Container';
 export * from './components/Link';
+export * from './components/Select';

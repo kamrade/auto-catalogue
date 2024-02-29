@@ -9,15 +9,17 @@
 - [x] Component:Dropdown. Options with Icon
 - [x] Component:Dropdown. Highlight current selected value.
 
-- [x] Component:Checkbox. Single Checkbox
-- [ ] Component:Checkbox. Disabled, ID, Autofocus,
+- [x] Component:Checkbox. Single Checkbox.
+- [x] Component:Checkbox. Disabled, ID, Autofocus.
+
+- [ ] Component:Select with button
 
 - [ ] Component:Dropdown. Multiselection with checkboxes
 - [ ] Component:Dropdown. Appearing animation
 - [ ] Component:Dropdown. Position in the DOM. Now it goes to the end of the body element. Is it ok or not...
 
 - [ ] Component:Dropdown List of Checkboxes
-- [ ] Component large Menu
+- [ ] Component:Menu
 - [ ] Show Menu on:hover
 
 - [ ] Component:Hr. Update spacing
@@ -27,7 +29,6 @@
 - [ ] Component:Text Input
 - [ ] Component:AutoComplete
 - [ ] Component:TextArea
-- [ ] Component:Select
 - [ ] Component:Multiselect
 - [ ] Component:Tabs
 - [ ] Component:Drawer
