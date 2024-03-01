@@ -18,18 +18,20 @@
 - [x] Global scss
 - [x] Component:Typography: Class TextMuted
 - [x] Component:Spacers
-- [ ] Component:Text Input
+- [~] Component:Text Input
 
   - [x] disabled
   - [x] readonly
-  - [ ] label
-  - [ ] Variant - borderless | contained | outlined
-  - [ ] Sizes - sm | lg
-  - [ ] Prefix label
+  - [x] label
   - [ ] Suffix label
   - [ ] Prefix icon
   - [ ] Suffix icon
   - [ ] Buttons confirm / cancel
+
+  - [ ] Variant - borderless | contained | outlined
+  - [ ] Sizes - sm | lg
+  - [ ] Prefix label
+
 
 - [ ] Component:Dropdown. Navigation with keyboard
 - [ ] Component:Open Dropdown on focus
