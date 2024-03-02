@@ -1,6 +1,6 @@
 <script lang="ts">
   import { TextInput, Portal, Dropdown } from '$lib';
-  import type { SelectOption } from '$lib';
+  import type { SelectOption, KEvent } from '$lib';
   import type { ChangeEventHandler, KeyboardEventHandler } from 'svelte/elements';
 
   export let label = '';
@@ -17,19 +17,18 @@
   let ref: HTMLDivElement;
   let dropdownVisible = false;
 
-  let keyUpHandler: KeyboardEventHandler<HTMLInputElement> = (
-    e: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }
-  ) => {
+  let keyUpHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => {
     let val = (e.target as HTMLInputElement).value;
     textValue = val;
     onKeyup && onKeyup(e);
   };
 
-  let keyDownHandler: KeyboardEventHandler<HTMLInputElement> = (
-    e: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }
-  ) => {
+  let keyDownHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => {
     if (e.code === 'Tab') {
       hideDropdown();
+    }
+    if (e.code === 'Escape') {
+      toggleDropdown();
     }
     onKeydown && onKeydown(e);
   };
@@ -40,6 +39,8 @@
   };
 
   let hideDropdown = () => (dropdownVisible = false);
+  let showDropdown = () => (dropdownVisible = true);
+  let toggleDropdown = () => (dropdownVisible = !dropdownVisible);
 </script>
 
 <div class="Autocomplete" bind:this={ref}>

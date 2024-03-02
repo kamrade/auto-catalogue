@@ -1,8 +1,16 @@
 <script lang="ts">
-  import { Autocomplete, formatTextBlocks } from '$lib';
+  import { Autocomplete, formatTextBlocks, TextInput } from '$lib';
   import type { SelectOption } from '$lib';
   import { autocompleteOptions } from './data';
 
+  // TEXT INPUT
+  let textInputValue = '';
+  let textInputKeydownHandler = (e: KeyboardEvent) => {
+    let val = (e.target as HTMLInputElement).value;
+    textInputValue = val;
+  };
+
+  // AUTOCOMPLETE
   let autocompleteTextValue = '';
   let autocompleteValue: SelectOption | undefined;
 
@@ -60,7 +68,7 @@
           class="ri-close-circle-fill"
           role="button"
           aria-pressed
-          tabindex="0"
+          tabindex="-1"
           on:mouseup={() => clearField()}
         />
       {/if}
@@ -72,4 +80,10 @@
   {#if autocompleteValue?.value}
     <div class="text-muted text-sm py-2">{formatTextBlocks(autocompleteValue?.value, 4)}</div>
   {/if}
+</div>
+
+<div class="mb-6">
+  <TextInput value={textInputValue} onKeydown={textInputKeydownHandler} placeholder="Find">
+    <svelte:fragment slot="prefix"><i class="ri-search-line" /></svelte:fragment>
+  </TextInput>
 </div>

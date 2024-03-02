@@ -18,25 +18,30 @@
 - [x] Global scss
 - [x] Component:Typography: Class TextMuted
 - [x] Component:Spacers
-- [~] Component:Text Input
+- [x] Component:Text Input
 
-  - [x] disabled
-  - [x] readonly
-  - [x] label
-  - [x] Suffix label
-  - [x] Prefix icon
-  - [x] Suffix icon
-  - [x] Buttons confirm / cancel (as a part of the suffix)
-  - [ ] On focus – show dropdown
+  - disabled
+  - readonly
+  - label
+  - Suffix label
+  - Prefix icon
+  - Suffix icon
+  - Buttons confirm / cancel (as a part of the suffix)
+  - On focus – show dropdown
 
-  - [ ] Variant - borderless | contained | outlined
-  - [ ] Sizes - sm | lg
+- [~] Component:Autocomplete
 
-  - [ ] Autocomplete
+  - Show/hide on Esc
+  - Select value on enter
 
 - [ ] Component:Dropdown. Navigation with keyboard
 - [ ] Component:Dropdown. Quick shadow search
 - [ ] Component:Dropdown. Toggle on Escape
+
+- [ ] Component:Text Input
+
+  - Variant - borderless | contained | outlined
+  - Sizes - sm | lg
 
 - [ ] Component:Select with button. Change button type.
 

@@ -10,3 +10,5 @@ export * from './components/TextInput';
 export * from './components/Autocomplete';
 
 export * from './utils';
+
+export * from './types';
