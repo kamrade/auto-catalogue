@@ -10,6 +10,7 @@
   export let width = 0;
   export let maxHeight = 0;
   export let selected: SelectOption | null = null;
+  export let showValue = false;
 
   let dropdownElement: HTMLElement | null = null;
 
@@ -72,6 +73,9 @@
           {/if}
           <span class="Dropdown-text">
             {option.text}
+            {#if showValue}
+              <span class="text-muted">{option.value}</span>
+            {/if}
           </span>
           {#if selected?.value === option.value}
             <i class="ri-check-line" />

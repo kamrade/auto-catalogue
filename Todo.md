@@ -23,18 +23,20 @@
   - [x] disabled
   - [x] readonly
   - [x] label
-  - [ ] Suffix label
-  - [ ] Prefix icon
-  - [ ] Suffix icon
-  - [ ] Buttons confirm / cancel
+  - [x] Suffix label
+  - [x] Prefix icon
+  - [x] Suffix icon
+  - [x] Buttons confirm / cancel (as a part of the suffix)
+  - [ ] On focus – show dropdown
 
   - [ ] Variant - borderless | contained | outlined
   - [ ] Sizes - sm | lg
-  - [ ] Prefix label
 
+  - [ ] Autocomplete
 
 - [ ] Component:Dropdown. Navigation with keyboard
-- [ ] Component:Open Dropdown on focus
+- [ ] Component:Dropdown. Quick shadow search
+- [ ] Component:Dropdown. Toggle on Escape
 
 - [ ] Component:Select with button. Change button type.
 

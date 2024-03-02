@@ -9,6 +9,7 @@
       <Link href="/showcase/links">Links</Link>
       <Link href="/showcase/checkers">Checkers</Link>
       <Link href="/showcase/text-inputs">Text Inputs</Link>
+      <Link href="/showcase/payment-form">Payment Form</Link>
     </div>
   </Container>
 </header>

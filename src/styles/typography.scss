@@ -1,3 +1,7 @@
 :global(.text-muted) {
   color: var(--text-color-muted);
 }
+
+:global(.text-sm) {
+  font-size: 0.75rem;
+}

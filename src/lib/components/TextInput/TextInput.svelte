@@ -1,30 +1,43 @@
 <script lang="ts">
+  import type { ChangeEventHandler, FocusEventHandler } from 'svelte/elements';
+  import type { KeyboardEventHandler } from 'svelte/elements';
+
   type inputType = 'text' | 'password';
 
   export let value = '';
-  export let onKeyup: (value: string) => void;
+  export let onKeydown: KeyboardEventHandler<HTMLInputElement>;
+  export let onKeyup: KeyboardEventHandler<HTMLInputElement>;
   export let onFocus = (e: FocusEvent) => {};
-  export let onBlur = (e: FocusEvent) => {};
+  export let onBlur: FocusEventHandler<HTMLInputElement> = (e: FocusEvent) => {};
+  export let onChange: ChangeEventHandler<HTMLInputElement> = (e: Event) => {};
 
   export let placeholder: string = '';
   export let type: inputType = 'text';
   export let disabled = false;
   export let readonly = false;
   export let label = '';
+  export let name: string | undefined = undefined;
+  export let id: string | undefined = undefined;
 
-  let KeyupHandler = (e: Event) => onKeyup((e.target as HTMLInputElement).value);
+  let keydownHandler: KeyboardEventHandler<HTMLInputElement> = (
+    e: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }
+  ) => onKeydown(e);
+
+  let keyupHandler: KeyboardEventHandler<HTMLInputElement> = (
+    e: KeyboardEvent & { currentTarget: EventTarget & HTMLInputElement }
+  ) => onKeyup(e);
 
   const getClassNames = () => {
     let textInputClassName = 'TextInput ';
     textInputClassName += disabled ? 'TextInput-disabled ' : '';
     textInputClassName += readonly ? 'TextInput-readonly ' : '';
     return textInputClassName;
-  }
+  };
 </script>
 
 <label class={getClassNames()}>
   {#if $$slots.prefix}
-    <span class="TextInput-prefix"><slot name="prefix"/></span>
+    <span class="TextInput-prefix"><slot name="prefix" /></span>
   {/if}
   {#if label}
     <span class="TextInput-label">{label}</span>
@@ -36,19 +49,23 @@
     class="TextInput-el"
     {type}
     {value}
-    on:keyup={KeyupHandler}
+    on:keydown={keydownHandler}
+    on:keyup={keyupHandler}
     on:focus={onFocus}
     on:blur={onBlur}
+    on:change={onChange}
+    {name}
+    {id}
   />
   {#if $$slots.suffix}
-    <span class="TextInput-suffix"><slot name="suffix"/></span>
-    {/if}
+    <span class="TextInput-suffix"><slot name="suffix" /></span>
+  {/if}
 </label>
 
 <style lang="scss">
-
   .TextInput {
     display: flex;
+    align-items: center;
     position: relative;
     line-height: 0;
     gap: 0.5rem;
@@ -98,10 +115,11 @@
       color: var(--text-color-secondary);
     }
 
-    .TextInput-suffix, .TextInput-prefix {
+    .TextInput-suffix,
+    .TextInput-prefix {
       display: block;
       font-size: 1rem;
-      line-height: 1.5rem;
+      line-height: 1;
       padding: 0.5rem 0;
     }
 
