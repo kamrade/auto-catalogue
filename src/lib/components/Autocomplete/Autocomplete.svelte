@@ -10,7 +10,8 @@
   export let onKeyup: KeyboardEventHandler<HTMLInputElement> = () => {};
   export let options: SelectOption[];
   export let showValue = false;
-  export let optionClick: (e: MouseEvent, options: SelectOption) => unknown;
+  export let optionClick: (e: MouseEvent, option: SelectOption) => unknown;
+  export let selectOption: (option: SelectOption) => unknown = (_option: SelectOption) => null;
   export let placeholder = '';
   export let maxHeight = 240;
 
@@ -67,6 +68,7 @@
           handleOptionClick={(e, option) => handleOptionClick(e, option)}
           hideDropdown={() => hideDropdown()}
           {maxHeight}
+          {selectOption}
         />
       </Portal>
     {/if}

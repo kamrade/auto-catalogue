@@ -6,12 +6,14 @@
   export let parentEl: HTMLElement | null = null;
   export let options: SelectOption[] = [];
   export let handleOptionClick: (e: MouseEvent, option: SelectOption) => void = () => null;
+  export let selectOption: (option: SelectOption) => unknown = (_option: SelectOption) => null;
   export let hideDropdown: () => void;
   export let width = 0;
   export let maxHeight = 0;
   export let selected: SelectOption | null = null;
   export let showValue = false;
 
+  let current = 0;
   let dropdownElement: HTMLElement | null = null;
 
   const dropdownGap = 4;
@@ -22,27 +24,30 @@
   let y: number;
   let height: number;
 
-  onMount(() => {
-    calculatePosition(parentEl);
-    document.addEventListener('mousedown', handleClickOutside);
-    if (width === 0) {
-      width = (parentEl?.getBoundingClientRect().width || 0) - 2;
+  // HANDLERS
+  let keyDownHandler = (e: KeyboardEvent) => {
+    if (e.key === 'ArrowDown') {
+      if (current === options.length - 1) {
+        current = 0;
+      } else {
+        current++;
+      }
     }
-  });
-
-  onDestroy(() => {
-    document.removeEventListener('mousedown', handleClickOutside);
-  });
-
-  $: {
-    if (innerWidth && innerHeight) {
-      calculatePosition(parentEl);
+    if (e.key === 'ArrowUp') {
+      if (current === 0) {
+        current = options.length - 1;
+      } else {
+        current--;
+      }
     }
-  }
-
-  const handleClickOutside = (event: MouseEvent) => {
-    clickOutsideObject(event, dropdownElement, () => hideDropdown());
+    if (e.key === 'Enter') {
+      selectOption(options[current]);
+      hideDropdown();
+    }
   };
+
+  const handleClickOutside = (event: MouseEvent) =>
+    clickOutsideObject(event, dropdownElement, () => hideDropdown());
 
   const calculatePosition = (parentEl: HTMLElement | null) => {
     const boundingClientRect = parentEl?.getBoundingClientRect();
@@ -51,6 +56,27 @@
     height = boundingClientRect?.height || 0;
     y = y + height + dropdownGap + scrollY;
   };
+
+  // HOOKS
+  onMount(() => {
+    calculatePosition(parentEl);
+    document.addEventListener('mousedown', handleClickOutside);
+    if (width === 0) {
+      width = (parentEl?.getBoundingClientRect().width || 0) - 2;
+    }
+    document.addEventListener('keydown', keyDownHandler);
+  });
+
+  onDestroy(() => {
+    document.removeEventListener('mousedown', handleClickOutside);
+    document.removeEventListener('keydown', keyDownHandler);
+  });
+
+  $: {
+    if (innerWidth && innerHeight) {
+      calculatePosition(parentEl);
+    }
+  }
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
@@ -62,10 +88,10 @@
 >
   {#if options?.length}
     <ul class="Dropdown-options-wrapper" role="menu">
-      {#each options as option}
+      {#each options as option, i (i)}
         <li
           role="menuitem"
-          class="Dropdown-option"
+          class={`Dropdown-option ${current === i ? 'Dropdown-option-current' : ''}`}
           on:mouseup={(e) => handleOptionClick(e, option)}
         >
           {#if option?.icon}
@@ -123,6 +149,10 @@
 
       &:hover {
         background-color: var(--bg-control-300);
+      }
+
+      &.Dropdown-option-current {
+        background-color: yellow;
       }
     }
 

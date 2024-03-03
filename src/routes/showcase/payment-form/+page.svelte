@@ -14,18 +14,23 @@
   let autocompleteTextValue = '';
   let autocompleteValue: SelectOption | undefined;
 
-  let autocompleteKeyupHandler = (e: KeyboardEvent) => {
+  const autocompleteKeyupHandler = (e: KeyboardEvent) => {
     let val = (e.target as HTMLInputElement).value;
     autocompleteValue = autocompleteTextValue === val ? autocompleteValue : undefined;
     autocompleteTextValue = val;
   };
 
-  let autocompleteOptionClick = (e: MouseEvent, option: SelectOption) => {
+  const autocompleteOptionClick = (e: MouseEvent, option: SelectOption) => {
     autocompleteValue = option;
     autocompleteTextValue = option.text;
   };
 
-  let clearField = () => {
+  const selectOption = (option: SelectOption) => {
+    autocompleteValue = option;
+    autocompleteTextValue = option.text;
+  };
+
+  const clearField = () => {
     autocompleteValue = undefined;
     autocompleteTextValue = '';
   };
@@ -57,6 +62,7 @@
     options={opts}
     showValue={true}
     optionClick={autocompleteOptionClick}
+    {selectOption}
     placeholder={'Please choose an account or enter IBAN'}
   >
     <svelte:fragment slot="prefix"><i class="ri-send-plane-2-line"></i></svelte:fragment>
