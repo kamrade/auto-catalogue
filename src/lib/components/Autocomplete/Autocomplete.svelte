@@ -1,7 +1,7 @@
 <script lang="ts">
   import { TextInput, Portal, Dropdown } from '$lib';
   import type { SelectOption, KEvent } from '$lib';
-  import type { ChangeEventHandler, KeyboardEventHandler } from 'svelte/elements';
+  import type { KeyboardEventHandler } from 'svelte/elements';
 
   export let label = '';
   export let textValue = '';
@@ -18,33 +18,49 @@
   let ref: HTMLDivElement;
   let dropdownVisible = false;
 
-  let keyUpHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => {
+  const keyUpHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => {
+    if (e.code === 'ArrowDown' && !dropdownVisible) {
+      showDropdown();
+    }
     let val = (e.target as HTMLInputElement).value;
     textValue = val;
     onKeyup && onKeyup(e);
   };
 
-  let keyDownHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => {
+  const dropdownClickHandler = () => {
+    if (!dropdownVisible) {
+      showDropdown();
+    }
+  };
+
+  const keyDownHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => {
     if (e.code === 'Tab') {
       hideDropdown();
     }
     if (e.code === 'Escape') {
       toggleDropdown();
     }
+
     onKeydown && onKeydown(e);
   };
 
-  let handleOptionClick = (e: MouseEvent, option: SelectOption) => {
+  const handleOptionClick = (e: MouseEvent, option: SelectOption) => {
     optionClick && optionClick(e, option);
     hideDropdown();
   };
 
-  let hideDropdown = () => (dropdownVisible = false);
-  let showDropdown = () => (dropdownVisible = true);
-  let toggleDropdown = () => (dropdownVisible = !dropdownVisible);
+  const hideDropdown = () => (dropdownVisible = false);
+  const showDropdown = () => (dropdownVisible = true);
+  const toggleDropdown = () => (dropdownVisible = !dropdownVisible);
 </script>
 
-<div class="Autocomplete" bind:this={ref}>
+<div
+  class="Autocomplete"
+  bind:this={ref}
+  role="button"
+  tabindex="-1"
+  on:mouseup={dropdownClickHandler}
+>
   <TextInput
     {label}
     {placeholder}

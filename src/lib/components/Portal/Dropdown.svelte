@@ -15,6 +15,7 @@
 
   let current = 0;
   let dropdownElement: HTMLElement | null = null;
+  let currentDropdownOptions: HTMLElement[] = [];
 
   const dropdownGap = 4;
   let innerWidth = 0;
@@ -25,7 +26,7 @@
   let height: number;
 
   // HANDLERS
-  let keyDownHandler = (e: KeyboardEvent) => {
+  const keyDownHandler = (e: KeyboardEvent) => {
     if (e.key === 'ArrowDown') {
       if (current === options.length - 1) {
         current = 0;
@@ -77,6 +78,25 @@
       calculatePosition(parentEl);
     }
   }
+
+  $: dropdownElement?.scrollTo(0, current * 32 + 2);
+
+  // const isInViewport: () => boolean = () => {
+  //   let result = false;
+  //   let innerScrollHeight = currentDropdownOptions[current]?.clientHeight * options.length;
+  //   let scrollHeight = dropdownElement?.scrollHeight || 0;
+  //   let clientHeight = dropdownElement?.clientHeight || 0;
+  //   let padding = (scrollHeight - innerScrollHeight) / 2;
+  //   let scrollTop = dropdownElement?.scrollTop;
+
+  //   console.log('---');
+  //   console.log('Client height:', clientHeight);
+  //   console.log('Inner scroll height:', innerScrollHeight);
+  //   console.log('Scroll height:', scrollHeight);
+  //   console.log('Scroll top:', scrollTop);
+  //   console.log('Padding:', padding);
+  //   return result;
+  // };
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
@@ -92,6 +112,7 @@
         <li
           role="menuitem"
           class={`Dropdown-option ${current === i ? 'Dropdown-option-current' : ''}`}
+          bind:this={currentDropdownOptions[i]}
           on:mouseup={(e) => handleOptionClick(e, option)}
         >
           {#if option?.icon}
@@ -152,7 +173,7 @@
       }
 
       &.Dropdown-option-current {
-        background-color: yellow;
+        background-color: var(--bg-primary-100);
       }
     }
 
