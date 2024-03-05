@@ -6,8 +6,12 @@
   gap: 0.5rem;
 
   &.TextInput-variant-contained {
-    border-radius: var(--border-radius-control);
     background-color: var(--bg-control-200);
+
+    &:focus-within {
+      box-shadow: 0 0 0 2px var(--line-control-focus);
+    }
+
     &.TextInput-size-md {
       padding: 0 .5rem;
     }

@@ -6,7 +6,6 @@
   let ref: HTMLDivElement;
   let selected: SelectOption;
   let dropdownVisible: boolean = false;
-  let optionSelected = false; // it means that options was selected from keyboard
 
   const handleOptionClick = (e: MouseEvent, option: SelectOption) => {
     selected = option;
@@ -17,15 +16,12 @@
 
   const selectOption = (option: SelectOption) => {
     selected = option;
-    optionSelected = true;
-    
   }
 
   const buttonClickHandler = (e: MouseEvent) => {
-    if (!dropdownVisible && !optionSelected) {
+    if (!dropdownVisible) {
       dropdownVisible = true;
     }
-    optionSelected = false;
   }
 </script>
 
@@ -45,6 +41,7 @@
     {#if dropdownVisible}
       <Portal>
         <Dropdown
+          search={true}
           width={400}
           selected={selected}
           parentEl={ref}
