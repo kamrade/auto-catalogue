@@ -46,6 +46,9 @@
 
 - [ ] Component:Select with button. Change button type.
 
+- [ ] Docker configuration
+- [ ] Build adapter to upload to the server
+
 <!-- Backlog -->
 
 - [ ] Component:Dropdown. Multiselection with checkboxes

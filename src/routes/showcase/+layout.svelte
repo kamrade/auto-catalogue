@@ -10,6 +10,7 @@
       <Link href="/showcase/checkers">Checkers</Link>
       <Link href="/showcase/text-inputs">Text Inputs</Link>
       <Link href="/showcase/payment-form">Payment Form</Link>
+      <Link href="/showcase/filter-select">Filter Select</Link>
     </div>
   </Container>
 </header>

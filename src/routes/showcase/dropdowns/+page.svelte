@@ -6,7 +6,7 @@
   let selectValue: SelectOption = optionsLg[0];
   let onSelectChange = (e: MouseEvent, option: SelectOption) => {
     selectValue = option;
-  }
+  };
 
   let refs: HTMLDivElement[] = [];
   let selected: SelectOption[] = [];
@@ -25,7 +25,13 @@
 
 <div class="mb-6">
   <div style="margin-bottom: 4px;">Select Value: {selectValue?.text} | {selectValue?.value}</div>
-  <Select value={selectValue} onChange={onSelectChange} options={optionsLg} width={300} maxHeight={200}>Test</Select>
+  <Select
+    value={selectValue}
+    onChange={onSelectChange}
+    options={optionsLg}
+    width={300}
+    maxHeight={200}>Test</Select
+  >
 </div>
 
 <Hr />

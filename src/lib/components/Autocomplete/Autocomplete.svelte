@@ -14,6 +14,7 @@
   export let selectOption: (option: SelectOption) => unknown = (_option: SelectOption) => null;
   export let placeholder = '';
   export let maxHeight = 240;
+  export let readonly = false;
 
   let ref: HTMLDivElement;
   let dropdownVisible = false;
@@ -69,6 +70,7 @@
     onKeyup={keyUpHandler}
     onFocus={(e) => (dropdownVisible = true)}
     onBlur={(e) => ({})}
+    {readonly}
   >
     <slot name="prefix" slot="prefix" />
     <slot name="suffix" slot="suffix" />
