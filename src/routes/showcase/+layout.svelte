@@ -24,6 +24,7 @@
   .header {
     .header-content {
       display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
       padding: 0.5rem;
       border-bottom: 1px solid var(--line-base-100);

@@ -4,7 +4,11 @@
   import type { KEvent } from '$lib';
 
   type inputType = 'text' | 'password';
+  type Variant = 'underlined' | 'contained';
+  type Size = 'sm' | 'md';
 
+  export let variant: Variant = 'underlined';
+  export let size: Size = 'md';
   export let value = '';
   export let onKeydown: KeyboardEventHandler<HTMLInputElement> = () => {};
   export let onKeyup: KeyboardEventHandler<HTMLInputElement> = () => {};
@@ -27,6 +31,8 @@
     let textInputClassName = 'TextInput ';
     textInputClassName += disabled ? 'TextInput-disabled ' : '';
     textInputClassName += readonly ? 'TextInput-readonly ' : '';
+    textInputClassName += `TextInput-variant-${variant} `;
+    textInputClassName += `TextInput-size-${size} `;
     return textInputClassName;
   };
 </script>
@@ -59,77 +65,5 @@
 </label>
 
 <style lang="scss">
-  .TextInput {
-    display: flex;
-    align-items: center;
-    position: relative;
-    line-height: 0;
-    gap: 0.5rem;
-
-    &:focus-within {
-      &::after {
-        background: #333;
-        transform: scaleY(2);
-      }
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      height: 1px;
-      left: 0;
-      right: 0;
-      background: #ccc;
-      transition: all 0.3s ease-in-out;
-      transform-origin: 100% 100%;
-    }
-
-    &.TextInput-disabled {
-      opacity: 0.5;
-      &::after {
-        background: transparent;
-        border-bottom: 1px dashed #ccc;
-      }
-    }
-
-    .TextInput-label {
-      display: block;
-      white-space: nowrap;
-      font-size: 1rem;
-      line-height: 1.5;
-      padding: 0.5rem 0;
-      color: var(--text-color-secondary);
-    }
-
-    .TextInput-suffix,
-    .TextInput-prefix {
-      display: block;
-      font-size: 1rem;
-      line-height: 1;
-      padding: 0.5rem 0;
-    }
-
-    .TextInput-el {
-      border: none;
-      position: relative;
-      width: 100%;
-      padding: 0.5rem 0;
-      font-size: 1rem;
-      line-height: 1.5;
-
-      &:disabled {
-        background-color: transparent;
-      }
-
-      &::placeholder {
-        color: var(--text-color-muted);
-      }
-
-      &:focus {
-        outline: none;
-        border: none;
-      }
-    }
-  }
+  @import './TextInput.scss';
 </style>

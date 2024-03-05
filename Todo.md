@@ -29,13 +29,13 @@
   - Buttons confirm / cancel (as a part of the suffix)
   - On focus – show dropdown
 
-- [~] Component:Autocomplete
+- [x] Component:Autocomplete
 
   - Show/hide on Esc
   - Select value on enter
 
 - [x] Component:Dropdown. Navigation with keyboard
-- [ ] Component:Dropdown. Scroll when navigate with keyboard
+- [x] Component:Dropdown. Scroll when navigate with keyboard
 - [ ] Component:Dropdown. Quick shadow search
 - [ ] Component:Dropdown. Toggle on Escape
 
