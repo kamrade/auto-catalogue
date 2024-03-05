@@ -11,6 +11,7 @@
       <Link href="/showcase/text-inputs">Text Inputs</Link>
       <Link href="/showcase/payment-form">Payment Form</Link>
       <Link href="/showcase/filter-select">Filter Select</Link>
+      <Link href="/showcase/dropdown-with-search">Dropdown with Search</Link>
     </div>
   </Container>
 </header>

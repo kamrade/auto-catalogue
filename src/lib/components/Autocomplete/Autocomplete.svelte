@@ -84,7 +84,7 @@
           parentEl={ref}
           {options}
           handleOptionClick={(e, option) => handleOptionClick(e, option)}
-          hideDropdown={() => hideDropdown()}
+          {hideDropdown}
           {maxHeight}
           {selectOption}
         />

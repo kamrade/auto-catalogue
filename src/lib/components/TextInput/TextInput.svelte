@@ -67,11 +67,6 @@
     gap: 0.5rem;
 
     &:focus-within {
-      &.TextInput-readonly {
-        &::after {
-          background: #ccc;
-        }
-      }
       &::after {
         background: #333;
         transform: scaleY(2);
@@ -88,10 +83,6 @@
       background: #ccc;
       transition: all 0.3s ease-in-out;
       transform-origin: 100% 100%;
-    }
-
-    &.TextInput-readonly {
-      opacity: 0.5;
     }
 
     &.TextInput-disabled {
