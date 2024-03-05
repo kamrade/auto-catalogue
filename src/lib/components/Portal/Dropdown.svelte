@@ -79,7 +79,7 @@
     }
   }
 
-  $: dropdownElement?.scrollTo(0, current * 32 + 2);
+  $: dropdownElement?.scrollTo(0, current * (currentDropdownOptions[current]?.clientHeight || 32));
 
   // const isInViewport: () => boolean = () => {
   //   let result = false;
@@ -161,7 +161,6 @@
     .Dropdown-option {
       padding: 0.25rem 0.5rem;
       background-color: var(--bg-control-100);
-      transition: background 0.3s ease-in-out;
       cursor: pointer;
       display: flex;
       justify-content: flex-start;
