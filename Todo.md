@@ -18,34 +18,34 @@
 - [x] Global scss
 - [x] Component:Typography: Class TextMuted
 - [x] Component:Spacers
-- [x] Component:Text Input
 
-  - disabled
-  - readonly
-  - label
-  - Suffix label
-  - Prefix icon
-  - Suffix icon
-  - Buttons confirm / cancel (as a part of the suffix)
-  - On focus – show dropdown
+- [x] Component:Text Input
+- [x] disabled
+- [x] readonly
+- [x] label
+- [x] Suffix label
+- [x] Prefix icon
+- [x] Suffix icon
+- [x] Buttons confirm / cancel (as a part of the suffix)
+- [x] On focus – show dropdown
 
 - [x] Component:Autocomplete
-
-  - Show/hide on Esc
-  - Select value on enter
+- [x] Show/hide on Esc
+- [x] Select value on enter
 
 - [x] Component:Dropdown. Navigation with keyboard
 - [x] Component:Dropdown. Scroll when navigate with keyboard
+- [ ] Component:Dropdown. Inner search
 - [ ] Component:Dropdown. Quick shadow search
 - [ ] Component:Dropdown. Toggle on Escape
 
-- [ ] Component:Text Input
+- [x] Component:Text Input
+- [x] Sizes - sm | md
+- [~] Variant - borderless | contained | outlined | underlined
 
-  - Variant - borderless | contained | outlined
-  - Sizes - sm | lg
-
+- [ ] Dropdown option as a link
+- [ ] Dropdown option as a handler
 - [ ] Component:Select with button. Change button type.
-
 - [ ] Docker configuration
 - [ ] Build adapter to upload to the server
 

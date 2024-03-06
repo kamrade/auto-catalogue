@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { ChangeEventHandler, FocusEventHandler } from 'svelte/elements';
   import type { KeyboardEventHandler } from 'svelte/elements';
-  import type { KEvent } from '$lib';
+  import { log, type KEvent } from '$lib';
 
   type inputType = 'text' | 'password';
   type Variant = 'underlined' | 'contained';
@@ -23,6 +23,11 @@
   export let label = '';
   export let name: string | undefined = undefined;
   export let id: string | undefined = undefined;
+
+  let inputEl: HTMLInputElement;
+  export const focusSearch = () => {
+    setTimeout(() => inputEl.focus());
+  };
 
   let keydownHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => onKeydown(e);
   let keyupHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => onKeyup(e);
@@ -58,6 +63,7 @@
     on:change={onChange}
     {name}
     {id}
+    bind:this={inputEl}
   />
   {#if $$slots.suffix}
     <span class="TextInput-suffix"><slot name="suffix" /></span>

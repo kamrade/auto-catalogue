@@ -14,7 +14,7 @@
   export let maxHeight = 0;
   export let selected: SelectOption | null = null;
   export let showValue = false;
-  export let search = false;
+  export let hasSearch = false;
 
   let current = 0;
   let dropdownElement: HTMLElement | null = null;
@@ -28,12 +28,13 @@
   let x: number;
   let y: number;
   let height: number;
-  let searchValue = '';
+  export let searchValue = '';
+  let textSearchFocus: () => unknown;
 
   // HANDLERS
   const searchInputKeyupHandler = (e: KEvent) => {
     searchValue = (e.target as HTMLInputElement).value;
-  }
+  };
 
   const keyDownHandler = (e: KeyboardEvent) => {
     if (e.key === 'ArrowDown') {
@@ -75,6 +76,7 @@
       width = (parentEl?.getBoundingClientRect().width || 0) - 2;
     }
     document.addEventListener('keydown', keyDownHandler);
+    textSearchFocus && textSearchFocus();
   });
 
   onDestroy(() => {
@@ -98,15 +100,15 @@
   style={`left: ${x}px; top: ${y}px; width: ${width}px; max-height: ${maxHeight ? maxHeight + 'px' : 'auto'}`}
   bind:this={dropdownElement}
 >
-  
-  {#if search}
+  {#if hasSearch}
     <div style="padding: 2px;">
       <TextInput
         value={searchValue}
         onKeyup={searchInputKeyupHandler}
         placeholder="Find"
-        variant='contained'
-        size='sm'
+        variant="contained"
+        size="sm"
+        bind:focusSearch={textSearchFocus}
       >
         <svelte:fragment slot="prefix"><i class="ri-search-line"></i></svelte:fragment>
       </TextInput>
