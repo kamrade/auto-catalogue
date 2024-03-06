@@ -1,4 +1,6 @@
 :root {
+
+  // BG
   --bg-primary-100: #C9ED62;
   --bg-primary-200: #C3E858;
   --bg-primary-300: #B9DF4C;
@@ -8,18 +10,22 @@
   --bg-control-300: #E9E9E9;
   --bg-control-400: #E1E1E1;
 
+  --bg-inverted-100: #2D2B2B;
+
+  // LINE
   --line-base-100: #E5E5E5;
   --line-primary-100: #B9DF4C;
   --line-control-100: #CDCDCD;
   --line-control-focus: #999;
   
-
-  --text-color-base: #000000;
+  // TEXT
+  --text-color-base: #2A2A2C;
   --text-color-inv: #FFFFFF;
   --text-color-secondary: #727272;
   --text-color-muted: #AFAFAF;
   --text-color-inv-primary: #C9ED62;
 
+  // OTHERS
   --transparent: transparent;
 
   --focus-color: rgba(255, 245, 0, 0.4);

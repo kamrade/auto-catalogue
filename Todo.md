@@ -2,24 +2,23 @@
 
 - [x] Component:Checkbox.Check/uncheck animations
 - [x] Component:Checkbox. Add name or ID
-
 - [x] Component:Dropdown. Custom width
 - [x] Component:Dropdown. Max height
-
 - [x] Component:Dropdown. Options with Icon
 - [x] Component:Dropdown. Highlight current selected value.
-
 - [x] Component:Checkbox. Single Checkbox.
 - [x] Component:Checkbox. Disabled, ID, Autofocus.
 
 <!-- Current -->
 
-- [x] Component:Select with button
+- [x] COMPONENT:SELECT:
+- [x] with button
 - [x] Global scss
-- [x] Component:Typography: Class TextMuted
-- [x] Component:Spacers
 
-- [x] Component:Text Input
+- [x] COMPONENT:TYPOGRAPHY: class text-muted
+- [x] COMPONENT:SPACERS: spacers classes
+
+- [x] COMPONENT:TEXTINPUT:
 - [x] disabled
 - [x] readonly
 - [x] label
@@ -29,20 +28,24 @@
 - [x] Buttons confirm / cancel (as a part of the suffix)
 - [x] On focus – show dropdown
 
-- [x] Component:Autocomplete
+- [x] COMPONENT:AUTOCOMPLETE:
 - [x] Show/hide on Esc
 - [x] Select value on enter
 
-- [x] Component:Dropdown. Navigation with keyboard
-- [x] Component:Dropdown. Scroll when navigate with keyboard
-- [ ] Component:Dropdown. Inner search
-- [ ] Component:Dropdown. Quick shadow search
-- [ ] Component:Dropdown. Toggle on Escape
+- [x] COMPONENT:DROPDOWN:
+- [x] Navigation with keyboard
+- [x] Scroll when navigate with keyboard
+- [x] Inner search
+- [x] Toggle on Escape
+- [ ] Quick shadow search
 
-- [x] Component:Text Input
+- [x] COMPONENT:TEXTINPUT:
 - [x] Sizes - sm | md
 - [~] Variant - borderless | contained | outlined | underlined
 
+- [ ] COMPONENT:MENU: header navigation (like the Stripe has)
+
+- [ ] COMPONENT:DROPDOWN:
 - [ ] Dropdown option as a link
 - [ ] Dropdown option as a handler
 - [ ] Component:Select with button. Change button type.

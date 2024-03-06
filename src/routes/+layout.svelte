@@ -16,12 +16,11 @@
 </div>
 
 <style lang="scss">
-
   @import '../styles/global.scss';
 
   .header-main {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--bg-inverted-100);
+    color: var(--text-color-inv);
     .header-content {
       display: flex;
       gap: 1rem;
