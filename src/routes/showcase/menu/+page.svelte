@@ -47,8 +47,10 @@
       appearanceOnHover={true}
       isVisible={isHoverMenuVisible}
       hideMenu={hideHoverMenu}
-      parentElement={menuWrapperElementHover}>Menu</Menu
+      parentElement={menuWrapperElementHover}
     >
+      Menu
+    </Menu>
   </p>
 </div>
 
@@ -61,8 +63,10 @@
       menuGap={12}
       isVisible={isClickMenuVisible}
       hideMenu={hideClickMenu}
-      parentElement={menuWrapperElementClick}>Menu</Menu
+      parentElement={menuWrapperElementClick}
     >
+      Menu
+    </Menu>
   </p>
 </div>
 

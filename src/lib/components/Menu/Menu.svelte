@@ -4,11 +4,12 @@
   import { clickOutsideObject, Portal } from '$lib';
 
   export let hideMenu: () => void;
-  export let parentElement: HTMLElement;
+  export let parentElement: HTMLElement | null;
   export let menuGap = 0;
   export let appearanceOnHover = false;
   export let isVisible = false;
   export let menuElement: HTMLDivElement | null = null;
+  export let maxHeight = 200;
 
   let x = 0;
   let y = 0;
@@ -66,7 +67,7 @@
       on:mouseleave={mouseLeaveHandler}
       bind:this={menuElement}
       class="Menu"
-      style={`left: ${x}px; top: ${y}px; width: ${width}px;`}
+      style={`left: ${x}px; top: ${y}px; width: ${width}px; max-height: ${maxHeight}px`}
     >
       <slot />
     </div>
@@ -89,5 +90,6 @@
     border: 1px solid var(--line-control-100);
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.09);
     max-height: auto;
+    overflow-y: auto;
   }
 </style>

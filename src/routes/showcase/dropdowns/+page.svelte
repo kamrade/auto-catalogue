@@ -48,17 +48,14 @@
     Button with Dropdown</Button
   >
   <div>
-    {#if dropdownVisible[0]}
-      <Portal>
-        <Dropdown
-          selected={selected[0]}
-          parentEl={refs[0]}
-          {options}
-          handleOptionClick={(e, option) => handleOptionClick(e, option, 0)}
-          hideDropdown={() => hideDropdown(0)}
-        />
-      </Portal>
-    {/if}
+    <Dropdown
+      isVisible={dropdownVisible[0]}
+      selected={selected[0]}
+      parentEl={refs[0]}
+      {options}
+      handleOptionClick={(e, option) => handleOptionClick(e, option, 0)}
+      hideDropdown={() => hideDropdown(0)}
+    />
   </div>
 </div>
 
@@ -72,18 +69,15 @@
     Another Button with Dropdown</Button
   >
   <div>
-    {#if dropdownVisible[1]}
-      <Portal>
-        <Dropdown
-          selected={selected[1]}
-          parentEl={refs[1]}
-          options={optionsLg}
-          handleOptionClick={(e, option) => handleOptionClick(e, option, 1)}
-          hideDropdown={() => hideDropdown(1)}
-          width={200}
-          maxHeight={200}
-        />
-      </Portal>
-    {/if}
+    <Dropdown
+      isVisible={dropdownVisible[1]}
+      selected={selected[1]}
+      parentEl={refs[1]}
+      options={optionsLg}
+      handleOptionClick={(e, option) => handleOptionClick(e, option, 1)}
+      hideDropdown={() => hideDropdown(1)}
+      width={200}
+      maxHeight={200}
+    />
   </div>
 </div>

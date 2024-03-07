@@ -1,8 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
   import type { SelectOption } from './Dropdown.js';
-  import { clickOutsideObject } from '$lib/utils/click-outside-handler';
-  import { TextInput } from '$lib';
+  import { TextInput, Menu } from '$lib';
   import type { KEvent } from '$lib';
 
   export let parentEl: HTMLElement | null = null;
@@ -11,17 +10,18 @@
   export let selectOption: (option: SelectOption) => unknown = (_option: SelectOption) => null;
   export let hideDropdown: () => void;
   export let width = 0;
-  export let maxHeight = 0;
+  export let maxHeight = 200;
   export let selected: SelectOption | null = null;
   export let showValue = false;
   export let hasSearch = false;
 
+  export let isVisible = false;
+
   let current = 0;
-  let dropdownElement: HTMLElement | null = null;
   let scrollerElement: HTMLElement | null = null;
   let currentDropdownOptions: HTMLElement[] = [];
 
-  const dropdownGap = 4;
+  export let dropdownGap = 4;
   let innerWidth = 0;
   let innerHeight = 0;
   let scrollY = 0;
@@ -57,9 +57,6 @@
     }
   };
 
-  const handleClickOutside = (event: MouseEvent) =>
-    clickOutsideObject(event, dropdownElement, () => hideDropdown());
-
   const calculatePosition = (parentEl: HTMLElement | null) => {
     const boundingClientRect = parentEl?.getBoundingClientRect();
     x = boundingClientRect?.x || 0;
@@ -71,7 +68,6 @@
   // HOOKS
   onMount(() => {
     calculatePosition(parentEl);
-    document.addEventListener('mousedown', handleClickOutside);
     if (width === 0) {
       width = (parentEl?.getBoundingClientRect().width || 0) - 2;
     }
@@ -80,7 +76,6 @@
   });
 
   onDestroy(() => {
-    document.removeEventListener('mousedown', handleClickOutside);
     document.removeEventListener('keydown', keyDownHandler);
   });
 
@@ -95,60 +90,60 @@
 
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
 
-<div
-  class="Dropdown"
-  style={`left: ${x}px; top: ${y}px; width: ${width}px; max-height: ${maxHeight ? maxHeight + 'px' : 'auto'}`}
-  bind:this={dropdownElement}
+<Menu
+  menuGap={dropdownGap}
+  {isVisible}
+  hideMenu={hideDropdown}
+  parentElement={parentEl}
+  {maxHeight}
 >
-  {#if hasSearch}
-    <div style="padding: 2px;">
-      <TextInput
-        value={searchValue}
-        onKeyup={searchInputKeyupHandler}
-        placeholder="Find"
-        variant="contained"
-        size="sm"
-        bind:focusSearch={textSearchFocus}
-      >
-        <svelte:fragment slot="prefix"><i class="ri-search-line"></i></svelte:fragment>
-      </TextInput>
-    </div>
-  {/if}
-
-  {#if options?.length}
-    <ul class="Dropdown-options-wrapper" role="menu" bind:this={scrollerElement}>
-      {#each options as option, i (i)}
-        <li
-          role="menuitem"
-          class={`Dropdown-option ${current === i ? 'Dropdown-option-current' : ''}`}
-          bind:this={currentDropdownOptions[i]}
-          on:mouseup={(e) => handleOptionClick(e, option)}
+  <div class="Dropdown">
+    {#if hasSearch}
+      <div style="padding: 2px;">
+        <TextInput
+          value={searchValue}
+          onKeyup={searchInputKeyupHandler}
+          placeholder="Find"
+          variant="contained"
+          size="sm"
+          bind:focusSearch={textSearchFocus}
         >
-          {#if option?.icon}
-            <i class={option.icon}></i>
-          {/if}
-          <span class="Dropdown-text">
-            {option.text}
-            {#if showValue}
-              <span class="text-muted">{option.value}</span>
+          <svelte:fragment slot="prefix"><i class="ri-search-line"></i></svelte:fragment>
+        </TextInput>
+      </div>
+    {/if}
+
+    {#if options?.length}
+      <ul class="Dropdown-options-wrapper" role="menu" bind:this={scrollerElement}>
+        {#each options as option, i (i)}
+          <li
+            role="menuitem"
+            class={`Dropdown-option ${current === i ? 'Dropdown-option-current' : ''}`}
+            bind:this={currentDropdownOptions[i]}
+            on:mouseup={(e) => handleOptionClick(e, option)}
+          >
+            {#if option?.icon}
+              <i class={option.icon}></i>
             {/if}
-          </span>
-          {#if selected?.value === option.value}
-            <i class="ri-check-line" />
-          {/if}
-        </li>
-      {/each}
-    </ul>
-  {/if}
-  <slot name="options" />
-</div>
+            <span class="Dropdown-text">
+              {option.text}
+              {#if showValue}
+                <span class="text-muted">{option.value}</span>
+              {/if}
+            </span>
+            {#if selected?.value === option.value}
+              <i class="ri-check-line" />
+            {/if}
+          </li>
+        {/each}
+      </ul>
+    {/if}
+    <slot name="options" />
+  </div>
+</Menu>
 
 <style lang="scss">
   .Dropdown {
-    position: absolute;
-    z-index: var(--zindex-dropdown);
-    top: 0;
-    left: 0;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -156,9 +151,6 @@
     flex-direction: column;
     gap: 0;
     justify-content: space-between;
-    border: 1px solid var(--line-control-100);
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.09);
-    max-height: auto;
 
     ul {
       margin: 0;
