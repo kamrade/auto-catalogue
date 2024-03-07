@@ -23,7 +23,7 @@
 
   const selectOption = (option: SelectOption) => {
     selected = option;
-    setTimeout(() => focus());
+    setTimeout(() => buttonFocus());
   };
 
   let buttonFocus: () => unknown;
@@ -43,17 +43,19 @@
     Value: {selected?.text || ''}</Button
   >
   <div>
-    <Dropdown
-      isVisible={dropdownVisible}
-      bind:searchValue={searchString}
-      hasSearch={true}
-      width={400}
-      {selected}
-      parentEl={ref}
-      {options}
-      selectOption={(option) => selectOption(option)}
-      maxHeight={200}
-      {hideDropdown}
-    />
+    {#if dropdownVisible}
+      <Dropdown
+        isVisible={dropdownVisible}
+        bind:searchValue={searchString}
+        hasSearch={true}
+        width={400}
+        {selected}
+        parentEl={ref}
+        {options}
+        selectOption={(option) => selectOption(option)}
+        maxHeight={200}
+        {hideDropdown}
+      />
+    {/if}
   </div>
 </div>

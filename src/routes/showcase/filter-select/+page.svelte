@@ -50,14 +50,13 @@
 
 <div class="mb-6">
   <Autocomplete
-    label="Transfer To"
+    label="Choose brand"
     textValue={autocompleteTextValue}
     selected={autocompleteValue}
     onKeyup={autocompleteKeyupHandler}
     options={opts}
     {selectOption}
-    placeholder={'Please choose an account or enter IBAN'}
-    readonly={true}
+    placeholder={'Finnd your brand'}
   >
     <svelte:fragment slot="prefix"><i class="ri-send-plane-2-line"></i></svelte:fragment>
 
