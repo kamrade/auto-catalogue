@@ -2,7 +2,7 @@
   import { TextInput } from '$lib';
 
   let textInputValue = '';
-  let textInputKeydownHandler = (e: KeyboardEvent) => {
+  let handleOnKeyUp = (e: KeyboardEvent) => {
     let val = (e.target as HTMLInputElement).value;
     textInputValue = val;
   };
@@ -16,7 +16,7 @@
   <TextInput
     disabled
     value={textInputValue}
-    onKeydown={textInputKeydownHandler}
+    onKeyup={handleOnKeyUp}
     placeholder="Disabled TextInput"
     label="Copy1"
   />
@@ -28,7 +28,7 @@
   <TextInput
     readonly
     value={textInputValue}
-    onKeydown={textInputKeydownHandler}
+    onKeyup={handleOnKeyUp}
     placeholder="Readonly TextInput"
     label="Copy2"
   />
@@ -37,11 +37,7 @@
 <h2>Underlined</h2>
 
 <div class="mb-6">
-  <TextInput
-    value={textInputValue}
-    onKeydown={textInputKeydownHandler}
-    placeholder="Enter text here"
-  >
+  <TextInput value={textInputValue} onKeyup={handleOnKeyUp} placeholder="Enter text here">
     <svelte:fragment slot="prefix"><i class="ri-send-plane-2-line"></i></svelte:fragment>
   </TextInput>
 </div>
@@ -50,7 +46,7 @@
   <TextInput
     value={textInputValue}
     label="Some label"
-    onKeydown={textInputKeydownHandler}
+    onKeyup={handleOnKeyUp}
     placeholder="Enter text here"
   >
     <svelte:fragment slot="prefix"><i class="ri-send-plane-2-line"></i></svelte:fragment>
@@ -62,9 +58,9 @@
 <div class="mb-6">
   <TextInput
     value={textInputValue}
-    onKeydown={textInputKeydownHandler}
+    onKeyup={handleOnKeyUp}
     placeholder="Enter text here"
-    variant='contained'
+    variant="contained"
   >
     <svelte:fragment slot="prefix"><i class="ri-search-line"></i></svelte:fragment>
     <svelte:fragment slot="suffix"><i class="ri-close-circle-line"></i></svelte:fragment>
@@ -74,10 +70,10 @@
 <div class="mb-6">
   <TextInput
     value={textInputValue}
-    onKeydown={textInputKeydownHandler}
+    onKeyup={handleOnKeyUp}
     placeholder="Find"
-    variant='contained'
-    size='sm'
+    variant="contained"
+    size="sm"
   >
     <svelte:fragment slot="prefix"><i class="ri-search-line"></i></svelte:fragment>
   </TextInput>
