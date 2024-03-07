@@ -11,6 +11,7 @@
   export let menuElement: HTMLDivElement | null = null;
   export let maxHeight = 200;
   export let width = 200;
+  export let contentHeight = 0;
 
   let x = 0;
   let y = 0;
@@ -56,6 +57,7 @@
       calculatePosition(parentElement);
     }
   }
+
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
@@ -67,7 +69,7 @@
       on:mouseleave={mouseLeaveHandler}
       bind:this={menuElement}
       class="Menu"
-      style={`left: ${x}px; top: ${y}px; width: ${width}px; max-height: ${maxHeight}px`}
+      style={`left: ${x}px; top: ${y}px; width: ${width}px; max-height: ${maxHeight}px; height: ${contentHeight}px`}
     >
       <slot />
     </div>
