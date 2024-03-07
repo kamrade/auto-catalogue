@@ -44,6 +44,7 @@
 - [~] Variant - borderless | contained | outlined | underlined
 
 - [ ] COMPONENT:MENU: header navigation (like the Stripe has)
+- [ ] Combine components: MENU & DROPDOWN
 
 - [ ] COMPONENT:DROPDOWN:
 - [ ] Dropdown option as a link

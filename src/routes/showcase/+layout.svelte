@@ -9,9 +9,10 @@
       <Link href="/showcase/links">Links</Link>
       <Link href="/showcase/checkers">Checkers</Link>
       <Link href="/showcase/text-inputs">Text Inputs</Link>
-      <Link href="/showcase/payment-form">Payment Form</Link>
-      <Link href="/showcase/filter-select">Filter Select</Link>
-      <Link href="/showcase/dropdown-with-search">Dropdown with Search</Link>
+      <Link href="/showcase/payment-form">Payment</Link>
+      <Link href="/showcase/filter-select">Filter</Link>
+      <Link href="/showcase/dropdown-with-search">With Search</Link>
+      <Link href="/showcase/menu">Menu</Link>
     </div>
   </Container>
 </header>

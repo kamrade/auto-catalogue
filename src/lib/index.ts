@@ -8,6 +8,7 @@ export * from './components/Link';
 export * from './components/Select';
 export * from './components/TextInput';
 export * from './components/Autocomplete';
+export * from './components/Menu';
 
 export * from './utils';
 

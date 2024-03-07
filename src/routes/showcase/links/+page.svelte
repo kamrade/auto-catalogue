@@ -5,7 +5,7 @@
 </script>
 
 <h1>Links</h1>
-<div style="padding: 12px 0;">
+<div class="py-6">
   <Checkbox name="disable" value={isLoading} onClick={toggleIsLoading}>Disable</Checkbox>
 </div>
 
