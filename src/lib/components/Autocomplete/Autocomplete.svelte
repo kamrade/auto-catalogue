@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { TextInput, Portal, Dropdown } from '$lib';
+  import { TextInput, Dropdown } from '$lib';
   import type { SelectOption, KEvent } from '$lib';
   import type { KeyboardEventHandler } from 'svelte/elements';
 
@@ -10,11 +10,11 @@
   export let onKeyup: KeyboardEventHandler<HTMLInputElement> = () => {};
   export let options: SelectOption[];
   export let showValue = false;
-  export let optionClick: (e: MouseEvent, option: SelectOption) => unknown;
   export let selectOption: (option: SelectOption) => unknown = (_option: SelectOption) => null;
   export let placeholder = '';
   export let maxHeight = 240;
   export let readonly = false;
+  export let width = 0;
 
   let ref: HTMLDivElement;
   let dropdownVisible = false;
@@ -45,11 +45,6 @@
     onKeydown && onKeydown(e);
   };
 
-  const handleOptionClick = (e: MouseEvent, option: SelectOption) => {
-    optionClick && optionClick(e, option);
-    hideDropdown();
-  };
-
   const hideDropdown = () => (dropdownVisible = false);
   const showDropdown = () => (dropdownVisible = true);
   const toggleDropdown = () => (dropdownVisible = !dropdownVisible);
@@ -77,18 +72,17 @@
   </TextInput>
   <div>
     {#if dropdownVisible && options.length !== 0}
-      <Portal>
-        <Dropdown
-          {showValue}
-          {selected}
-          parentEl={ref}
-          {options}
-          handleOptionClick={(e, option) => handleOptionClick(e, option)}
-          {hideDropdown}
-          {maxHeight}
-          {selectOption}
-        />
-      </Portal>
+      <Dropdown
+        isVisible={dropdownVisible && options.length !== 0}
+        {showValue}
+        {selected}
+        parentEl={ref}
+        {options}
+        {hideDropdown}
+        {maxHeight}
+        {selectOption}
+        {width}
+      />
     {/if}
   </div>
 </div>

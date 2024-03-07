@@ -1,0 +1,43 @@
+.Dropdown {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: space-between;
+
+  ul {
+    margin: 0;
+    padding: 2px;
+    overflow-y: scroll;
+    background-color: var(--bg-control-100);
+  }
+
+  .Dropdown-option {
+    padding: 0.25rem 0.5rem;
+    background-color: var(--bg-control-100);
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover {
+      background-color: var(--bg-control-300);
+    }
+
+    &.Dropdown-option-current {
+      background-color: var(--bg-primary-100);
+    }
+  }
+
+  .Dropdown-text {
+    flex-grow: 2;
+  }
+
+  .Dropdown-option-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

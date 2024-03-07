@@ -20,11 +20,6 @@
     autocompleteTextValue = val;
   };
 
-  const autocompleteOptionClick = (e: MouseEvent, option: SelectOption) => {
-    autocompleteValue = option;
-    autocompleteTextValue = option.text;
-  };
-
   const selectOption = (option: SelectOption) => {
     autocompleteValue = option;
     autocompleteTextValue = option.text;
@@ -60,7 +55,6 @@
     selected={autocompleteValue}
     onKeyup={autocompleteKeyupHandler}
     options={opts}
-    optionClick={autocompleteOptionClick}
     {selectOption}
     placeholder={'Please choose an account or enter IBAN'}
     readonly={true}

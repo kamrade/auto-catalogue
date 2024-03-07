@@ -1,12 +1,13 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
+  import { browser } from '$app/environment';
   import type { SelectOption } from './Dropdown.js';
   import { TextInput, Menu } from '$lib';
   import type { KEvent } from '$lib';
 
   export let parentEl: HTMLElement | null = null;
   export let options: SelectOption[] = [];
-  export let handleOptionClick: (e: MouseEvent, option: SelectOption) => void = () => null;
+  export let onOptionClick: (e: MouseEvent, option: SelectOption) => void = () => null;
   export let selectOption: (option: SelectOption) => unknown = (_option: SelectOption) => null;
   export let hideDropdown: () => void;
   export let width = 0;
@@ -22,12 +23,6 @@
   let currentDropdownOptions: HTMLElement[] = [];
 
   export let dropdownGap = 4;
-  let innerWidth = 0;
-  let innerHeight = 0;
-  let scrollY = 0;
-  let x: number;
-  let y: number;
-  let height: number;
   export let searchValue = '';
   let textSearchFocus: () => unknown;
 
@@ -57,38 +52,28 @@
     }
   };
 
-  const calculatePosition = (parentEl: HTMLElement | null) => {
-    const boundingClientRect = parentEl?.getBoundingClientRect();
-    x = boundingClientRect?.x || 0;
-    y = boundingClientRect?.y || 0;
-    height = boundingClientRect?.height || 0;
-    y = y + height + dropdownGap + scrollY;
+  const handleOptionClick = (e: MouseEvent, option: SelectOption) => {
+    selectOption(option);
+    onOptionClick && onOptionClick(e, option);
   };
 
   // HOOKS
   onMount(() => {
-    calculatePosition(parentEl);
-    if (width === 0) {
-      width = (parentEl?.getBoundingClientRect().width || 0) - 2;
+    if (browser) {
+      if (!width) {
+        width = (parentEl?.getBoundingClientRect().width || 0) - 2;
+      }
+      document.addEventListener('keydown', keyDownHandler);
     }
-    document.addEventListener('keydown', keyDownHandler);
     textSearchFocus && textSearchFocus();
   });
 
   onDestroy(() => {
-    document.removeEventListener('keydown', keyDownHandler);
+    browser && document.removeEventListener('keydown', keyDownHandler);
   });
-
-  $: {
-    if (innerWidth && innerHeight) {
-      calculatePosition(parentEl);
-    }
-  }
 
   $: scrollerElement?.scrollTo(0, current * (currentDropdownOptions[current]?.clientHeight || 32));
 </script>
-
-<svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
 
 <Menu
   menuGap={dropdownGap}
@@ -96,8 +81,9 @@
   hideMenu={hideDropdown}
   parentElement={parentEl}
   {maxHeight}
+  {width}
 >
-  <div class="Dropdown">
+  <div class="Dropdown" style={`max-height: ${maxHeight}px`}>
     {#if hasSearch}
       <div style="padding: 2px;">
         <TextInput
@@ -143,47 +129,5 @@
 </Menu>
 
 <style lang="scss">
-  .Dropdown {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    justify-content: space-between;
-
-    ul {
-      margin: 0;
-      padding: 2px;
-      overflow-y: scroll;
-      background-color: var(--bg-control-100);
-    }
-
-    .Dropdown-option {
-      padding: 0.25rem 0.5rem;
-      background-color: var(--bg-control-100);
-      cursor: pointer;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 0.5rem;
-
-      &:hover {
-        background-color: var(--bg-control-300);
-      }
-
-      &.Dropdown-option-current {
-        background-color: var(--bg-primary-100);
-      }
-    }
-
-    .Dropdown-text {
-      flex-grow: 2;
-    }
-
-    .Dropdown-option-icon {
-      width: 20px;
-      height: 20px;
-    }
-  }
+  @import './Dropdown.scss';
 </style>

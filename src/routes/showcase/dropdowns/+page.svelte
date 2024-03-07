@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Button, Portal, Dropdown, Select, Hr } from '$lib';
+  import { Button, Dropdown, Select, Hr } from '$lib';
   import { options, optionsLg } from '$lib/data/dropdown-data';
   import type { SelectOption } from '$lib';
 
   let selectValue: SelectOption = optionsLg[0];
-  let onSelectChange = (e: MouseEvent, option: SelectOption) => {
+  let onSelectChange = (option: SelectOption) => {
     selectValue = option;
   };
 
@@ -13,7 +13,7 @@
   let value = '';
   let dropdownVisible: boolean[] = [];
 
-  const handleOptionClick = (e: MouseEvent, option: SelectOption, index: number) => {
+  const handleOptionClick = (option: SelectOption, index: number) => {
     selected[index] = option;
     value = option.text + ' | ' + option.value;
     dropdownVisible[index] = false;
@@ -48,14 +48,16 @@
     Button with Dropdown</Button
   >
   <div>
-    <Dropdown
-      isVisible={dropdownVisible[0]}
-      selected={selected[0]}
-      parentEl={refs[0]}
-      {options}
-      handleOptionClick={(e, option) => handleOptionClick(e, option, 0)}
-      hideDropdown={() => hideDropdown(0)}
-    />
+    {#if dropdownVisible[0]}
+      <Dropdown
+        isVisible={dropdownVisible[0]}
+        selected={selected[0]}
+        parentEl={refs[0]}
+        {options}
+        selectOption={(option) => handleOptionClick(option, 0)}
+        hideDropdown={() => hideDropdown(0)}
+      />
+    {/if}
   </div>
 </div>
 
@@ -69,15 +71,17 @@
     Another Button with Dropdown</Button
   >
   <div>
-    <Dropdown
-      isVisible={dropdownVisible[1]}
-      selected={selected[1]}
-      parentEl={refs[1]}
-      options={optionsLg}
-      handleOptionClick={(e, option) => handleOptionClick(e, option, 1)}
-      hideDropdown={() => hideDropdown(1)}
-      width={200}
-      maxHeight={200}
-    />
+    {#if dropdownVisible[1]}
+      <Dropdown
+        isVisible={dropdownVisible[1]}
+        selected={selected[1]}
+        parentEl={refs[1]}
+        options={optionsLg}
+        selectOption={(option) => handleOptionClick(option, 1)}
+        hideDropdown={() => hideDropdown(1)}
+        width={200}
+        maxHeight={200}
+      />
+    {/if}
   </div>
 </div>

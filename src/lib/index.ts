@@ -2,6 +2,7 @@
 export * from './components/Button';
 export * from './components/Checkbox';
 export * from './components/Portal';
+export * from './components/Dropdown';
 export * from './components/Hr';
 export * from './components/Container';
 export * from './components/Link';

@@ -1,30 +1,30 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
-	let ref: Node;
-	let portal: Element | null = null;
+  import { onMount, onDestroy } from 'svelte';
+  let ref: Node;
+  let portal: Element | null = null;
 
-	onMount(() => {
-		portal = document.createElement('div');
-		portal.className = 'portal';
-		document.body.appendChild(portal);
-		portal.appendChild(ref);
-	});
+  onMount(() => {
+    portal = document.createElement('div');
+    portal.className = 'portal';
+    document.body.appendChild(portal);
+    portal.appendChild(ref);
+  });
 
-	onDestroy(() => {
-		if (portal) {
-			document.body.removeChild(portal);
-		}
-	});
+  onDestroy(() => {
+    if (portal) {
+      document.body.removeChild(portal);
+    }
+  });
 </script>
 
 <div class="portal-clone">
-	<div bind:this={ref}>
-		<slot />
-	</div>
+  <div bind:this={ref}>
+    <slot />
+  </div>
 </div>
 
 <style>
-	.portal-clone {
-		display: none;
-	}
+  .portal-clone {
+    display: none;
+  }
 </style>
