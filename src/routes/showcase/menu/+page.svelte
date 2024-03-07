@@ -21,7 +21,9 @@
   };
 
   const mouseLeaveHoverHandler = (e: MouseEvent) => {
-    if (e.relatedTarget !== menuHoverElement) {
+    let contains = menuHoverElement?.contains(e.relatedTarget as Node);
+    let equal = menuHoverElement === e.relatedTarget;
+    if (!contains && !equal) {
       hideHoverMenu();
     }
   };
@@ -36,7 +38,7 @@
 <div class="my-6">
   <h2>Menu on Hover</h2>
   <p
-    class="dropdown-toggler"
+    class={`dropdown-toggler ${isHoverMenuVisible ? 'dropdown-toggler-hover' : ''}`}
     bind:this={menuWrapperElementHover}
     on:mouseleave={mouseLeaveHoverHandler}
   >
@@ -49,7 +51,7 @@
       hideMenu={hideHoverMenu}
       parentElement={menuWrapperElementHover}
     >
-      Menu
+      <div class="menu">Menu</div>
     </Menu>
   </p>
 </div>
@@ -58,7 +60,7 @@
   <h2>Menu on Click</h2>
   <p class="dropdown-toggler" bind:this={menuWrapperElementClick}>
     <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <span on:mouseup={mouseClickHandler} class="dropdown-toggler-text"> Menu </span>
+    <span on:mouseup={mouseClickHandler} class="dropdown-toggler-text">Menu</span>
     <Menu
       menuGap={12}
       isVisible={isClickMenuVisible}
@@ -75,8 +77,28 @@
     color: var(--text-color-secondary);
     transition: color 0.3s ease-in-out;
     cursor: pointer;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    transition: all 0.3s ease-in-out;
+
     &:hover {
       color: var(--text-color-base);
+      background-color: var(--bg-control-200);
     }
+
+    &.dropdown-toggler-hover {
+      color: var(--text-color-base);
+      background-color: var(--bg-control-200);
+    }
+
+    .dropdown-toggler-text {
+      padding: 0.5rem;
+    }
+  }
+
+  .menu {
+    padding: 1.5rem;
+    background-color: #fff;
   }
 </style>

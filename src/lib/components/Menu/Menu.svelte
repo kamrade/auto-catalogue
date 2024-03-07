@@ -87,7 +87,6 @@
     flex-direction: column;
     gap: 0;
     justify-content: space-between;
-    border: 1px solid var(--line-control-100);
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.09);
     max-height: auto;
   }
