@@ -3,7 +3,7 @@
   import type { IMainMenuItem } from '$lib';
 
   export let label = 'Menu Item';
-  export let menuLinks: (IMainMenuItem | string)[]
+  export let menuLinks: (IMainMenuItem | string)[];
 
   let menuWrapperElementHover: HTMLDivElement;
   let isHoverMenuVisible = false;
@@ -52,13 +52,14 @@
         {#if typeof menuLink === 'string'}
           <h3 class="sub-title">{menuLink}</h3>
         {:else}
-          <div class="mb-2"><Link onClick={hideHoverMenu} href={menuLink.link}>{menuLink.label}</Link></div>
+          <div class={menuLinks.length > 1 ? 'option-wrapper' : ''}>
+            <Link onClick={hideHoverMenu} href={menuLink.link}>{menuLink.label}</Link>
+          </div>
         {/if}
       {/each}
     </div>
   </Menu>
 </p>
-
 
 <style lang="scss">
   @import './MainMenuSection.scss';

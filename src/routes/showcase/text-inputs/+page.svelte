@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { TextInput } from '$lib';
+  import { TextInput } from "$lib";
 
-  let textInputValue = '';
+  let textInputValue = "";
   let handleOnKeyUp = (e: KeyboardEvent) => {
     let val = (e.target as HTMLInputElement).value;
     textInputValue = val;
@@ -37,7 +37,11 @@
 <h2>Underlined</h2>
 
 <div class="mb-6">
-  <TextInput value={textInputValue} onKeyup={handleOnKeyUp} placeholder="Enter text here">
+  <TextInput
+    value={textInputValue}
+    onKeyup={handleOnKeyUp}
+    placeholder="Enter text here"
+  >
     <svelte:fragment slot="prefix"><i class="ri-send-plane-2-line"></i></svelte:fragment>
   </TextInput>
 </div>

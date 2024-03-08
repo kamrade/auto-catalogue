@@ -14,7 +14,7 @@
 
   const handleLinkClick = (e: MouseEvent) => {
     onClick && onClick(e);
-  }
+  };
 </script>
 
 <a

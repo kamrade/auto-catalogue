@@ -41,7 +41,6 @@
   };
 
   onMount(() => {
-
     if (!appearanceOnHover && browser) {
       document.addEventListener('mousedown', handleClickOutside);
     }
@@ -59,7 +58,6 @@
       calculatePosition(parentElement);
     }
   }
-
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
@@ -77,8 +75,7 @@
         width: ${width ? width + 'px' : 'auto'};
         min-width: ${minWidth ? minWidth + 'px' : 'auto'};
         max-height: ${maxHeight}px; 
-        height: ${contentHeight}px`
-      }
+        height: ${contentHeight}px`}
     >
       <slot />
     </div>

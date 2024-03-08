@@ -33,6 +33,16 @@
 
 .menu {
   border: 1px solid var(--line-base-100);
-  padding: 1.5rem;
+  padding: 1rem;
   background-color: var(--bg-control-100);
+
+  .option-wrapper {
+    padding: 0.5rem 0;
+    &:first-child {
+      padding: 0 0 0.5rem 0;
+    }
+    &:last-child {
+      padding: 0.5rem 0 0 0;
+    }
+  }
 }

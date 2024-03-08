@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { MainMenuSection, Container, Link } from '$lib';
-  import { uikitMenuLinks, sectionsMenuLinks } from './nav-data';
+  import { MainMenuSection, Container } from '$lib';
+  import { uikitMenuLinks, sectionsMenuLinks, appMenuLinks } from './nav-data';
 </script>
 
 <header class="header">
@@ -8,6 +8,7 @@
     <div class="header-content">
       <MainMenuSection label="UIKit" menuLinks={uikitMenuLinks} />
       <MainMenuSection label="Sections" menuLinks={sectionsMenuLinks} />
+      <MainMenuSection label="Applications" menuLinks={appMenuLinks} />
     </div>
   </Container>
 </header>

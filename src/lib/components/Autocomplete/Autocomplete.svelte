@@ -73,7 +73,7 @@
   <div>
     {#if dropdownVisible && options.length !== 0}
       <Dropdown
-        isVisible={dropdownVisible && options.length !== 0}
+        isVisible={dropdownVisible && options?.length !== 0}
         {showValue}
         {selected}
         parentEl={ref}

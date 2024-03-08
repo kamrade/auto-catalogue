@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { Autocomplete, formatTextBlocks, TextInput } from '$lib';
-  import type { SelectOption } from '$lib';
-  import { autocompleteOptions } from './data';
+  import { Autocomplete, formatTextBlocks, TextInput } from "$lib";
+  import type { SelectOption } from "$lib";
+  import { autocompleteOptions } from "./data";
 
   // TEXT INPUT
-  let textInputValue = '';
+  let textInputValue = "";
   let textInputKeydownHandler = (e: KeyboardEvent) => {
     let val = (e.target as HTMLInputElement).value;
     textInputValue = val;
   };
 
   // AUTOCOMPLETE
-  let autocompleteTextValue = '';
+  let autocompleteTextValue = "";
   let autocompleteValue: SelectOption | undefined;
 
   const autocompleteKeyupHandler = (e: KeyboardEvent) => {
@@ -27,7 +27,7 @@
 
   const clearField = () => {
     autocompleteValue = undefined;
-    autocompleteTextValue = '';
+    autocompleteTextValue = "";
   };
 
   let opts: SelectOption[] = [];
@@ -57,7 +57,7 @@
     options={opts}
     showValue={true}
     {selectOption}
-    placeholder={'Please choose an account or enter IBAN'}
+    placeholder={"Please choose an account or enter IBAN"}
   >
     <svelte:fragment slot="prefix"><i class="ri-send-plane-2-line"></i></svelte:fragment>
 
@@ -83,7 +83,11 @@
 </div>
 
 <div class="mb-6">
-  <TextInput value={textInputValue} onKeydown={textInputKeydownHandler} placeholder="Find">
+  <TextInput
+    value={textInputValue}
+    onKeydown={textInputKeydownHandler}
+    placeholder="Find"
+  >
     <svelte:fragment slot="prefix"><i class="ri-search-line" /></svelte:fragment>
   </TextInput>
 </div>

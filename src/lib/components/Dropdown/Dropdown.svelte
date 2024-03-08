@@ -1,20 +1,22 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
-  import { browser } from '$app/environment';
-  import type { SelectOption } from './Dropdown.js';
-  import { TextInput, Menu } from '$lib';
-  import type { KEvent } from '$lib';
+  import { onMount, onDestroy } from "svelte";
+  import { browser } from "$app/environment";
+  import type { SelectOption } from "./Dropdown.js";
+  import { TextInput, Menu } from "$lib";
+  import type { KEvent } from "$lib";
 
   export let parentEl: HTMLElement | null = null;
   export let options: SelectOption[] = [];
   export let onOptionClick: (e: MouseEvent, option: SelectOption) => void = () => null;
   export let selectOption: (option: SelectOption) => unknown = (_option: SelectOption) => null;
   export let hideDropdown: () => void;
+  export let searchInputBlur: () => void = () => {};
   export let width = 0;
   export let maxHeight = 200;
   export let selected: SelectOption | null = null;
   export let showValue = false;
   export let hasSearch = false;
+  export let fitToParent = false;
 
   export let isVisible = false;
 
@@ -23,7 +25,7 @@
   let currentDropdownOptions: HTMLElement[] = [];
 
   export let dropdownGap = 4;
-  export let searchValue = '';
+  export let searchValue = "";
   let textSearchFocus: () => unknown;
 
   // HANDLERS
@@ -32,21 +34,22 @@
   };
 
   const keyDownHandler = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowDown') {
+    if (e.key === "ArrowDown") {
       if (current === options.length - 1) {
         current = 0;
       } else {
         current++;
       }
     }
-    if (e.key === 'ArrowUp') {
+    if (e.key === "ArrowUp") {
       if (current === 0) {
         current = options.length - 1;
       } else {
         current--;
       }
     }
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
+      e.stopPropagation();
       selectOption(options[current]);
       hideDropdown();
     }
@@ -60,16 +63,16 @@
   // HOOKS
   onMount(() => {
     if (browser) {
-      if (!width) {
-        width = (parentEl?.getBoundingClientRect().width || 0) - 2;
+      if (!width && fitToParent) {
+        width = parentEl?.getBoundingClientRect().width || 0;
       }
-      document.addEventListener('keydown', keyDownHandler);
+      document.addEventListener("keydown", keyDownHandler);
     }
     textSearchFocus && textSearchFocus();
   });
 
   onDestroy(() => {
-    browser && document.removeEventListener('keydown', keyDownHandler);
+    browser && document.removeEventListener("keydown", keyDownHandler);
   });
 
   $: scrollerElement?.scrollTo(0, current * (currentDropdownOptions[current]?.clientHeight || 32));
@@ -83,7 +86,10 @@
   {maxHeight}
   {width}
 >
-  <div class="Dropdown" style={`max-height: ${maxHeight}px`}>
+  <div
+    class="Dropdown"
+    style={`max-height: ${maxHeight}px`}
+  >
     {#if hasSearch}
       <div style="padding: 2px;">
         <TextInput
@@ -92,7 +98,8 @@
           placeholder="Find"
           variant="contained"
           size="sm"
-          bind:focusSearch={textSearchFocus}
+          bind:focus={textSearchFocus}
+          onBlur={searchInputBlur}
         >
           <svelte:fragment slot="prefix"><i class="ri-search-line"></i></svelte:fragment>
         </TextInput>
@@ -100,11 +107,15 @@
     {/if}
 
     {#if options?.length}
-      <ul class="Dropdown-options-wrapper" role="menu" bind:this={scrollerElement}>
+      <ul
+        class="Dropdown-options-wrapper"
+        role="menu"
+        bind:this={scrollerElement}
+      >
         {#each options as option, i (i)}
           <li
             role="menuitem"
-            class={`Dropdown-option ${current === i ? 'Dropdown-option-current' : ''}`}
+            class={`Dropdown-option ${current === i ? "Dropdown-option-current" : ""}`}
             bind:this={currentDropdownOptions[i]}
             on:mouseup={(e) => handleOptionClick(e, option)}
           >
@@ -129,5 +140,5 @@
 </Menu>
 
 <style lang="scss">
-  @import './Dropdown.scss';
+  @import "./Dropdown.scss";
 </style>

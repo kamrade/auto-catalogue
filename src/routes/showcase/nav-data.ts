@@ -16,6 +16,9 @@ export let uikitMenuLinks: (IMainMenuItem | string)[] = [
   }, {
     link: '/showcase/dropdown-with-search',
     label: 'Dropdown with Search'
+  }, {
+    link: '/showcase/select',
+    label: 'Select'
   }
 ];
 
@@ -30,4 +33,11 @@ export let sectionsMenuLinks: (IMainMenuItem | string)[] = [
     link: '/showcase/menu',
     label: 'Menu'
   }
-]
+];
+
+export let appMenuLinks: (IMainMenuItem | string)[] = [
+  {
+    link: '/showcase/catalogue',
+    label: 'Catalogue'
+  }
+];
