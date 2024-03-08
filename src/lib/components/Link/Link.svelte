@@ -1,6 +1,7 @@
 <script lang="ts">
   export let href: string;
   export let inverted = false;
+  export let onClick: (e: MouseEvent) => unknown = (_e) => {};
 
   import { page } from '$app/stores';
   let currentPath = '';
@@ -10,12 +11,17 @@
     currentPath === href ||
     (currentPath === '/' && href === '/') ||
     (currentPath !== '/' && href !== '/' && currentPath.includes(href));
+
+  const handleLinkClick = (e: MouseEvent) => {
+    onClick && onClick(e);
+  }
 </script>
 
 <a
   class={`Link ${inverted ? 'Link-inverted' : ''} 
   ${isActive ? 'Link-active' : ''}`}
   {href}
+  on:click={handleLinkClick}
 >
   <slot />
 </a>

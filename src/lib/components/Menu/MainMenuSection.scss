@@ -1,0 +1,38 @@
+.dropdown-toggler {
+  color: var(--text-color-secondary);
+  transition: color 0.3s ease-in-out;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: var(--text-color-base);
+  }
+
+  &.dropdown-toggler-hover {
+    color: var(--text-color-base);
+  }
+
+  .dropdown-toggler-text {
+    padding: 0.25rem;
+  }
+}
+
+.sub-title {
+  padding: 0;
+  margin: 0 0 0.5rem 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  color: var(--text-color-muted);
+}
+
+.menu {
+  border: 1px solid var(--line-base-100);
+  padding: 1.5rem;
+  background-color: var(--bg-control-100);
+}

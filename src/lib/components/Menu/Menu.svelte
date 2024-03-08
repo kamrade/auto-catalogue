@@ -10,7 +10,8 @@
   export let isVisible = false;
   export let menuElement: HTMLDivElement | null = null;
   export let maxHeight = 200;
-  export let width = 200;
+  export let width = 0;
+  export let minWidth = 0;
   export let contentHeight = 0;
 
   let x = 0;
@@ -40,6 +41,7 @@
   };
 
   onMount(() => {
+
     if (!appearanceOnHover && browser) {
       document.addEventListener('mousedown', handleClickOutside);
     }
@@ -51,6 +53,10 @@
       document.removeEventListener('mousedown', handleClickOutside);
     }
   });
+
+  $: {
+    console.log(menuElement?.style.width);
+  }
 
   $: {
     if (innerWidth && innerHeight) {
@@ -69,7 +75,14 @@
       on:mouseleave={mouseLeaveHandler}
       bind:this={menuElement}
       class="Menu"
-      style={`left: ${x}px; top: ${y}px; width: ${width}px; max-height: ${maxHeight}px; height: ${contentHeight}px`}
+      style={`
+        left: ${x}px; 
+        top: ${y}px; 
+        width: ${width ? width + 'px' : 'auto'};
+        min-width: ${minWidth ? minWidth + 'px' : 'auto'};
+        max-height: ${maxHeight}px; 
+        height: ${contentHeight}px`
+      }
     >
       <slot />
     </div>
