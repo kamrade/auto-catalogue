@@ -37,7 +37,7 @@
   on:mouseleave={mouseLeaveHoverHandler}
 >
   <!-- svelte-ignore a11y-no-static-element-interactions -->
-  <span on:mouseenter={mouseEnterHandler} class="dropdown-toggler-text"> {label}</span>
+  <span on:mouseenter={mouseEnterHandler} class="dropdown-toggler-text">{label}</span>
   <Menu
     bind:menuElement={menuHoverElement}
     appearanceOnHover={true}

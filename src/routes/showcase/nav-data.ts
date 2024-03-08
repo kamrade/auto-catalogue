@@ -1,7 +1,6 @@
 import type { IMainMenuItem } from "$lib"
 
 export let uikitMenuLinks: (IMainMenuItem | string)[] = [
-  'UIKit',
   {
     link: '/showcase/dropdowns',
     label: 'Dropdowns'
@@ -21,7 +20,6 @@ export let uikitMenuLinks: (IMainMenuItem | string)[] = [
 ];
 
 export let sectionsMenuLinks: (IMainMenuItem | string)[] = [
-  'UIKit',
   {
     link: '/showcase/payment-form',
     label: 'Payment Form'
