@@ -48,6 +48,7 @@ jobs:
           host: ${{ secrets.SSH_PROD_HOST }}
           username: ${{ secrets.SSH_PROD_USERNAME }}
           key: ${{ secrets.SSH_HETZNER_KEY }}
+          passphrase: ${{ secrets.SSH_HETZNER_PASSPHRASE }}
           port: ${{ secrets.SSH_PROD_PORT }}
           script_stop: true
           script: |
