@@ -55,10 +55,6 @@
   });
 
   $: {
-    console.log(menuElement?.style.width);
-  }
-
-  $: {
     if (innerWidth && innerHeight) {
       calculatePosition(parentElement);
     }
