@@ -67,9 +67,8 @@
 - [ ] Component:Dropdown. Appearing animation
 - [ ] Component:Dropdown. Position in the DOM. Now it goes to the end of the body element. Is it ok or not...
 
-- [ ] Component:Dropdown List of Checkboxes
-- [ ] Component:Menu
-- [ ] Show Menu on:hover
+- [x] Component:Menu
+- [x] Show Menu on:hover
 
 - [ ] Component:Hr. Update spacing
 - [ ] Component:Container. Responsive Container
@@ -82,5 +81,7 @@
 - [ ] Component:Drawer
 - [ ] Component:Grid
 - [ ] Component:Icon. Now I am using the Remixicon font. It would be better to use the Component approach.
+
+- [ ]
 
 ## Features

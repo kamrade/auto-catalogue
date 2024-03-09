@@ -1,18 +1,17 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import { page } from "$app/stores";
   import { setContext } from "svelte";
   import { writable } from "svelte/store";
   import type { LayoutData } from "./$types";
   import { Select, type SelectOption } from "$lib";
+  import type { IBrandData } from "./catalogue";
 
   export let data: LayoutData;
 
   const brands = writable();
 
-  interface IBrandData {
-    name: string;
-    brand_id: string;
-  }
+  page.subscribe((url) => {});
 
   let brandValue: SelectOption;
   let options: SelectOption[];
@@ -28,10 +27,7 @@
     }
   }
 
-  $: {
-    brands.set(data);
-    console.log(data);
-  }
+  $: brands.set(data);
   setContext("brands", brands);
 
   const onChange = (option: SelectOption) => (brandValue = option);
