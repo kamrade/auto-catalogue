@@ -1,9 +1,8 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import { browser } from "$app/environment";
-  import type { SelectOption } from "./Dropdown.js";
   import { TextInput, Menu } from "$lib";
-  import type { KEvent } from "$lib";
+  import type { KEvent, SelectOption } from "$lib";
 
   export let parentEl: HTMLElement | null = null;
   export let options: SelectOption[] = [];
@@ -17,16 +16,38 @@
   export let showValue = false;
   export let hasSearch = false;
   export let fitToParent = false;
-
   export let isVisible = false;
+  export let dropdownGap = 4;
+  export let searchValue = "";
+  let textSearchFocus: () => unknown;
 
   let current = 0;
   let scrollerElement: HTMLElement | null = null;
   let currentDropdownOptions: HTMLElement[] = [];
 
-  export let dropdownGap = 4;
-  export let searchValue = "";
-  let textSearchFocus: () => unknown;
+  // REACTIVITY
+  $: scrollerElement?.scrollTo(0, current * (currentDropdownOptions[current]?.clientHeight || 32));
+
+  $: {
+    if (current > options.length) {
+      current = 0;
+    }
+  }
+
+  // HOOKS
+  onMount(() => {
+    if (browser) {
+      if (!width && fitToParent) {
+        width = parentEl?.getBoundingClientRect().width || 0;
+      }
+      document.addEventListener("keydown", keyDownHandler);
+    }
+    textSearchFocus && textSearchFocus();
+  });
+
+  onDestroy(() => {
+    browser && document.removeEventListener("keydown", keyDownHandler);
+  });
 
   // HANDLERS
   const searchInputKeyupHandler = (e: KEvent) => {
@@ -59,23 +80,6 @@
     selectOption(option);
     onOptionClick && onOptionClick(e, option);
   };
-
-  // HOOKS
-  onMount(() => {
-    if (browser) {
-      if (!width && fitToParent) {
-        width = parentEl?.getBoundingClientRect().width || 0;
-      }
-      document.addEventListener("keydown", keyDownHandler);
-    }
-    textSearchFocus && textSearchFocus();
-  });
-
-  onDestroy(() => {
-    browser && document.removeEventListener("keydown", keyDownHandler);
-  });
-
-  $: scrollerElement?.scrollTo(0, current * (currentDropdownOptions[current]?.clientHeight || 32));
 </script>
 
 <Menu

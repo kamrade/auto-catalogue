@@ -2,8 +2,7 @@
   import { browser } from "$app/environment";
   import { onDestroy } from "svelte";
   import { Button, Dropdown, TextInput } from "$lib";
-  import type { KEvent, SelectOption, TextInputVariant } from "$lib";
-  import type { Keyboard } from "@playwright/test";
+  import type { SelectOption, TextInputVariant } from "$lib";
 
   export let options: SelectOption[] = [];
   export let width = 0;
@@ -26,12 +25,16 @@
   let isFocused = false;
   let isJustSelected = false;
 
-  $: selectOptions = options.filter(
-    (option) =>
-      option.text.toUpperCase().includes(searchString.toUpperCase()) ||
-      option.value.toUpperCase().includes(searchString.toUpperCase())
-  );
+  // REACTIVITY
+  $: {
+    selectOptions = options.filter(
+      (option) =>
+        option.text.toUpperCase().includes(searchString.toUpperCase()) ||
+        option.value.toUpperCase().includes(searchString.toUpperCase())
+    );
+  }
 
+  // LIFECYCLE
   onDestroy(() => {
     if (browser) {
       document.removeEventListener("keyup", handleKeyUp);
@@ -39,6 +42,7 @@
     }
   });
 
+  // HANDLERS
   const handleKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
       case "Tab":
@@ -66,13 +70,20 @@
         toggleDropdown();
         focusTextInput && focusTextInput();
         break;
+      case "ArrowDown":
+        if (!isDropdownVisible) {
+          isJustSelected = true;
+          toggleDropdown();
+          focusTextInput && focusTextInput();
+        }
+        break;
+
       default:
         return;
     }
   };
 
-  // HANDLERS
-  const handleOnMouseUp = () => {
+  const handleMouseUp = () => {
     isJustSelected = false;
     if (!isDropdownVisible) {
       showDropdown();
@@ -125,7 +136,7 @@
 <div
   class="Select"
   bind:this={ref}
-  on:mouseup={handleOnMouseUp}
+  on:mouseup={handleMouseUp}
 >
   {#if inputControl}
     <TextInput

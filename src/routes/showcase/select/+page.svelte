@@ -43,4 +43,14 @@
   {onChange}
 ></Select>
 
+<Select
+  fullWidthDropdown
+  label={"Brand"}
+  placeholder={"Choose a brand"}
+  maxHeight={300}
+  {options}
+  {value}
+  {onChange}
+></Select>
+
 <input type="text" />
