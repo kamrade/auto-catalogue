@@ -84,9 +84,11 @@
   };
 
   const handleMouseUp = () => {
-    isJustSelected = false;
-    if (!isDropdownVisible) {
-      showDropdown();
+    if (inputControl) {
+      isJustSelected = false;
+      if (!isDropdownVisible) {
+        showDropdown();
+      }
     }
   };
 
@@ -123,10 +125,12 @@
       isJustSelected = false;
     }
   };
+
   const hideDropdown = () => {
     isDropdownVisible = false;
     searchString = "";
   };
+
   const toggleDropdown = () => {
     isDropdownVisible = !isDropdownVisible;
   };

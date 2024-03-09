@@ -46,6 +46,11 @@
 - [x] COMPONENT:MENU: header navigation
 - [x] Combine components: MENU & DROPDOWN
 
+- COMPONENT: SELECT
+- [x] Select with TextField and Search in the Dropdown
+- [ ] Select with Button: hide Dropdown on blur
+- [ ] Select with Button: hide dropdown when value changed
+
 - COMPONENT:DROPDOWN:
 - [ ] Dropdown option as a link
 - [ ] Dropdown option as a handler
