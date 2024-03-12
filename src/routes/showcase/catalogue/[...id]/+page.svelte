@@ -1,32 +1,50 @@
 <script lang="ts">
-  import { writable } from "svelte/store";
-  import { getContext, setContext } from "svelte";
-  import { page } from "$app/stores";
   import type { IBrandData } from "../catalogue";
+  import { Select, type SelectOption } from "$lib";
 
   export let data: any;
-  const currentBrand = writable();
+  let brands = data.brands;
 
-  const isBeta = $page.url.searchParams.has("beta");
-  const b = $page.url.searchParams.get("beta");
+  let params = (data.routeParams as string).split("/");
+  let currentBrand = params[0];
+  let currentModel;
+  let currentGeneration;
+  let currentModification;
 
-  page.subscribe((url) => {
-    console.log(url);
-    console.log(url.url.searchParams);
-  });
-
-  $: {
-    console.log("is beta:", isBeta, b);
-  }
-
-  $: currentBrand.set(data.brandId);
-  setContext("currentBrand", currentBrand);
-
-  const brands = getContext<any>("brands");
-  brands.subscribe((data: IBrandData[]) => {
-    console.log(data);
-  });
-  $: console.log(data.brandId);
+  // Brand
+  let options: SelectOption[];
+  $: options = brands?.map((brand: IBrandData) => ({
+    text: brand.name,
+    value: brand.brand_id
+  }));
+  let brandValue: SelectOption | null = options?.find((options) => options.value === currentBrand) || null;
+  const onChange = (option: SelectOption) => (brandValue = option);
+  $: brandValue = options?.find((options) => options.value === currentBrand) || null;
 </script>
 
-<h2>Cat</h2>
+<div class="filter">
+  <div class="filter-block">
+    <Select
+      searchInDropdown={true}
+      fullWidthDropdown
+      label={"Brand"}
+      placeholder={"Choose a brand"}
+      maxHeight={300}
+      {options}
+      value={brandValue}
+      {onChange}
+    ></Select>
+  </div>
+</div>
+
+<style lang="scss">
+  .filter {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+
+    .filter-block {
+      width: 25%;
+    }
+  }
+</style>
