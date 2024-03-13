@@ -3,7 +3,7 @@ name: Deploy Svelte UI Kit
 on:
   push:
     branches:
-      - '**'
+      - 'main'
 
 env:
   IMAGE_TAG: master-${{ github.run_number }}
