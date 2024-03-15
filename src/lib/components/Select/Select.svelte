@@ -27,11 +27,12 @@
 
   // REACTIVITY
   $: {
-    selectOptions = options.filter(
-      (option) =>
-        option.text.toUpperCase().includes(searchString.toUpperCase()) ||
-        option.value.toUpperCase().includes(searchString.toUpperCase())
-    );
+    selectOptions =
+      options?.filter(
+        (option) =>
+          option.text.toUpperCase().includes(searchString.toUpperCase()) ||
+          option.value.toUpperCase().includes(searchString.toUpperCase())
+      ) || [];
   }
 
   // LIFECYCLE

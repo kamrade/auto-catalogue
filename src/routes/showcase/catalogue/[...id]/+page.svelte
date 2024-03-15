@@ -1,25 +1,47 @@
 <script lang="ts">
-  import type { IBrandData } from "../catalogue";
+  import { goto } from "$app/navigation";
   import { Select, type SelectOption } from "$lib";
+  import { page } from "$app/stores";
 
   export let data: any;
-  let brands = data.brands;
 
-  let params = (data.routeParams as string).split("/");
-  let currentBrand = params[0];
-  let currentModel;
-  let currentGeneration;
-  let currentModification;
+  page.subscribe((url) => {
+    console.log(":: route changed");
+  });
 
   // Brand
-  let options: SelectOption[];
-  $: options = brands?.map((brand: IBrandData) => ({
-    text: brand.name,
-    value: brand.brand_id
-  }));
-  let brandValue: SelectOption | null = options?.find((options) => options.value === currentBrand) || null;
-  const onChange = (option: SelectOption) => (brandValue = option);
-  $: brandValue = options?.find((options) => options.value === currentBrand) || null;
+  let brandValue: SelectOption | null = null;
+  const onBrandChange = (option: SelectOption) => {
+    goto(`/showcase/catalogue/${option.value}`);
+    brandValue = option;
+  };
+  $: brandValue = data.brands?.find((option: SelectOption) => option.value === data.currentBrand) || null;
+
+  // Model
+  let modelValue: SelectOption | null = null;
+  const onModelChange = (option: SelectOption) => {
+    goto(`/showcase/catalogue/${brandValue?.value}/${option.value}`);
+    modelValue = option;
+  };
+  $: modelValue = data.models?.find((option: SelectOption) => option.value === data.currentModel) || null;
+
+  // Generation
+  let generationValue: SelectOption | null = null;
+  const onGenerationChange = (option: SelectOption) => {
+    goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${option.value}`);
+    generationValue = option;
+  };
+  $: generationValue =
+    data.generations?.find((option: SelectOption) => option.value === data.currentGeneration) || null;
+
+  // Modification
+  let modificationValue: SelectOption | null = null;
+  const onModificationChange = (option: SelectOption) => {
+    goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}/${option.value}`);
+    modificationValue = option;
+  };
+  $: modificationValue =
+    data.modifications?.find((option: SelectOption) => option.value === data.currentModification) || null;
 </script>
 
 <div class="filter">
@@ -30,9 +52,45 @@
       label={"Brand"}
       placeholder={"Choose a brand"}
       maxHeight={300}
-      {options}
+      options={data.brands}
       value={brandValue}
-      {onChange}
+      onChange={onBrandChange}
+    ></Select>
+  </div>
+  <div class="filter-block">
+    <Select
+      searchInDropdown={true}
+      fullWidthDropdown
+      label={"Model"}
+      placeholder={"Choose a model"}
+      maxHeight={300}
+      options={data.models}
+      value={modelValue}
+      onChange={onModelChange}
+    ></Select>
+  </div>
+  <div class="filter-block">
+    <Select
+      searchInDropdown={true}
+      fullWidthDropdown
+      label={"Generation"}
+      placeholder={"Choose a generation"}
+      maxHeight={300}
+      options={data.generations}
+      value={generationValue}
+      onChange={onGenerationChange}
+    ></Select>
+  </div>
+  <div class="filter-block">
+    <Select
+      searchInDropdown={true}
+      fullWidthDropdown
+      label={"Modification"}
+      placeholder={"Choose a modification"}
+      maxHeight={300}
+      options={data.modifications}
+      value={modificationValue}
+      onChange={onModificationChange}
     ></Select>
   </div>
 </div>
