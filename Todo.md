@@ -37,7 +37,6 @@
 - [x] Scroll when navigate with keyboard
 - [x] Inner search
 - [x] Toggle on Escape
-- [ ] Quick shadow search
 
 - COMPONENT:TEXTINPUT:
 - [x] Sizes - sm | md
@@ -46,21 +45,34 @@
 - [x] COMPONENT:MENU: header navigation
 - [x] Combine components: MENU & DROPDOWN
 
+- SYSTEM
+- [x] Docker configuration
+- [x] Build adapter to upload to the server
+
 - COMPONENT: SELECT
 - [x] Select with TextField and Search in the Dropdown
 - [ ] Select with Button: hide Dropdown on blur
 - [ ] Select with Button: hide dropdown when value changed
 
+- [ ] Provide types for a data
+
+- COMPONENT: TEXTINPUT
+- [ ] Force focus
+
+- PAGE: CATALOGUE
+- [ ] Route validations
+
 - COMPONENT:DROPDOWN:
 - [ ] Dropdown option as a link
 - [ ] Dropdown option as a handler
 - [ ] Component:Select with button. Change button type.
-
-- SYSTEM
-- [x] Docker configuration
-- [x] Build adapter to upload to the server
+- [ ] Quick shadow search
+- [ ] Force focus
 
 <!-- Backlog -->
+
+- COMPONENT:TEXTINPUT:
+- [ ] Variant - borderless | contained | outlined | underlined
 
 - [ ] Component:MainMenu. Animations like Stripe
 - [ ] Component:Dropdown. Multiselection with checkboxes

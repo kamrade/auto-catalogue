@@ -1,9 +1,34 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { goto } from "$app/navigation";
-  import { Select, type SelectOption } from "$lib";
+  import { Select, type SelectOption, type ICatalogueData } from "$lib";
   import { page } from "$app/stores";
 
-  export let data: any;
+  export let data: ICatalogueData;
+
+  onMount(() => {
+    
+    if (!data.isBrandValid) {
+      goto(`/showcase/catalogue/0`);
+    } else {
+      if (!data.isModelValid) {
+        goto(`/showcase/catalogue/${brandValue?.value}`);
+      } else {
+        if (!data.isGenerationValid) {
+          goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}`);
+        } else {
+          if (!data.isModificationValid) {
+            goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}`);
+          } else {
+            goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}/${modificationValue?.value}`);
+          }
+        }
+      }
+    }
+
+  });
+
+
 
   page.subscribe((url) => {
     console.log(":: route changed");
@@ -54,7 +79,7 @@
   value={brandValue}
   onChange={onBrandChange}
 ></Select>
-{#if data?.models?.length}
+{#if data?.models?.length && (data.isBrandValid)}
   <Select
     searchInDropdown={true}
     fullWidthDropdown
@@ -66,7 +91,7 @@
     onChange={onModelChange}
   />
 {/if}
-{#if data?.generations?.length}
+{#if data?.generations?.length && (data.isBrandValid && data.isModelValid)}
   <Select
     searchInDropdown={true}
     fullWidthDropdown
@@ -78,7 +103,7 @@
     onChange={onGenerationChange}
   />
 {/if}
-{#if data?.modifications?.length}
+{#if data?.modifications?.length && (data.isBrandValid && data.isModelValid && data.isGenerationValid)}
   <Select
     searchInDropdown={true}
     fullWidthDropdown
