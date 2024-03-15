@@ -4,6 +4,8 @@
   import { Select, type SelectOption, type ICatalogueData } from "$lib";
   import { page } from "$app/stores";
 
+  let imagesStorage = 'http://cat.primavistalab.com/images/thumbnail-w200';
+
   export let data: ICatalogueData;
 
   onMount(() => {
@@ -115,3 +117,7 @@
     onChange={onModificationChange}
   />
 {/if}
+
+{#each data.allPhotos as photo}
+  <img src={`${imagesStorage}/${photo.photo_name}`} alt="" />
+{/each}

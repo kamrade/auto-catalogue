@@ -72,6 +72,12 @@ export let load: PageLoad = async ({ fetch, params }) => {
   let isModelValid = isValidParameter(allModels, currentModel);
   let isGenerationValid = isValidParameter(allGenerations, currentGeneration);
   let isModificationValid = isValidParameter(allModifications, currentModification);
+
+  let photos = await fetch(`http://cat.primavistalab.com/api/v1/api.php?method=LOAD_PHOTOS&generationId=${currentGeneration}`);
+  console.log(photos)
+  let allPhotos = await photos.json();
+
+  console.log(allPhotos);
   
   return { 
     currentBrand: isBrandValid ? currentBrand : 0,
@@ -85,7 +91,8 @@ export let load: PageLoad = async ({ fetch, params }) => {
     brands: bransOptions, 
     models: allModels,
     generations: allGenerations,
-    modifications: allModifications
+    modifications: allModifications,
+    allPhotos
   };
 
 }
