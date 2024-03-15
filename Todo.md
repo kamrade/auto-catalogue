@@ -54,13 +54,19 @@
 - [ ] Select with Button: hide Dropdown on blur
 - [ ] Select with Button: hide dropdown when value changed
 
-- [ ] Provide types for a data
+- [x] Provide types for a data
+
+- [ ] Responivity. Grid.
+
+- COMPONENT: IMAGE WITH PREVIEW
+- [ ]
 
 - COMPONENT: TEXTINPUT
 - [ ] Force focus
 
 - PAGE: CATALOGUE
-- [ ] Route validations
+- [x] Route validations
+- [ ] Default values for route
 
 - COMPONENT:DROPDOWN:
 - [ ] Dropdown option as a link
@@ -68,6 +74,12 @@
 - [ ] Component:Select with button. Change button type.
 - [ ] Quick shadow search
 - [ ] Force focus
+
+- COMPONENT: MODAL
+- [ ]
+
+- COMPONENT: GALLERY MODAL
+- [ ]
 
 <!-- Backlog -->
 

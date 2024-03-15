@@ -13,6 +13,6 @@
   // }
 </script>
 
-<h1>Catalogue Layout</h1>
+<h1>Auto Catalogue</h1>
 
 <slot />

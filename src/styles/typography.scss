@@ -5,3 +5,7 @@
 :global(.text-sm) {
   font-size: 0.75rem;
 }
+
+:global(h1) {
+  margin: 0 0 .5em 0;
+}

@@ -29,6 +29,10 @@ export interface IModificationData {
   end_year: string;
 }
 
+export interface ICataloguePhoto {
+  photo_name: string;
+}
+
 export interface ICatalogueData {
   currentBrand: string | number;
   currentModel: string | number;
@@ -42,4 +46,5 @@ export interface ICatalogueData {
   models: SelectOption[];
   generations: SelectOption[];
   modifications: SelectOption[];
+  allPhotos: ICataloguePhoto[];
 }

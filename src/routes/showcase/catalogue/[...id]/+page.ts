@@ -13,6 +13,7 @@ export let load: PageLoad = async ({ fetch, params }) => {
   let allModels;
   let allGenerations;
   let allModifications;
+  let allPhotos;
   
   const brands = await fetch('http://cat.primavistalab.com/api/v1/api.php?method=LOAD_BRANDS');
   const allBrands = await brands.json();
@@ -73,11 +74,10 @@ export let load: PageLoad = async ({ fetch, params }) => {
   let isGenerationValid = isValidParameter(allGenerations, currentGeneration);
   let isModificationValid = isValidParameter(allModifications, currentModification);
 
-  let photos = await fetch(`http://cat.primavistalab.com/api/v1/api.php?method=LOAD_PHOTOS&generationId=${currentGeneration}`);
-  console.log(photos)
-  let allPhotos = await photos.json();
-
-  console.log(allPhotos);
+  if (currentGeneration) {
+    let photos = await fetch(`http://cat.primavistalab.com/api/v1/api.php?method=LOAD_PHOTOS&generationId=${currentGeneration}`);
+    allPhotos = await photos.json();
+  }
   
   return { 
     currentBrand: isBrandValid ? currentBrand : 0,

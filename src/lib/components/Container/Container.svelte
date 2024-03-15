@@ -4,7 +4,7 @@
 
 <style lang="scss">
   .Container {
-    max-width: 800px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 1rem;
   }

@@ -193,7 +193,6 @@
 
 <style lang="scss">
   .Select {
-    margin: 1rem 0;
     display: inline-block;
     width: 100%;
   }
