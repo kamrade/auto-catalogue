@@ -38,7 +38,7 @@ export let load: PageLoad = async ({ fetch, params }) => {
     allGenerations = await generations.json();
     allGenerations = allGenerations?.map((generation: any) => {
       return {
-        text: generation.name,
+        text: generation.name || 'Unknown',
         value: generation.generation_id
       };
     });
@@ -49,7 +49,7 @@ export let load: PageLoad = async ({ fetch, params }) => {
     allModifications = await modifications.json();
     allModifications = allModifications?.map((modification: any) => {
       return {
-        text: modification.name,
+        text: modification.name || 'Unknown',
         value: modification.modification_id
       };
     });

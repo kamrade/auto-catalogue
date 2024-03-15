@@ -44,65 +44,49 @@
     data.modifications?.find((option: SelectOption) => option.value === data.currentModification) || null;
 </script>
 
-<div class="filter">
-  <div class="filter-block">
-    <Select
-      searchInDropdown={true}
-      fullWidthDropdown
-      label={"Brand"}
-      placeholder={"Choose a brand"}
-      maxHeight={300}
-      options={data.brands}
-      value={brandValue}
-      onChange={onBrandChange}
-    ></Select>
-  </div>
-  <div class="filter-block">
-    <Select
-      searchInDropdown={true}
-      fullWidthDropdown
-      label={"Model"}
-      placeholder={"Choose a model"}
-      maxHeight={300}
-      options={data.models}
-      value={modelValue}
-      onChange={onModelChange}
-    ></Select>
-  </div>
-  <div class="filter-block">
-    <Select
-      searchInDropdown={true}
-      fullWidthDropdown
-      label={"Generation"}
-      placeholder={"Choose a generation"}
-      maxHeight={300}
-      options={data.generations}
-      value={generationValue}
-      onChange={onGenerationChange}
-    ></Select>
-  </div>
-  <div class="filter-block">
-    <Select
-      searchInDropdown={true}
-      fullWidthDropdown
-      label={"Modification"}
-      placeholder={"Choose a modification"}
-      maxHeight={300}
-      options={data.modifications}
-      value={modificationValue}
-      onChange={onModificationChange}
-    ></Select>
-  </div>
-</div>
-
-<style lang="scss">
-  .filter {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-
-    .filter-block {
-      width: 25%;
-    }
-  }
-</style>
+<Select
+  searchInDropdown={true}
+  fullWidthDropdown
+  label={"Brand"}
+  placeholder={"Choose a brand"}
+  maxHeight={300}
+  options={data.brands}
+  value={brandValue}
+  onChange={onBrandChange}
+></Select>
+{#if data?.models?.length}
+  <Select
+    searchInDropdown={true}
+    fullWidthDropdown
+    label={"Model"}
+    placeholder={"Choose a model"}
+    maxHeight={300}
+    options={data.models}
+    value={modelValue}
+    onChange={onModelChange}
+  />
+{/if}
+{#if data?.generations?.length}
+  <Select
+    searchInDropdown={true}
+    fullWidthDropdown
+    label={"Generation"}
+    placeholder={"Choose a generation"}
+    maxHeight={300}
+    options={data.generations}
+    value={generationValue}
+    onChange={onGenerationChange}
+  />
+{/if}
+{#if data?.modifications?.length}
+  <Select
+    searchInDropdown={true}
+    fullWidthDropdown
+    label={"Modification"}
+    placeholder={"Choose a modification"}
+    maxHeight={300}
+    options={data.modifications}
+    value={modificationValue}
+    onChange={onModificationChange}
+  />
+{/if}
