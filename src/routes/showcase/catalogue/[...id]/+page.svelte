@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
   import { Select, type SelectOption, type ICatalogueData, Link } from "$lib";
 
@@ -6,11 +7,17 @@
 
   export let data: ICatalogueData;
 
+  $: console.log(data);
+
   $: {
-    if (data.randomBrand && data.randomModel && data.randomGeneration && data.randomModification) {
-      goto(
-        `/showcase/catalogue/${data.randomBrand.value}/${data.randomModel.value}/${data.randomGeneration.value}/${data.randomModification.value}`
-      );
+    if (browser && (data.randomBrand || data.randomModel || data.randomGeneration || data.randomModification)) {
+      let path =
+        "/showcase/catalogue/" +
+        `${data.randomBrand?.value || data.currentBrand}/` +
+        `${data.randomModel?.value || data.currentModel}/` +
+        `${data.randomGeneration?.value || data.currentGeneration}/` +
+        `${data.randomModification?.value || data.currentModification}`;
+      goto(path);
     }
   }
 
