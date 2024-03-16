@@ -53,7 +53,7 @@
 </script>
 
 <div class="mb-3">
-  <Link href="/showcase/catalogue/0000000000">Link</Link>
+  <Link href="/showcase/catalogue/0000000000">Get random</Link>
 </div>
 
 <div class="mb-3">

@@ -12,5 +12,5 @@ export * from './components/Autocomplete';
 export * from './components/Menu';
 
 export * from './utils';
-
 export * from './types';
+export * from './services';
