@@ -46,7 +46,10 @@ export interface ICatalogueData {
   models: SelectOption[];
   generations: SelectOption[];
   modifications: SelectOption[];
-  allPhotos: ICataloguePhoto[];
+  photos: ICataloguePhoto[];
 
   randomBrand: SelectOption | null;
+  randomModel: SelectOption | null;
+  randomGeneration: SelectOption | null;
+  randomModification: SelectOption | null;
 }

@@ -1,19 +1,16 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { Select, type SelectOption, type ICatalogueData, Link } from "$lib";
-  import { page } from "$app/stores";
 
   let imagesStorage = "http://cat.primavistalab.com/images/thumbnail-w200";
 
   export let data: ICatalogueData;
 
-  page.subscribe((url) => {
-    // console.log(":: route changed");
-  });
-
   $: {
-    if (data.randomBrand) {
-      goto(`/showcase/catalogue/${data.randomBrand.value}/`);
+    if (data.randomBrand && data.randomModel && data.randomGeneration && data.randomModification) {
+      goto(
+        `/showcase/catalogue/${data.randomBrand.value}/${data.randomModel.value}/${data.randomGeneration.value}/${data.randomModification.value}`
+      );
     }
   }
 
@@ -111,9 +108,9 @@
   </div>
 {/if}
 
-{#if data?.allPhotos}
+{#if data?.photos}
   <div class="catalogue-gallery">
-    {#each data.allPhotos as photo}
+    {#each data.photos as photo}
       <img
         class="catalogue-image"
         src={`${imagesStorage}/${photo.photo_name}.jpg`}

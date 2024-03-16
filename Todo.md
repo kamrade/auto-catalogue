@@ -93,4 +93,10 @@
 ## User Story
 
 - the user navigated to `/catalogue` link
-- the user navigated to `/catalogue/<correct_id>`
+  -- he will be redirected to the page with empty filters
+- the user navigated to `/catalogue/<correct_id>` with correct information
+  -- he will see corresponding car brand, model, generation
+- the user navigated to `/catalogue/<INCORRECT_ID>` with invalid ids
+  -- he will be redirected to page with empty filters, error message should be shown
+- the user navigated to `/catalogue/0000000000`
+  -- random car will be shown

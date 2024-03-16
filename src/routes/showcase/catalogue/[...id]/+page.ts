@@ -8,28 +8,36 @@ export let load: PageLoad = async ({ fetch, params }) => {
   const currentGeneration = parameteres[2];
   const currentModification = parameteres[3];
 
-  const bransOptions: SelectOption[] = await getBrands(fetch);
+  const brands: SelectOption[] = await getBrands(fetch);
 
-  const randomBrand: SelectOption | null = 
-    currentBrand === '0000000000' 
-      ? bransOptions[getRandomInt(0, bransOptions.length - 1)] 
-      : null;
+  const randomBrand: SelectOption | null = currentBrand === '0000000000' ? brands[getRandomInt(0, brands.length - 1)] : null;
 
-  const allModels : SelectOption[] = 
-    currentBrand ? await getModels(fetch, currentBrand) : [];
-  const allGenerations : SelectOption[] = 
-    currentBrand && currentModel ? await getGenerations(fetch, currentModel) : [];
-  const allModifications : SelectOption[] = 
-    (currentBrand && currentModel && currentGeneration) ? await getModifications(fetch, currentGeneration) : [];
+  const models : SelectOption[] = 
+    randomBrand ? await getModels(fetch, randomBrand.value) : 
+      currentBrand ? await getModels(fetch, currentBrand) : [];
 
-  const isBrandValid = hasValueInOptions(bransOptions, currentBrand);
-  const isModelValid = hasValueInOptions(allModels, currentModel);
-  const isGenerationValid = hasValueInOptions(allGenerations, currentGeneration);
-  const isModificationValid = hasValueInOptions(allModifications, currentModification);
+  const randomModel: SelectOption | null = currentBrand === '0000000000' ? models[getRandomInt(0, models.length - 1)] : null;
 
-  const allPhotos = currentGeneration ? await getPhotos(fetch, currentGeneration) : [];
+  const generations : SelectOption[] = 
+    randomModel ? await getGenerations(fetch, randomModel.value) : 
+      currentBrand && currentModel ? await getGenerations(fetch, currentModel) : [];
 
-  return { 
+  const randomGeneration: SelectOption | null = currentBrand === '0000000000' ? generations[getRandomInt(0, generations.length - 1)] : null;
+
+  const modifications : SelectOption[] = 
+    randomGeneration ? await getModifications(fetch, randomGeneration.value) :
+      (currentBrand && currentModel && currentGeneration) ? await getModifications(fetch, currentGeneration) : [];
+
+  const randomModification: SelectOption | null = currentBrand === '0000000000' ? modifications[getRandomInt(0, modifications.length - 1)] : null;
+
+  const isBrandValid = hasValueInOptions(brands, currentBrand);
+  const isModelValid = hasValueInOptions(models, currentModel);
+  const isGenerationValid = hasValueInOptions(generations, currentGeneration);
+  const isModificationValid = hasValueInOptions(modifications, currentModification);
+
+  const photos = currentGeneration ? await getPhotos(fetch, currentGeneration) : [];
+
+  return {
     currentBrand: isBrandValid ? currentBrand : 0,
     currentModel: (isBrandValid && isModelValid) ? currentModel : 0 ,
     currentGeneration: (isBrandValid && isModelValid && isGenerationValid) ? currentGeneration : 0,
@@ -38,13 +46,17 @@ export let load: PageLoad = async ({ fetch, params }) => {
     isModelValid,
     isGenerationValid, 
     isModificationValid, 
-    brands: bransOptions, 
-    models: allModels,
-    generations: allGenerations,
-    modifications: allModifications,
-    allPhotos,
+    
+    brands, 
+    models,
+    generations,
+    modifications,
+    photos,
 
-    randomBrand
+    randomBrand,
+    randomModel,
+    randomGeneration,
+    randomModification
   };
 
 }
