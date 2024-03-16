@@ -33,6 +33,22 @@ export interface ICataloguePhoto {
   photo_name: string;
 }
 
+export interface ICatalogueFilter {
+  filter_type?: string; // Make Type
+  group?: string;
+  id: string;
+  name: string;
+  options?: string;
+  range_max?: string;
+  range_min?: string;
+  unit?: string;
+}
+
+export interface ICatalogueFeature {
+  ifilter_id: string;
+  value: string;
+}
+
 export interface ICatalogueData {
   currentBrand: string | number;
   currentModel: string | number;
@@ -52,4 +68,7 @@ export interface ICatalogueData {
   randomModel: SelectOption | null;
   randomGeneration: SelectOption | null;
   randomModification: SelectOption | null;
+
+  filters: ICatalogueFilter[];
+  features: ICatalogueFeature[];
 }

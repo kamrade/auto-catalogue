@@ -7,8 +7,6 @@
 
   export let data: ICatalogueData;
 
-  $: console.log(data);
-
   $: {
     if (browser && (data.randomBrand || data.randomModel || data.randomGeneration || data.randomModification)) {
       let path =
@@ -72,48 +70,45 @@
     onChange={onBrandChange}
   ></Select>
 </div>
-{#if data?.models?.length && data.isBrandValid}
-  <div class="mb-3">
-    <Select
-      searchInDropdown={true}
-      fullWidthDropdown
-      label={"Model"}
-      placeholder={"Choose a model"}
-      maxHeight={300}
-      options={data.models}
-      value={modelValue}
-      onChange={onModelChange}
-    />
-  </div>
-{/if}
-{#if data?.generations?.length && data.isBrandValid && data.isModelValid}
-  <div class="mb-3">
-    <Select
-      searchInDropdown={true}
-      fullWidthDropdown
-      label={"Generation"}
-      placeholder={"Choose a generation"}
-      maxHeight={300}
-      options={data.generations}
-      value={generationValue}
-      onChange={onGenerationChange}
-    />
-  </div>
-{/if}
-{#if data?.modifications?.length && data.isBrandValid && data.isModelValid && data.isGenerationValid}
-  <div class="mb-3">
-    <Select
-      searchInDropdown={true}
-      fullWidthDropdown
-      label={"Modification"}
-      placeholder={"Choose a modification"}
-      maxHeight={300}
-      options={data.modifications}
-      value={modificationValue}
-      onChange={onModificationChange}
-    />
-  </div>
-{/if}
+
+<div class="mb-3">
+  <Select
+    searchInDropdown={true}
+    fullWidthDropdown
+    label={"Model"}
+    placeholder={"Choose a model"}
+    maxHeight={300}
+    options={data.models}
+    value={modelValue}
+    onChange={onModelChange}
+  />
+</div>
+
+<div class="mb-3">
+  <Select
+    searchInDropdown={true}
+    fullWidthDropdown
+    label={"Generation"}
+    placeholder={"Choose a generation"}
+    maxHeight={300}
+    options={data.generations}
+    value={generationValue}
+    onChange={onGenerationChange}
+  />
+</div>
+
+<div class="mb-3">
+  <Select
+    searchInDropdown={true}
+    fullWidthDropdown
+    label={"Modification"}
+    placeholder={"Choose a modification"}
+    maxHeight={300}
+    options={data.modifications}
+    value={modificationValue}
+    onChange={onModificationChange}
+  />
+</div>
 
 {#if data?.photos}
   <div class="catalogue-gallery">
@@ -127,7 +122,40 @@
   </div>
 {/if}
 
+{#each data.features as feature}
+  <div class="catalogue-feature">
+    <div class="catalogue-feature-label">
+      <div class="text-muted">
+        {data.filters.find((filter) => filter.id === feature.ifilter_id)?.group}:
+      </div>
+      <div class="text-muted">
+        {data.filters.find((filter) => filter.id === feature.ifilter_id)?.name}
+      </div>
+    </div>
+    <div class="catalogue-feature-value">
+      <div>
+        {feature.value}
+      </div>
+      <div>
+        {data.filters.find((filter) => filter.id === feature.ifilter_id)?.unit || ""}
+      </div>
+    </div>
+  </div>
+{/each}
+
 <style lang="scss">
+  .catalogue-feature {
+    display: flex;
+    gap: 1rem;
+    padding: 0.25rem 0;
+    border-bottom: 1px dashed var(--line-base-100);
+  }
+  .catalogue-feature-label,
+  .catalogue-feature-value {
+    display: flex;
+    gap: 0.5rem;
+  }
+
   .catalogue-gallery {
     margin: 0 -4px;
   }
