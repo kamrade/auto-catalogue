@@ -19,6 +19,9 @@ export let uikitMenuLinks: (IMainMenuItem | string)[] = [
   }, {
     link: '/showcase/select',
     label: 'Select'
+  }, {
+    link: '/showcase/grid',
+    label: 'Bootstrap Grid'
   }
 ];
 
