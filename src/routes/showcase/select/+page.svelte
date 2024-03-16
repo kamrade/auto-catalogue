@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, type SelectOption } from "$lib";
+  import { TextInput, Select, type SelectOption } from "$lib";
 
   interface IBrandData {
     brand_id: string;
@@ -45,7 +45,7 @@
 
 <Select
   fullWidthDropdown
-  label={"Brand"}
+  label={"Brand clone"}
   placeholder={"Choose a brand"}
   maxHeight={300}
   {options}
@@ -53,4 +53,4 @@
   {onChange}
 ></Select>
 
-<input type="text" />
+<TextInput label="Just text input" />

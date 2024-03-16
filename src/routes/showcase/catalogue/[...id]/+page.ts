@@ -1,5 +1,6 @@
 import type { PageLoad } from "./$types";
 import type { SelectOption, IBrandData, IModelData, IGenerationData, IModificationData } from "$lib";
+import { getRandomInt } from '$lib';
 
 export let load: PageLoad = async ({ fetch, params }) => {
   
@@ -9,6 +10,8 @@ export let load: PageLoad = async ({ fetch, params }) => {
   let currentModel = parameteres[1];
   let currentGeneration = parameteres[2];
   let currentModification = parameteres[3];
+
+  let randomBrand: SelectOption | null = null;
 
   let allModels;
   let allGenerations;
@@ -21,6 +24,12 @@ export let load: PageLoad = async ({ fetch, params }) => {
     text: brand.name,
     value: brand.brand_id
   }));
+
+  if (currentBrand === '0000000000') {
+    randomBrand = bransOptions[getRandomInt(0, bransOptions.length - 1)];
+  } else {
+    randomBrand = null;
+  }
 
   if (currentBrand) {
     const models = await fetch(`http://cat.primavistalab.com/api/v1/api.php?method=LOAD_MODELS&brandId=${currentBrand}`);
@@ -78,7 +87,7 @@ export let load: PageLoad = async ({ fetch, params }) => {
     let photos = await fetch(`http://cat.primavistalab.com/api/v1/api.php?method=LOAD_PHOTOS&generationId=${currentGeneration}`);
     allPhotos = await photos.json();
   }
-  
+
   return { 
     currentBrand: isBrandValid ? currentBrand : 0,
     currentModel: (isBrandValid && isModelValid) ? currentModel : 0 ,
@@ -92,7 +101,9 @@ export let load: PageLoad = async ({ fetch, params }) => {
     models: allModels,
     generations: allGenerations,
     modifications: allModifications,
-    allPhotos
+    allPhotos,
+
+    randomBrand
   };
 
 }

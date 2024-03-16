@@ -47,4 +47,6 @@ export interface ICatalogueData {
   generations: SelectOption[];
   modifications: SelectOption[];
   allPhotos: ICataloguePhoto[];
+
+  randomBrand: SelectOption | null;
 }

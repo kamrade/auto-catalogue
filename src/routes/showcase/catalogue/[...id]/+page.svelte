@@ -1,38 +1,21 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { goto } from "$app/navigation";
-  import { Select, type SelectOption, type ICatalogueData } from "$lib";
+  import { Select, type SelectOption, type ICatalogueData, Link } from "$lib";
   import { page } from "$app/stores";
 
   let imagesStorage = "http://cat.primavistalab.com/images/thumbnail-w200";
 
   export let data: ICatalogueData;
 
-  onMount(() => {
-    if (!data.isBrandValid) {
-      goto(`/showcase/catalogue/0`);
-    } else {
-      if (!data.isModelValid) {
-        goto(`/showcase/catalogue/${brandValue?.value}`);
-      } else {
-        if (!data.isGenerationValid) {
-          goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}`);
-        } else {
-          if (!data.isModificationValid) {
-            goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}`);
-          } else {
-            goto(
-              `/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}/${modificationValue?.value}`
-            );
-          }
-        }
-      }
-    }
+  page.subscribe((url) => {
+    // console.log(":: route changed");
   });
 
-  page.subscribe((url) => {
-    console.log(":: route changed");
-  });
+  $: {
+    if (data.randomBrand) {
+      goto(`/showcase/catalogue/${data.randomBrand.value}/`);
+    }
+  }
 
   // Brand
   let brandValue: SelectOption | null = null;
@@ -68,6 +51,10 @@
   $: modificationValue =
     data.modifications?.find((option: SelectOption) => option.value === data.currentModification) || null;
 </script>
+
+<div class="mb-3">
+  <Link href="/showcase/catalogue/0000000000">Link</Link>
+</div>
 
 <div class="mb-3">
   <Select

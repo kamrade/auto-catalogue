@@ -89,3 +89,8 @@
 - [ ] ICON: Now I am using the Remixicon font. It would be better to use the Component approach.
 
 ## Features
+
+## User Story
+
+- the user navigated to `/catalogue` link
+- the user navigated to `/catalogue/<correct_id>`
