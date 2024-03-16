@@ -1,13 +1,27 @@
-<script lang="ts">
-  import { Container, Link } from '$lib';
+<script
+  lang="ts"
+  context="module"
+>
+  import "../styles/global.scss";
+  import { Container, Link } from "$lib";
 </script>
 
 <div class="App">
   <header class="header-main">
     <Container>
       <div class="header-content">
-        <b><Link inverted={true} href="/">Home</Link></b>
-        <b><Link inverted={true} href="/showcase">Showcase</Link></b>
+        <b>
+          <Link
+            inverted={true}
+            href="/">Home</Link
+          >
+        </b>
+        <b>
+          <Link
+            inverted={true}
+            href="/showcase">Showcase</Link
+          >
+        </b>
       </div>
     </Container>
   </header>
@@ -16,7 +30,7 @@
 </div>
 
 <style lang="scss">
-  @import '../styles/global.scss';
+  // @import "../styles/global.scss";
 
   .header-main {
     background-color: var(--bg-inverted-100);

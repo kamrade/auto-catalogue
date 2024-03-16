@@ -1,11 +1,11 @@
-:global(.text-muted) {
+.text-muted {
   color: var(--text-color-muted);
 }
 
-:global(.text-sm) {
+.text-sm {
   font-size: 0.75rem;
 }
 
-:global(h1) {
+h1 {
   margin: 0 0 .5em 0;
 }

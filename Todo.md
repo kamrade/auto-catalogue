@@ -51,61 +51,41 @@
 
 - COMPONENT: SELECT
 - [x] Select with TextField and Search in the Dropdown
-- [ ] Select with Button: hide Dropdown on blur
-- [ ] Select with Button: hide dropdown when value changed
 
 - [x] Provide types for a data
-
-- [ ] Responivity. Grid.
-
-- COMPONENT: IMAGE WITH PREVIEW
-- [ ]
-
-- COMPONENT: TEXTINPUT
-- [ ] Force focus
-
-- PAGE: CATALOGUE
 - [x] Route validations
-- [ ] Default values for route
-
-- COMPONENT:DROPDOWN:
-- [ ] Dropdown option as a link
-- [ ] Dropdown option as a handler
-- [ ] Component:Select with button. Change button type.
-- [ ] Quick shadow search
-- [ ] Force focus
-
-- COMPONENT: MODAL
-- [ ]
-
-- COMPONENT: GALLERY MODAL
-- [ ]
-
-<!-- Backlog -->
-
-- COMPONENT:TEXTINPUT:
-- [ ] Variant - borderless | contained | outlined | underlined
-
-- [ ] Component:MainMenu. Animations like Stripe
-- [ ] Component:Dropdown. Multiselection with checkboxes
-- [ ] Component:Dropdown. Appearing animation
-- [ ] Component:Dropdown. Position in the DOM. Now it goes to the end of the body element. Is it ok or not...
 
 - [x] Component:Menu
 - [x] Show Menu on:hover
 
-- [ ] Component:Hr. Update spacing
-- [ ] Component:Container. Responsive Container
-- [ ] Component:Modal
-- [ ] Component:Main Menu
-- [ ] Component:AutoComplete
-- [ ] Component:TextArea
-- [ ] Component:Multiselect
-- [ ] Component:Tabs
-- [ ] Component:Drawer
-- [ ] Component:Grid
-- [ ] Component:Icon. Now I am using the Remixicon font. It would be better to use the Component approach.
+- [ ] Flobal scss
+- [ ] MODAL
+- [ ] GALLERY MODAL
+- [ ] IMAGE: with preview
+- [ ] GRID: Responivity.
+- [ ] TEXTINPUT: Force focus
+- [ ] Default values for route
+- [ ] DROPDOWN: Dropdown option as a link
+- [ ] DROPDOWN: Dropdown option as a handler
+- [ ] DROPDOWN: Component:Select with button. Change button type.
+- [ ] DROPDOWN: Quick shadow search
+- [ ] DROPDOWN: Force focus
+- [ ] SELECT: Select with Button: hide Dropdown on blur
+- [ ] SELECT: Select with Button: hide dropdown when value changed
 
-- [ ]
+<!-- Backlog -->
+
+- [ ] TEXTINPUT: Variant - borderless | contained | outlined | underlined
+- [ ] MAINMENU: Animations like Stripe
+- [ ] DROPDOWN: Multiselection with checkboxes
+- [ ] DROPDOWN: Appearing animation
+- [ ] DROPDOWN: Position in the DOM. Now it goes to the end of the body element. Is it ok or not...
+- [ ] HR: Update spacing
+- [ ] CONTAINER: Responsive Container
+- [ ] TEXTAREA
+- [ ] MULTISELECT
+- [ ] TABS
+- [ ] DRAWER
+- [ ] ICON: Now I am using the Remixicon font. It would be better to use the Component approach.
 
 ## Features
