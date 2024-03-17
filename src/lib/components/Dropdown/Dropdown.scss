@@ -9,12 +9,15 @@
   border: 1px solid var(--line-base-100);
   background-color: var(--bg-control-100);
   box-shadow: 0 0 20px rgba(0,0,0,0.08);
+  border-radius: var(--border-radius-dropdown);
 
   ul {
     margin: 0;
     padding: 2px;
     overflow-y: scroll;
     background-color: var(--bg-control-100);
+    border-radius: var(--border-radius-dropdown);
+    
   }
 
   .Dropdown-option {
@@ -25,6 +28,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 0.5rem;
+    border-radius: var(--border-radius-control);
 
     &:hover {
       background-color: var(--bg-control-300);

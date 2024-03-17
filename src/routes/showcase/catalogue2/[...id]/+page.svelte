@@ -3,7 +3,7 @@
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
-  import { Select, type SelectOption, type ICatalogueData, Link } from "$lib";
+  import { Autocomplete, Select, type SelectOption, type ICatalogueData, Link } from "$lib";
 
   export let data: ICatalogueData;
 
@@ -47,7 +47,7 @@
   $: {
     if (browser && (data.randomBrand || data.randomModel || data.randomGeneration || data.randomModification)) {
       let path =
-        "/showcase/catalogue/" +
+        "/showcase/catalogue2/" +
         `${data.randomBrand?.value || data.currentBrand}/` +
         `${data.randomModel?.value || data.currentModel}/` +
         `${data.randomGeneration?.value || data.currentGeneration}/` +
@@ -61,7 +61,7 @@
   const onBrandChange = (option: SelectOption) => {
     lastSelection = "brand";
     isPreNavigation = true;
-    goto(`/showcase/catalogue/${option.value}`);
+    goto(`/showcase/catalogue2/${option.value}`);
     brandValue = option;
   };
   $: brandValue = data.brands?.find((option: SelectOption) => option.value === data.currentBrand) || null;
@@ -71,7 +71,7 @@
   const onModelChange = (option: SelectOption) => {
     lastSelection = "model";
     isPreNavigation = true;
-    goto(`/showcase/catalogue/${brandValue?.value}/${option.value}`);
+    goto(`/showcase/catalogue2/${brandValue?.value}/${option.value}`);
     modelValue = option;
   };
   $: modelValue = data.models?.find((option: SelectOption) => option.value === data.currentModel) || null;
@@ -81,7 +81,7 @@
   const onGenerationChange = (option: SelectOption) => {
     lastSelection = "generation";
     isPreNavigation = true;
-    goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${option.value}`);
+    goto(`/showcase/catalogue2/${brandValue?.value}/${modelValue?.value}/${option.value}`);
     generationValue = option;
   };
   $: generationValue =
@@ -91,15 +91,27 @@
   let modificationValue: SelectOption | null = null;
   const onModificationChange = (option: SelectOption) => {
     lastSelection = "modification";
-    goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}/${option.value}`);
+    goto(`/showcase/catalogue2/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}/${option.value}`);
     modificationValue = option;
   };
   $: modificationValue =
     data.modifications?.find((option: SelectOption) => option.value === data.currentModification) || null;
+
+  let brandTextValue = "";
 </script>
 
 <div class="mb-3">
-  <Link href="/showcase/catalogue/0000000000">Get random</Link>
+  <Link href="/showcase/catalogue2/0000000000">Get random</Link>
+</div>
+
+<div class="mb-3">
+  <Autocomplete
+    label="Brand"
+    textValue={brandTextValue}
+    selected={brandValue}
+    options={data.brands}
+    width={400}
+  ></Autocomplete>
 </div>
 
 <div class="mb-3">

@@ -12,11 +12,11 @@
 
   // AUTOCOMPLETE
   let autocompleteTextValue = "";
-  let autocompleteValue: SelectOption | undefined;
+  let autocompleteValue: SelectOption | null;
 
   const autocompleteKeyupHandler = (e: KeyboardEvent) => {
     let val = (e.target as HTMLInputElement).value;
-    autocompleteValue = autocompleteTextValue === val ? autocompleteValue : undefined;
+    autocompleteValue = autocompleteTextValue === val ? autocompleteValue : null;
     autocompleteTextValue = val;
   };
 
@@ -26,7 +26,7 @@
   };
 
   const clearField = () => {
-    autocompleteValue = undefined;
+    autocompleteValue = null;
     autocompleteTextValue = "";
   };
 

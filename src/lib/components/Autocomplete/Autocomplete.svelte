@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { TextInput, Dropdown } from '$lib';
-  import type { SelectOption, KEvent } from '$lib';
-  import type { KeyboardEventHandler } from 'svelte/elements';
+  import { TextInput, Dropdown } from "$lib";
+  import type { SelectOption, KEvent } from "$lib";
+  import type { KeyboardEventHandler } from "svelte/elements";
 
-  export let label = '';
-  export let textValue = '';
-  export let selected: SelectOption | undefined;
+  export let label = "";
+  export let textValue = "";
+  export let selected: SelectOption | null;
   export let onKeydown: KeyboardEventHandler<HTMLInputElement> = () => {};
   export let onKeyup: KeyboardEventHandler<HTMLInputElement> = () => {};
   export let options: SelectOption[];
   export let showValue = false;
   export let selectOption: (option: SelectOption) => unknown = (_option: SelectOption) => null;
-  export let placeholder = '';
+  export let placeholder = "";
   export let maxHeight = 240;
   export let readonly = false;
   export let width = 0;
@@ -20,7 +20,7 @@
   let dropdownVisible = false;
 
   const keyUpHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => {
-    if (e.code === 'ArrowDown' && !dropdownVisible) {
+    if (e.code === "ArrowDown" && !dropdownVisible) {
       showDropdown();
     }
     let val = (e.target as HTMLInputElement).value;
@@ -35,10 +35,10 @@
   };
 
   const keyDownHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => {
-    if (e.code === 'Tab') {
+    if (e.code === "Tab") {
       hideDropdown();
     }
-    if (e.code === 'Escape') {
+    if (e.code === "Escape") {
       toggleDropdown();
     }
 
@@ -67,8 +67,14 @@
     onBlur={(e) => ({})}
     {readonly}
   >
-    <slot name="prefix" slot="prefix" />
-    <slot name="suffix" slot="suffix" />
+    <slot
+      name="prefix"
+      slot="prefix"
+    />
+    <slot
+      name="suffix"
+      slot="suffix"
+    />
   </TextInput>
   <div>
     {#if dropdownVisible && options.length !== 0}

@@ -36,7 +36,7 @@
   // LIFECYCLE
   onDestroy(() => {
     if (browser) {
-      document.removeEventListener("keyup", handleKeyUp);
+      document.removeEventListener("keyup", handleKeyUpFocus);
       document.removeEventListener("keydown", handleKeyDown);
     }
   });
@@ -44,6 +44,14 @@
   // HANDLERS
   const handleKeyDown = (e: KeyboardEvent) => {
     switch (e.key) {
+      case "Escape":
+        if (isDropdownVisible) {
+          e.preventDefault();
+          hideDropdown();
+          isJustSelected = true;
+          focusTextInputElement();
+        }
+        break;
       case "Tab":
         if (isDropdownVisible) {
           e.preventDefault();
@@ -63,11 +71,12 @@
     }
   };
 
-  const handleKeyUp = (e: KeyboardEvent) => {
+  const handleKeyUpFocus = (e: KeyboardEvent) => {
+    e.preventDefault();
     switch (e.key) {
       case "Escape":
         isJustSelected = true;
-        toggleDropdown();
+        showDropdown();
         focusTextInputElement();
         break;
       case "ArrowDown":
@@ -92,21 +101,27 @@
     }
   };
 
+  $: {
+    if (isDropdownVisible) {
+      if (browser) {
+        document.addEventListener("keydown", handleKeyDown);
+      }
+    } else {
+      if (browser && !isDropdownVisible) {
+        document.removeEventListener("keydown", handleKeyDown);
+      }
+    }
+  }
+
   const handleTextInputFocus = () => {
     isFocused = true;
     showDropdown();
-    if (browser) {
-      document.addEventListener("keyup", handleKeyUp);
-      document.addEventListener("keydown", handleKeyDown);
-    }
+    document.addEventListener("keyup", handleKeyUpFocus);
   };
 
   const handleTextInputBlur = () => {
     isFocused = false;
-    if (browser && !isDropdownVisible) {
-      document.removeEventListener("keyup", handleKeyUp);
-      document.removeEventListener("keydown", handleKeyDown);
-    }
+    document.removeEventListener("keyup", handleKeyUpFocus);
   };
 
   const handleOptionClick = (option: SelectOption) => {
@@ -162,6 +177,7 @@
       readonly={true}
       {label}
       bind:inputEl
+      isActive={isDropdownVisible}
     ></TextInput>
   {:else}
     <Button

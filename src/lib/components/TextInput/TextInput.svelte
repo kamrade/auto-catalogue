@@ -22,21 +22,35 @@
   export let id: string | undefined = undefined;
 
   export let inputEl: HTMLInputElement | null = null;
+  export let isActive = false;
+
+  let textInputClassNames: string;
 
   let keydownHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => onKeydown(e);
   let keyupHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => onKeyup(e);
 
-  const getClassNames = () => {
+  $: textInputClassNames = getClassNames(disabled, readonly, variant, size, isActive);
+
+  const getClassNames = (
+    disabled: boolean,
+    readonly: boolean,
+    variant: TextInputVariant,
+    size: TextInputSize,
+    isActive: boolean
+  ) => {
     let textInputClassName = "TextInput ";
     textInputClassName += disabled ? "TextInput-disabled " : "";
     textInputClassName += readonly ? "TextInput-readonly " : "";
     textInputClassName += `TextInput-variant-${variant} `;
     textInputClassName += `TextInput-size-${size} `;
+    if (isActive) {
+      textInputClassName += "TextInput-active ";
+    }
     return textInputClassName;
   };
 </script>
 
-<label class={getClassNames()}>
+<label class={textInputClassNames}>
   {#if $$slots.prefix}
     <span class="TextInput-prefix"><slot name="prefix" /></span>
   {/if}

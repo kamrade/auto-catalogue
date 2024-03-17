@@ -42,5 +42,8 @@ export let appMenuLinks: (IMainMenuItem | string)[] = [
   {
     link: '/showcase/catalogue',
     label: 'Catalogue'
+  }, {
+    link: '/showcase/catalogue2',
+    label: 'Catalogue v2'
   }
 ];

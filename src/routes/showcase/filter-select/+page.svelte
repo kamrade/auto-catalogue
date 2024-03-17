@@ -1,22 +1,22 @@
 <script lang="ts">
-  import { brands } from './data';
-  import { Autocomplete } from '$lib';
-  import type { SelectOption } from '$lib';
+  import { brands } from "./data";
+  import { Autocomplete } from "$lib";
+  import type { SelectOption } from "$lib";
 
   // TEXT INPUT
-  let textInputValue = '';
+  let textInputValue = "";
   let textInputKeydownHandler = (e: KeyboardEvent) => {
     let val = (e.target as HTMLInputElement).value;
     textInputValue = val;
   };
 
   // AUTOCOMPLETE
-  let autocompleteTextValue = '';
-  let autocompleteValue: SelectOption | undefined;
+  let autocompleteTextValue = "";
+  let autocompleteValue: SelectOption | null;
 
   const autocompleteKeyupHandler = (e: KeyboardEvent) => {
     let val = (e.target as HTMLInputElement).value;
-    autocompleteValue = autocompleteTextValue === val ? autocompleteValue : undefined;
+    autocompleteValue = autocompleteTextValue === val ? autocompleteValue : null;
     autocompleteTextValue = val;
   };
 
@@ -26,8 +26,8 @@
   };
 
   const clearField = () => {
-    autocompleteValue = undefined;
-    autocompleteTextValue = '';
+    autocompleteValue = null;
+    autocompleteTextValue = "";
   };
 
   let opts: SelectOption[] = [];
@@ -56,7 +56,7 @@
     onKeyup={autocompleteKeyupHandler}
     options={opts}
     {selectOption}
-    placeholder={'Finnd your brand'}
+    placeholder={"Finnd your brand"}
   >
     <svelte:fragment slot="prefix"><i class="ri-send-plane-2-line"></i></svelte:fragment>
 

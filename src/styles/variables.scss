@@ -16,7 +16,7 @@
   --line-base-100: #E5E5E5;
   --line-primary-100: #B9DF4C;
   --line-control-100: #CDCDCD;
-  --line-control-focus: #55555A;
+  --line-control-focus: #E1E1E1;
   
   // TEXT
   --text-color-base: #2A2A2C;
@@ -24,6 +24,10 @@
   --text-color-secondary: #727272;
   --text-color-muted: #AFAFAF;
   --text-color-inv-primary: #C9ED62;
+
+  // BORDER RADIUS
+  --border-radius-control: 4px;
+  --border-radius-dropdown: 6px;
 
   // OTHERS
   --transparent: transparent;
@@ -51,5 +55,4 @@
   --space-5: 1.25rem;
   --space-6: 1.5rem;
 
-  --border-radius-control: 6px;
 }
