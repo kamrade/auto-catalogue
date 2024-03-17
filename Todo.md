@@ -62,6 +62,7 @@
 
 - [ ] DROPDOWN: Force focus
 - [ ] DROPDOWN: Scroll to current value
+- [ ] DROPDOWN: case - when the user entered in Search value which doesn't match any of the option and the the user clicks EnterG
 - [ ] MODAL
 - [ ] GALLERY MODAL
 - [ ] IMAGE: with preview

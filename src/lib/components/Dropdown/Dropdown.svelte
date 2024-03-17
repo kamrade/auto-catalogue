@@ -56,6 +56,7 @@
 
   const keyDownHandler = (e: KeyboardEvent) => {
     if (e.key === "ArrowDown") {
+      e.preventDefault();
       if (current === options.length - 1) {
         current = 0;
       } else {
@@ -63,6 +64,7 @@
       }
     }
     if (e.key === "ArrowUp") {
+      e.preventDefault();
       if (current === 0) {
         current = options.length - 1;
       } else {
