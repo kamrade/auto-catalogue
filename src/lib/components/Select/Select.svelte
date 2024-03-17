@@ -48,6 +48,7 @@
     switch (e.key) {
       case "Tab":
         if (isDropdownVisible) {
+          e.preventDefault();
           hideDropdown();
           isJustSelected = true;
           focusTextInput && focusTextInput();

@@ -58,7 +58,10 @@
 - [x] Component:Menu
 - [x] Show Menu on:hover
 
-- [ ] Flobal scss
+- [x] Global scss
+
+- [ ] DROPDOWN: Force focus
+- [ ] DROPDOWN: Scroll to current value
 - [ ] MODAL
 - [ ] GALLERY MODAL
 - [ ] IMAGE: with preview
@@ -69,7 +72,6 @@
 - [ ] DROPDOWN: Dropdown option as a handler
 - [ ] DROPDOWN: Component:Select with button. Change button type.
 - [ ] DROPDOWN: Quick shadow search
-- [ ] DROPDOWN: Force focus
 - [ ] SELECT: Select with Button: hide Dropdown on blur
 - [ ] SELECT: Select with Button: hide dropdown when value changed
 
