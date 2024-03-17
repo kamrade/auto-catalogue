@@ -16,8 +16,6 @@
   export let searchInDropdown = false;
   export let variant: TextInputVariant = "underlined";
 
-  let focusTextInput: () => void;
-
   let searchString = "";
   let selectOptions = options;
   let ref: HTMLDivElement;
@@ -51,7 +49,7 @@
           e.preventDefault();
           hideDropdown();
           isJustSelected = true;
-          focusTextInput && focusTextInput();
+          focusTextInputElement();
         }
         break;
       case "Enter":
@@ -70,13 +68,13 @@
       case "Escape":
         isJustSelected = true;
         toggleDropdown();
-        focusTextInput && focusTextInput();
+        focusTextInputElement();
         break;
       case "ArrowDown":
         if (!isDropdownVisible) {
           isJustSelected = true;
           toggleDropdown();
-          focusTextInput && focusTextInput();
+          focusTextInputElement();
         }
         break;
 
@@ -115,7 +113,7 @@
     onChange && onChange(option);
     hideDropdown();
     isJustSelected = true;
-    focusTextInput && focusTextInput();
+    focusTextInputElement();
   };
 
   // HELPERS
@@ -136,6 +134,16 @@
   const toggleDropdown = () => {
     isDropdownVisible = !isDropdownVisible;
   };
+
+  export let inputEl: HTMLInputElement | null = null;
+
+  const focusTextInputElement = () => {
+    inputEl && inputEl.focus();
+  };
+
+  export const openDropdown = () => {
+    showDropdown();
+  };
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -153,7 +161,7 @@
       {placeholder}
       readonly={true}
       {label}
-      bind:focus={focusTextInput}
+      bind:inputEl
     ></TextInput>
   {:else}
     <Button

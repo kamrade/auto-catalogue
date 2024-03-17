@@ -21,10 +21,7 @@
   export let name: string | undefined = undefined;
   export let id: string | undefined = undefined;
 
-  let inputEl: HTMLInputElement;
-  export const focus = () => {
-    setTimeout(() => inputEl?.focus());
-  };
+  export let inputEl: HTMLInputElement | null = null;
 
   let keydownHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => onKeydown(e);
   let keyupHandler: KeyboardEventHandler<HTMLInputElement> = (e: KEvent) => onKeyup(e);

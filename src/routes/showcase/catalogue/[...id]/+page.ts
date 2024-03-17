@@ -24,7 +24,7 @@ export let load: PageLoad = async ({ fetch, params }) => {
 
   filters = filters ? filters : await getFilters(fetch);
 
-  brands = previousBrand !== currentBrand ? await getBrands(fetch) : brands;
+  brands = (previousBrand !== currentBrand) || (currentBrand === '0') ? await getBrands(fetch) : brands;
   
   const isBrandValid = hasValueInOptions(brands, currentBrand);
   const randomBrand: SelectOption | null = (currentBrand === '0000000000') || !isBrandValid ? 

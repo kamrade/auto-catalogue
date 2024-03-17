@@ -19,7 +19,7 @@
   export let isVisible = false;
   export let dropdownGap = 4;
   export let searchValue = "";
-  let textSearchFocus: () => unknown;
+  export let inputEl: HTMLInputElement | null = null;
 
   let current = 0;
   let scrollerElement: HTMLElement | null = null;
@@ -42,8 +42,12 @@
       }
       document.addEventListener("keydown", keyDownHandler);
     }
-    textSearchFocus && textSearchFocus();
+    textSearchFocus();
   });
+
+  const textSearchFocus = () => {
+    inputEl && inputEl.focus();
+  };
 
   onDestroy(() => {
     browser && document.removeEventListener("keydown", keyDownHandler);
@@ -104,7 +108,7 @@
           placeholder="Find"
           variant="contained"
           size="sm"
-          bind:focus={textSearchFocus}
+          bind:inputEl
           onBlur={searchInputBlur}
         >
           <svelte:fragment slot="prefix"><i class="ri-search-line"></i></svelte:fragment>

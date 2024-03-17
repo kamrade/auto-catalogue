@@ -1,11 +1,59 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+  import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
-  import { Select, type SelectOption, type ICatalogueData, Link } from "$lib";
+  import { Button, Select, type SelectOption, type ICatalogueData, Link } from "$lib";
 
   let imagesStorage = "http://cat.primavistalab.com/images/thumbnail-w200";
 
   export let data: ICatalogueData;
+
+  let lastSelection: "" | "brand" | "model" | "generation" | "modification" = "";
+
+  onMount(() => {
+    lastSelection = "";
+  });
+
+  let openBrandDropdown: any;
+  let openModelDropdown: any;
+  let openGenerationDropdown: any;
+  let openModificationDropdown: any;
+
+  let inputElBrand: HTMLInputElement | null = null;
+  let inputElModel: HTMLInputElement | null = null;
+  let inputElGeneration: HTMLInputElement | null = null;
+  let inputElModification: HTMLInputElement | null = null;
+  let focusOnBrand: () => any = () => inputElBrand && inputElBrand.focus();
+  let focusOnModel: () => any = () => inputElModel && inputElModel.focus();
+  let focusOnGeneration: () => any = () => inputElGeneration && inputElGeneration.focus();
+  let focusOnModification: () => any = () => inputElModification && inputElModification.focus();
+
+  let isPreNavigation = false;
+
+  page.subscribe((url) => {
+    if (!isPreNavigation) {
+      if (browser && data) {
+        switch (lastSelection) {
+          case "":
+            break;
+          case "brand":
+            openModelDropdown && openModelDropdown();
+            break;
+          case "model":
+            openGenerationDropdown && openGenerationDropdown();
+            break;
+          case "generation":
+            openModificationDropdown && openModificationDropdown();
+            break;
+          case "modification":
+            return;
+        }
+      }
+    } else {
+      isPreNavigation = false;
+    }
+  });
 
   $: {
     if (browser && (data.randomBrand || data.randomModel || data.randomGeneration || data.randomModification)) {
@@ -22,6 +70,8 @@
   // Brand
   let brandValue: SelectOption | null = null;
   const onBrandChange = (option: SelectOption) => {
+    lastSelection = "brand";
+    isPreNavigation = true;
     goto(`/showcase/catalogue/${option.value}`);
     brandValue = option;
   };
@@ -30,6 +80,8 @@
   // Model
   let modelValue: SelectOption | null = null;
   const onModelChange = (option: SelectOption) => {
+    lastSelection = "model";
+    isPreNavigation = true;
     goto(`/showcase/catalogue/${brandValue?.value}/${option.value}`);
     modelValue = option;
   };
@@ -37,7 +89,9 @@
 
   // Generation
   let generationValue: SelectOption | null = null;
+  lastSelection = "generation";
   const onGenerationChange = (option: SelectOption) => {
+    isPreNavigation = true;
     goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${option.value}`);
     generationValue = option;
   };
@@ -47,6 +101,7 @@
   // Modification
   let modificationValue: SelectOption | null = null;
   const onModificationChange = (option: SelectOption) => {
+    lastSelection = "modification";
     goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}/${option.value}`);
     modificationValue = option;
   };
@@ -60,6 +115,8 @@
 
 <div class="mb-3">
   <Select
+    bind:openDropdown={openBrandDropdown}
+    bind:inputEl={inputElBrand}
     searchInDropdown={true}
     fullWidthDropdown
     label={"Brand"}
@@ -73,6 +130,8 @@
 
 <div class="mb-3">
   <Select
+    bind:openDropdown={openModelDropdown}
+    bind:inputEl={inputElModel}
     searchInDropdown={true}
     fullWidthDropdown
     label={"Model"}
@@ -86,6 +145,8 @@
 
 <div class="mb-3">
   <Select
+    bind:openDropdown={openGenerationDropdown}
+    bind:inputEl={inputElGeneration}
     searchInDropdown={true}
     fullWidthDropdown
     label={"Generation"}
@@ -99,6 +160,8 @@
 
 <div class="mb-3">
   <Select
+    bind:openDropdown={openModificationDropdown}
+    bind:inputEl={inputElModification}
     searchInDropdown={true}
     fullWidthDropdown
     label={"Modification"}
