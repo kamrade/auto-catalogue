@@ -61,9 +61,8 @@
 - [x] Global scss
 
 - [x] DROPDOWN: Force focus
-- [ ] DROPDOWN: Scroll to current value
-- [ ] DROPDOWN: Shadow search
-- [ ] DROPDOWN: case - when the user entered in Search value which doesn't match any of the option and the the user clicks EnterG
+- [x] DROPDOWN: Scroll to current value
+- [x] DROPDOWN: Shadow search
 - [ ] MODAL
 - [ ] GALLERY MODAL
 - [ ] IMAGE: with preview
@@ -75,6 +74,7 @@
 - [ ] DROPDOWN: Component:Select with button. Change button type.
 - [ ] SELECT: Select with Button: hide Dropdown on blur
 - [ ] SELECT: Select with Button: hide dropdown when value changed
+- [ ] DROPDOWN: case - when the user entered in Search value which doesn't match any of the option and the the user clicks EnterG
 
 <!-- Backlog -->
 

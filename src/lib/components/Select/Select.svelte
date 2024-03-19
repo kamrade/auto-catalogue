@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { browser } from "$app/environment";
+  import { browser } from "$app/environment";
   import { Dropdown, TextInput } from "$lib";
   import type { SelectOption, TextInputVariant } from "$lib";
 
@@ -34,35 +34,33 @@
     if (autoShowDropdown) {
       showDropdown();
     }
-    
+
     if (browser) {
-      document.addEventListener('keyup', handleKeyUp);
+      document.addEventListener("keyup", handleKeyUp);
     }
   };
 
   const handleTextInputBlur = () => {
     isFocused = false;
     if (browser) {
-      document.removeEventListener('keyup', handleKeyUp);
+      document.removeEventListener("keyup", handleKeyUp);
     }
-    hideDropdown();
+    setTimeout(() => hideDropdown(), 200);
   };
 
   const handleKeyUp = (e: KeyboardEvent) => {
-    // console.log(e.key);
     switch (e.key) {
-      case 'Escape':
+      case "Escape":
         toggleDropdown();
         break;
-      case 'Enter':
-      case 'ArrowDown':
+      case "Enter":
+      case "ArrowDown":
         if (!isDropdownVisible) {
           showDropdown();
         }
         break;
-
     }
-  }
+  };
 
   const handleOptionClick = (option: SelectOption) => {
     onChange && onChange(option);
@@ -88,10 +86,9 @@
     isDropdownVisible = !isDropdownVisible;
   };
 
-
   export let inputEl: HTMLInputElement | null = null;
 
-  const focusTextInputElement = () => {
+  export const focusTextInputElement = () => {
     inputEl && inputEl.focus();
   };
 

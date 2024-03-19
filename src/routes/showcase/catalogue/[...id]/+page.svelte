@@ -104,7 +104,7 @@
 
 <div class="mb-3">
   <Select
-    bind:openDropdown={openBrandDropdown}
+    bind:focusTextInputElement={openBrandDropdown}
     fullWidthDropdown
     label={"Brand"}
     placeholder={"Choose a brand"}
@@ -117,7 +117,7 @@
 
 <div class="mb-3">
   <Select
-    bind:openDropdown={openModelDropdown}
+    bind:focusTextInputElement={openModelDropdown}
     fullWidthDropdown
     label={"Model"}
     placeholder={"Choose a model"}
@@ -130,7 +130,7 @@
 
 <div class="mb-3">
   <Select
-    bind:openDropdown={openGenerationDropdown}
+    bind:focusTextInputElement={openGenerationDropdown}
     fullWidthDropdown
     label={"Generation"}
     placeholder={"Choose a generation"}
@@ -143,7 +143,7 @@
 
 <div class="mb-3">
   <Select
-    bind:openDropdown={openModificationDropdown}
+    bind:focusTextInputElement={openModificationDropdown}
     fullWidthDropdown
     label={"Modification"}
     placeholder={"Choose a modification"}

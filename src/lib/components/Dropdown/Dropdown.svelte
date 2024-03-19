@@ -24,6 +24,8 @@
   let current = 0;
   let scrollerElement: HTMLElement | null = null;
   let currentDropdownOptions: HTMLElement[] = [];
+  let searchString = "";
+  let timeout: number;
 
   // REACTIVITY
   $: scrollerElement?.scrollTo(0, current * (currentDropdownOptions[current]?.clientHeight || 32));
@@ -34,15 +36,33 @@
     }
   }
 
+  $: {
+    if (searchString !== "") {
+      let found = options.find((option) => option.text.toUpperCase().includes(searchString.toUpperCase()));
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].value === found?.value) {
+          current = i;
+          break;
+        }
+      }
+    }
+  }
+
   // HOOKS
   onMount(() => {
+    for (let i = 0; i < options.length; i++) {
+      if (options[i].value === selected?.value) {
+        current = i;
+        break;
+      }
+    }
     if (browser) {
       if (!width && fitToParent) {
         width = parentEl?.getBoundingClientRect().width || 0;
       }
       document.addEventListener("keydown", keyDownHandler);
+      textSearchFocus();
     }
-    textSearchFocus();
   });
 
   const textSearchFocus = () => {
@@ -59,6 +79,16 @@
   };
 
   const keyDownHandler = (e: KeyboardEvent) => {
+    if (!hasSearch) {
+      let val = e.key;
+      const pattern = /^[a-z0-9!"#$%&'()*+,.\/:;<=>?@\[\] ^_`{|}~-]*$/g;
+      if (pattern.test(val)) {
+        searchString += val;
+      }
+      clearTimeout(timeout);
+      timeout = setTimeout(() => (searchString = ""), 1000);
+    }
+
     if (e.key === "ArrowDown") {
       e.preventDefault();
       if (current === options.length - 1) {
