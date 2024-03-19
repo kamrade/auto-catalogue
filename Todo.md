@@ -60,8 +60,9 @@
 
 - [x] Global scss
 
-- [ ] DROPDOWN: Force focus
+- [x] DROPDOWN: Force focus
 - [ ] DROPDOWN: Scroll to current value
+- [ ] DROPDOWN: Shadow search
 - [ ] DROPDOWN: case - when the user entered in Search value which doesn't match any of the option and the the user clicks EnterG
 - [ ] MODAL
 - [ ] GALLERY MODAL
@@ -72,7 +73,6 @@
 - [ ] DROPDOWN: Dropdown option as a link
 - [ ] DROPDOWN: Dropdown option as a handler
 - [ ] DROPDOWN: Component:Select with button. Change button type.
-- [ ] DROPDOWN: Quick shadow search
 - [ ] SELECT: Select with Button: hide Dropdown on blur
 - [ ] SELECT: Select with Button: hide dropdown when value changed
 
