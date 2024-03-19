@@ -105,7 +105,6 @@
 <div class="mb-3">
   <Select
     bind:openDropdown={openBrandDropdown}
-    searchInDropdown={true}
     fullWidthDropdown
     label={"Brand"}
     placeholder={"Choose a brand"}
@@ -119,7 +118,6 @@
 <div class="mb-3">
   <Select
     bind:openDropdown={openModelDropdown}
-    searchInDropdown={true}
     fullWidthDropdown
     label={"Model"}
     placeholder={"Choose a model"}
@@ -133,7 +131,6 @@
 <div class="mb-3">
   <Select
     bind:openDropdown={openGenerationDropdown}
-    searchInDropdown={true}
     fullWidthDropdown
     label={"Generation"}
     placeholder={"Choose a generation"}
@@ -147,7 +144,6 @@
 <div class="mb-3">
   <Select
     bind:openDropdown={openModificationDropdown}
-    searchInDropdown={true}
     fullWidthDropdown
     label={"Modification"}
     placeholder={"Choose a modification"}

@@ -1,12 +1,7 @@
 <script lang="ts">
-  import { Button, Dropdown, Select, Hr } from "$lib";
+  import { Button, Dropdown } from "$lib";
   import { options, optionsLg } from "$lib/data/dropdown-data";
   import type { SelectOption } from "$lib";
-
-  let selectValue: SelectOption = optionsLg[0];
-  let onSelectChange = (option: SelectOption) => {
-    selectValue = option;
-  };
 
   let refs: HTMLDivElement[] = [];
   let selected: SelectOption[] = [];
@@ -16,28 +11,12 @@
   const handleOptionClick = (option: SelectOption, index: number) => {
     selected[index] = option;
     value = option.text + " | " + option.value;
-    dropdownVisible[index] = false;
+    hideDropdown(index);
   };
   const hideDropdown = (index: number) => (dropdownVisible[index] = false);
 </script>
 
-<h1>Dropdowns</h1>
-
-<div class="mb-6">
-  <div style="margin-bottom: 4px;">Select Value: {selectValue?.text} | {selectValue?.value}</div>
-  <Select
-    inputControl={false}
-    value={selectValue}
-    onChange={onSelectChange}
-    options={optionsLg}
-    width={300}
-    maxHeight={200}
-  >
-    Test
-  </Select>
-</div>
-
-<Hr />
+<h1>Dropdown</h1>
 
 <div class="selected-value">Value: {value}</div>
 

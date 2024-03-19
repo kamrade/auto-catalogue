@@ -77,6 +77,7 @@
     }
     if (e.key === "Enter") {
       e.stopPropagation();
+      e.preventDefault();
       selectOption(options[current]);
       hideDropdown();
     }

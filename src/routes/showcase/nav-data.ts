@@ -5,6 +5,9 @@ export let uikitMenuLinks: (IMainMenuItem | string)[] = [
     link: '/showcase/dropdowns',
     label: 'Dropdowns'
   }, {
+    link: '/showcase/dropdown-with-search',
+    label: 'Dropdown with Search'
+  }, {
     link: '/showcase/links',
     label: 'Links'
   }, {
@@ -13,9 +16,6 @@ export let uikitMenuLinks: (IMainMenuItem | string)[] = [
   }, {
     link: '/showcase/text-inputs',
     label: 'Text Inputs'
-  }, {
-    link: '/showcase/dropdown-with-search',
-    label: 'Dropdown with Search'
   }, {
     link: '/showcase/select',
     label: 'Select'

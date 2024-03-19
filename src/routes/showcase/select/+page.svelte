@@ -33,7 +33,6 @@
 
 <h1>Select</h1>
 <Select
-  searchInDropdown={true}
   fullWidthDropdown
   label={"Brand"}
   placeholder={"Choose a brand"}

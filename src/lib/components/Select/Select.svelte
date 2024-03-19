@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { onDestroy } from "svelte";
-  import { Button, Dropdown, TextInput } from "$lib";
+  import { Dropdown, TextInput } from "$lib";
   import type { SelectOption, TextInputVariant } from "$lib";
 
   export let options: SelectOption[] = [];
@@ -9,119 +7,33 @@
   export let maxHeight = 0;
   export let value: SelectOption | null;
   export let onChange: (option: SelectOption) => void;
-  export let inputControl = true;
   export let label = "";
   export let placeholder = "";
   export let fullWidthDropdown = false;
-  export let searchInDropdown = false;
   export let variant: TextInputVariant = "underlined";
 
-  let searchString = "";
-  let selectOptions = options;
   let ref: HTMLDivElement;
   let isDropdownVisible = false;
-  let isFocused = false;
   let isJustSelected = false;
-
-  // REACTIVITY
-  $: {
-    selectOptions =
-      options?.filter(
-        (option) =>
-          option.text.toUpperCase().includes(searchString.toUpperCase()) ||
-          option.value.toUpperCase().includes(searchString.toUpperCase())
-      ) || [];
-  }
+  let isFocused = false;
 
   // LIFECYCLE
-  onDestroy(() => {
-    if (browser) {
-      document.removeEventListener("keyup", handleKeyUpFocus);
-      document.removeEventListener("keydown", handleKeyDown);
-    }
-  });
 
   // HANDLERS
-  const handleKeyDown = (e: KeyboardEvent) => {
-    switch (e.key) {
-      case "Escape":
-        if (isDropdownVisible) {
-          e.preventDefault();
-          hideDropdown();
-          isJustSelected = true;
-          focusTextInputElement();
-        }
-        break;
-      case "Tab":
-        if (isDropdownVisible) {
-          e.preventDefault();
-          hideDropdown();
-          isJustSelected = true;
-          focusTextInputElement();
-        }
-        break;
-      case "Enter":
-        if (isFocused && !isDropdownVisible) {
-          e.stopPropagation();
-          showDropdown();
-        }
-        break;
-      default:
-        return;
-    }
-  };
-
-  const handleKeyUpFocus = (e: KeyboardEvent) => {
-    e.preventDefault();
-    switch (e.key) {
-      case "Escape":
-        isJustSelected = true;
-        showDropdown();
-        focusTextInputElement();
-        break;
-      case "ArrowDown":
-        if (!isDropdownVisible) {
-          isJustSelected = true;
-          toggleDropdown();
-          focusTextInputElement();
-        }
-        break;
-
-      default:
-        return;
-    }
-  };
-
   const handleMouseUp = () => {
-    if (inputControl) {
-      isJustSelected = false;
-      if (!isDropdownVisible) {
-        showDropdown();
-      }
+    isJustSelected = false;
+    if (!isDropdownVisible) {
+      showDropdown();
     }
   };
-
-  $: {
-    if (isDropdownVisible) {
-      if (browser) {
-        document.addEventListener("keydown", handleKeyDown);
-      }
-    } else {
-      if (browser && !isDropdownVisible) {
-        document.removeEventListener("keydown", handleKeyDown);
-      }
-    }
-  }
 
   const handleTextInputFocus = () => {
     isFocused = true;
     showDropdown();
-    document.addEventListener("keyup", handleKeyUpFocus);
   };
 
   const handleTextInputBlur = () => {
     isFocused = false;
-    document.removeEventListener("keyup", handleKeyUpFocus);
   };
 
   const handleOptionClick = (option: SelectOption) => {
@@ -134,7 +46,6 @@
   // HELPERS
   const showDropdown = () => {
     if (!isJustSelected) {
-      searchString = "";
       isDropdownVisible = true;
     } else {
       isJustSelected = false;
@@ -143,12 +54,8 @@
 
   const hideDropdown = () => {
     isDropdownVisible = false;
-    searchString = "";
   };
 
-  const toggleDropdown = () => {
-    isDropdownVisible = !isDropdownVisible;
-  };
 
   export let inputEl: HTMLInputElement | null = null;
 
@@ -167,49 +74,27 @@
   bind:this={ref}
   on:mouseup={handleMouseUp}
 >
-  {#if inputControl}
-    <TextInput
-      {variant}
-      value={value?.text || ""}
-      onFocus={handleTextInputFocus}
-      onBlur={handleTextInputBlur}
-      {placeholder}
-      readonly={true}
-      {label}
-      bind:inputEl
-      isActive={isDropdownVisible}
-    ></TextInput>
-  {:else}
-    <Button
-      props={{
-        theme: "secondary",
-        onClick: toggleDropdown
-      }}
-    >
-      <i
-        class="ri-arrow-down-s-line"
-        slot="suffix"
-      />
-      <span><slot /></span>
-      {#if !value}
-        <span style="color: gray">Select value</span>
-      {:else}
-        {value.text}
-      {/if}
-    </Button>
-  {/if}
+  <TextInput
+    {variant}
+    value={value?.text || ""}
+    onFocus={handleTextInputFocus}
+    onBlur={handleTextInputBlur}
+    {placeholder}
+    readonly={true}
+    {label}
+    bind:inputEl
+    isActive={isDropdownVisible}
+  ></TextInput>
 
   {#if isDropdownVisible}
     <Dropdown
-      hasSearch={searchInDropdown}
-      bind:searchValue={searchString}
       fitToParent={fullWidthDropdown}
       {width}
       {maxHeight}
       selected={value}
       isVisible={isDropdownVisible}
       parentEl={ref}
-      options={selectOptions}
+      {options}
       selectOption={(option) => handleOptionClick(option)}
       hideDropdown={() => hideDropdown()}
     />

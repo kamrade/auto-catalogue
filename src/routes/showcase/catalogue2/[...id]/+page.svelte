@@ -3,7 +3,7 @@
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
-  import { Autocomplete, Select, type SelectOption, type ICatalogueData, Link } from "$lib";
+  import { Select, type SelectOption, type ICatalogueData, Link } from "$lib";
 
   export let data: ICatalogueData;
 
@@ -105,19 +105,8 @@
 </div>
 
 <div class="mb-3">
-  <Autocomplete
-    label="Brand"
-    textValue={brandTextValue}
-    selected={brandValue}
-    options={data.brands}
-    width={400}
-  ></Autocomplete>
-</div>
-
-<div class="mb-3">
   <Select
     bind:openDropdown={openBrandDropdown}
-    searchInDropdown={true}
     fullWidthDropdown
     label={"Brand"}
     placeholder={"Choose a brand"}
@@ -131,7 +120,6 @@
 <div class="mb-3">
   <Select
     bind:openDropdown={openModelDropdown}
-    searchInDropdown={true}
     fullWidthDropdown
     label={"Model"}
     placeholder={"Choose a model"}
@@ -145,7 +133,6 @@
 <div class="mb-3">
   <Select
     bind:openDropdown={openGenerationDropdown}
-    searchInDropdown={true}
     fullWidthDropdown
     label={"Generation"}
     placeholder={"Choose a generation"}
@@ -159,7 +146,6 @@
 <div class="mb-3">
   <Select
     bind:openDropdown={openModificationDropdown}
-    searchInDropdown={true}
     fullWidthDropdown
     label={"Modification"}
     placeholder={"Choose a modification"}
