@@ -66,13 +66,12 @@
 - [ ] MODAL
 - [ ] GALLERY MODAL
 - [ ] IMAGE: with preview
-- [ ] GRID: Responivity.
-- [ ] TEXTINPUT: Force focus
-- [ ] Default values for route
+- [x] GRID: Responivity.
+- [x] TEXTINPUT: Force focus
+- [x] Default values for route
 - [ ] DROPDOWN: Dropdown option as a link
 - [ ] DROPDOWN: Dropdown option as a handler
-- [ ] DROPDOWN: Component:Select with button. Change button type.
-- [ ] SELECT: Select with Button: hide Dropdown on blur
+- [x] SELECT: Select with Button: hide Dropdown on blur
 - [ ] SELECT: Select with Button: hide dropdown when value changed
 - [ ] DROPDOWN: case - when the user entered in Search value which doesn't match any of the option and the the user clicks EnterG
 

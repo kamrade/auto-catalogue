@@ -22,6 +22,9 @@ export let uikitMenuLinks: (IMainMenuItem | string)[] = [
   }, {
     link: '/showcase/grid',
     label: 'Bootstrap Grid'
+  }, {
+    link: '/showcase/notifications',
+    label: 'Notifications'
   }
 ];
 
