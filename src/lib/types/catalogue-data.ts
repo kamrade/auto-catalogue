@@ -49,6 +49,8 @@ export interface ICatalogueFeature {
   value: string;
 }
 
+export type UrlParamType = "brand" | "model" | "generation" | "modification" | "";
+
 export interface ICatalogueData {
   currentBrand: string | number;
   currentModel: string | number;
@@ -58,7 +60,7 @@ export interface ICatalogueData {
   isModelValid: boolean;
   isGenerationValid: boolean;
   isModificationValid: boolean;
-  brands: SelectOption[]; 
+  brands: SelectOption[];
   models: SelectOption[];
   generations: SelectOption[];
   modifications: SelectOption[];
@@ -71,4 +73,6 @@ export interface ICatalogueData {
 
   filters: ICatalogueFilter[];
   features: ICatalogueFeature[];
+
+  invalidUrlParam: UrlParamType;
 }

@@ -1,2 +1,5 @@
 import Notification from './Notification.svelte';
-export { Notification } ;
+import Toast from './Toast.svelte';
+export { Notification, Toast } ;
+export * from './Toast';
+export * from './NotificationsStore';

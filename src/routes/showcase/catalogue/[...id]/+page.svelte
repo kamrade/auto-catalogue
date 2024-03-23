@@ -3,7 +3,7 @@
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
-  import { Select, type SelectOption, type ICatalogueData, Link } from "$lib";
+  import { Select, type SelectOption, type ICatalogueData, Link, addToast } from "$lib";
 
   export let data: ICatalogueData;
 
@@ -20,7 +20,16 @@
   let openGenerationDropdown: any;
   let openModificationDropdown: any;
 
+  // prettier-ignore
   page.subscribe((url) => {
+
+    if (data.invalidUrlParam !== "") {
+      addToast({ 
+        text: `Invalid ${data.invalidUrlParam} URL. Select random ${data.invalidUrlParam}`,
+        type: 'warning'
+      });
+    }
+
     if (!isPreNavigation) {
       if (browser && data) {
         switch (lastSelection) {
@@ -154,38 +163,36 @@
   />
 </div>
 
-{#if data?.photos}
+{#if data?.photos && brandValue && modelValue && generationValue && modificationValue}
   <div class="catalogue-gallery">
     {#each data.photos as photo}
-      <img
-        class="catalogue-image"
-        src={`${imagesStorage}/${photo.photo_name}.jpg`}
-        alt=""
-      />
+      <img class="catalogue-image" src={`${imagesStorage}/${photo.photo_name}.jpg`} alt="" />
     {/each}
   </div>
 {/if}
 
-{#each data.features as feature}
-  <div class="catalogue-feature">
-    <div class="catalogue-feature-label">
-      <div class="text-muted">
-        {data.filters.find((filter) => filter.id === feature.ifilter_id)?.group}:
+{#if brandValue && modelValue && generationValue && modificationValue}
+  {#each data.features as feature}
+    <div class="catalogue-feature">
+      <div class="catalogue-feature-label">
+        <div class="text-muted">
+          {data.filters.find((filter) => filter.id === feature.ifilter_id)?.group}:
+        </div>
+        <div class="text-muted">
+          {data.filters.find((filter) => filter.id === feature.ifilter_id)?.name}
+        </div>
       </div>
-      <div class="text-muted">
-        {data.filters.find((filter) => filter.id === feature.ifilter_id)?.name}
+      <div class="catalogue-feature-value">
+        <div>
+          {feature.value}
+        </div>
+        <div>
+          {data.filters.find((filter) => filter.id === feature.ifilter_id)?.unit || ""}
+        </div>
       </div>
     </div>
-    <div class="catalogue-feature-value">
-      <div>
-        {feature.value}
-      </div>
-      <div>
-        {data.filters.find((filter) => filter.id === feature.ifilter_id)?.unit || ""}
-      </div>
-    </div>
-  </div>
-{/each}
+  {/each}
+{/if}
 
 <style lang="scss">
   .catalogue-feature {

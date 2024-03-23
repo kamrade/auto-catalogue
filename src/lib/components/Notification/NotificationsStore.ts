@@ -1,24 +1,31 @@
-import { writable } from 'svelte/store';
+import { writable } from "svelte/store";
+import { type IToast } from "$lib";
 
-export const toasts = writable([]);
+const generateId = () => Math.floor(Math.random() * 10000);
 
-export const addToast = (toast) => {
-  // Create Unique ID
-  const id = Math.floor(Math.random() * 10000);
+export const toasts = writable<IToast[]>([]);
 
-  const defaults = {
-    id,
-    type: 'info',
-    dismissible: true,
-    timeout: 3000,
+export const addToast = (toast: IToast) => {
+  if (toast.text !== "") {
+    const id = generateId();
+
+    const defaults: Partial<IToast> = {
+      id,
+      type: "info",
+      dismissible: true,
+      timeout: 5000
+    };
+
+    let newToast = { ...defaults, ...toast };
+
+    toasts.update((all) => [newToast, ...all]);
+
+    if (newToast.timeout) {
+      setTimeout(() => dismissToast(id), newToast.timeout);
+    }
   }
+};
 
-  toasts.update((all) => [{ ...defaults, ...toast}, ...all]);
-
-  // If toast is dismissible, dismiss it after "timeout" amount of time.
-  if (toast.timeout) setTimeout(() => dismissToast(id), toast.timeout);
-}
-
-export const dismissToast = (id) => {
+export const dismissToast = (id: number) => {
   toasts.update((all) => all.filter((t) => t.id !== id));
 };
