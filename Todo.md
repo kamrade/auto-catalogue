@@ -102,3 +102,7 @@
   -- he will be redirected to page with empty filters, error message should be shown
 - the user navigated to `/catalogue/0000000000`
   -- random car will be shown
+
+## Links
+
+- Toast notification system[https://svelte.dev/repl/0091c8b604b74ed88bb7b6d174504f50?version=3.35.0]

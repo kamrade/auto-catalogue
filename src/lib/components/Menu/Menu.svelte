@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
-  import { browser } from '$app/environment';
-  import { clickOutsideObject, Portal } from '$lib';
+  import { onMount, onDestroy } from "svelte";
+  import { browser } from "$app/environment";
+  import { clickOutsideObject, Portal } from "$lib";
 
   export let hideMenu: () => void;
   export let parentElement: HTMLElement | null;
@@ -42,14 +42,14 @@
 
   onMount(() => {
     if (!appearanceOnHover && browser) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
     calculatePosition(parentElement);
   });
 
   onDestroy(() => {
     if (!appearanceOnHover && browser) {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     }
   });
 
@@ -72,8 +72,8 @@
       style={`
         left: ${x}px; 
         top: ${y}px; 
-        width: ${width ? width + 'px' : 'auto'};
-        min-width: ${minWidth ? minWidth + 'px' : 'auto'};
+        width: ${width ? width + "px" : "auto"};
+        min-width: ${minWidth ? minWidth + "px" : "auto"};
         max-height: ${maxHeight}px; 
         height: ${contentHeight}px`}
     >

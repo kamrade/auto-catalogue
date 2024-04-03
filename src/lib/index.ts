@@ -12,6 +12,7 @@ export * from "./components/Autocomplete";
 export * from "./components/Menu";
 export * from "./components/Notification";
 export * from "./components/Gallery";
+export * from "./components/Modal";
 
 export * from "./utils";
 export * from "./types";

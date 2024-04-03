@@ -1,2 +1,3 @@
 import Gallery from "./Gallery.svelte";
-export { Gallery };
+import type { IGalleryPhoto } from "./Gallery";
+export { Gallery, type IGalleryPhoto };
