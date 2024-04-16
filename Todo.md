@@ -63,15 +63,17 @@
 - [x] DROPDOWN: Force focus
 - [x] DROPDOWN: Scroll to current value
 - [x] DROPDOWN: Shadow search
-- [ ] MODAL
-- [ ] GALLERY MODAL
-- [ ] IMAGE: with preview
 - [x] GRID: Responivity.
 - [x] TEXTINPUT: Force focus
 - [x] Default values for route
+- [x] SELECT: Select with Button: hide Dropdown on blur
+
+- [ ] DROPDOWN appearing animation
+- [ ] MODAL
+- [ ] GALLERY MODAL
+- [ ] IMAGE: with preview
 - [ ] DROPDOWN: Dropdown option as a link
 - [ ] DROPDOWN: Dropdown option as a handler
-- [x] SELECT: Select with Button: hide Dropdown on blur
 - [ ] SELECT: Select with Button: hide dropdown when value changed
 - [ ] DROPDOWN: case - when the user entered in Search value which doesn't match any of the option and the the user clicks EnterG
 

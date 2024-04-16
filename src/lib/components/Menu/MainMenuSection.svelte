@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { Menu, Link } from '$lib';
-  import type { IMainMenuItem } from '$lib';
+  import { Menu, Link } from "$lib";
+  import type { IMainMenuItem } from "$lib";
 
-  export let label = 'Menu Item';
+  export let label = "Menu Item";
   export let menuLinks: (IMainMenuItem | string)[];
 
   let menuWrapperElementHover: HTMLDivElement;
@@ -32,7 +32,7 @@
 </script>
 
 <p
-  class={`dropdown-toggler ${isHoverMenuVisible ? 'dropdown-toggler-hover' : ''}`}
+  class={`dropdown-toggler ${isHoverMenuVisible ? "dropdown-toggler-hover" : ""}`}
   bind:this={menuWrapperElementHover}
   on:mouseleave={mouseLeaveHoverHandler}
 >
@@ -49,10 +49,10 @@
   >
     <div class="menu" bind:this={menu}>
       {#each menuLinks as menuLink}
-        {#if typeof menuLink === 'string'}
+        {#if typeof menuLink === "string"}
           <h3 class="sub-title">{menuLink}</h3>
         {:else}
-          <div class={menuLinks.length > 1 ? 'option-wrapper' : ''}>
+          <div class={menuLinks.length > 1 ? "option-wrapper" : ""}>
             <Link onClick={hideHoverMenu} href={menuLink.link}>{menuLink.label}</Link>
           </div>
         {/if}
@@ -62,5 +62,5 @@
 </p>
 
 <style lang="scss">
-  @import './MainMenuSection.scss';
+  @import "./MainMenuSection.scss";
 </style>

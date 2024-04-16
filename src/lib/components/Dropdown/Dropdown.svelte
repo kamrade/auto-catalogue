@@ -119,18 +119,8 @@
   };
 </script>
 
-<Menu
-  menuGap={dropdownGap}
-  {isVisible}
-  hideMenu={hideDropdown}
-  parentElement={parentEl}
-  {maxHeight}
-  {width}
->
-  <div
-    class="Dropdown"
-    style={`max-height: ${maxHeight}px`}
-  >
+<Menu menuGap={dropdownGap} {isVisible} hideMenu={hideDropdown} parentElement={parentEl} {maxHeight} {width}>
+  <div class="Dropdown" style={`max-height: ${maxHeight}px`}>
     {#if hasSearch}
       <div style="padding: 2px;">
         <TextInput
@@ -148,11 +138,7 @@
     {/if}
 
     {#if options?.length}
-      <ul
-        class="Dropdown-options-wrapper"
-        role="menu"
-        bind:this={scrollerElement}
-      >
+      <ul class="Dropdown-options-wrapper" role="menu" bind:this={scrollerElement}>
         {#each options as option, i (i)}
           <li
             role="menuitem"

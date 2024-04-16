@@ -1,7 +1,4 @@
-<script
-  lang="ts"
-  context="module"
->
+<script lang="ts" context="module">
   import "../styles/global.scss";
   import { Container, Link } from "$lib";
 </script>
@@ -11,16 +8,10 @@
     <Container>
       <div class="header-content">
         <b>
-          <Link
-            inverted={true}
-            href="/">Home</Link
-          >
+          <Link inverted={true} href="/">Home</Link>
         </b>
         <b>
-          <Link
-            inverted={true}
-            href="/showcase">Showcase</Link
-          >
+          <Link inverted={true} href="/showcase">Showcase</Link>
         </b>
       </div>
     </Container>
@@ -37,7 +28,7 @@
     color: var(--text-color-inv);
     .header-content {
       display: flex;
-      gap: 1rem;
+      gap: 2rem;
       padding: 0.5rem;
     }
   }

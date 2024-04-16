@@ -34,8 +34,12 @@ export let uikitMenuLinks: (IMainMenuItem | string)[] = [
     label: "Notifications"
   },
   {
+    link: "/showcase/modal",
+    label: "Modal"
+  },
+  {
     link: "/showcase/gallery-modal",
-    label: "Gallery and Modal"
+    label: "Gallery"
   }
 ];
 

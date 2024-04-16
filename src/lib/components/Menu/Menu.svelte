@@ -68,7 +68,7 @@
     <div
       on:mouseleave={mouseLeaveHandler}
       bind:this={menuElement}
-      class="Menu"
+      class={`Menu`}
       style={`
         left: ${x}px; 
         top: ${y}px; 

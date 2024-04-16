@@ -195,6 +195,8 @@
 {/if}
 
 <style lang="scss">
+  @import "../../../../styles/mixins-and-variables.scss";
+
   .catalogue-feature {
     display: flex;
     gap: 1rem;
@@ -209,11 +211,20 @@
 
   .catalogue-gallery {
     margin: 0 -4px;
+    display: flex;
+    flex-wrap: wrap;
   }
   .catalogue-image {
-    margin: 0 4px;
-    width: 153px;
+    width: 20%;
     height: auto;
-    border-radius: 4px;
+    border: 4px solid white;
+
+    @include media-breakpoint-down(lg) {
+      width: 33.3%;
+    }
+
+    @include media-breakpoint-down(md) {
+      width: 50%;
+    }
   }
 </style>
