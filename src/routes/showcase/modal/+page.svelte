@@ -1,13 +1,19 @@
 <script lang="ts">
-  import { Button, Modal, ModalDialog, Hr, ModalGallery } from "$lib";
+  import { Button, Modal, ModalDialog, Hr, ModalGallery, type IGalleryPhoto } from "$lib";
 
   let isModalShowed = [false];
   const showModal = (index: number) => (isModalShowed[index] = true);
   const hideModal = (index: number) => (isModalShowed[index] = false);
 
-  let mazda =
-    "https://media-assets.mazda.eu/image/upload/c_fill,w_1800,h_851,q_auto,f_auto/mazdahr/globalassets/cars/2023-mazda6-wagon/221103_1800_851_gallery_sdn_item_2-1-1.jpg";
-  let interior = "https://i0.wp.com/www.car-revs-daily.com/wp-content/uploads/2014/11/2016-Mazda6-Interior-4.jpg";
+  let mazdaPath = "https://media-assets.mazda.eu/image/upload/c_fill,w_1800,h_851,q_auto,f_auto/mazdahr/globalassets/cars/2023-mazda6-wagon";
+  let mazda: IGalleryPhoto[] =  [{
+    path: "221103_1800_851_gallery_sdn_item_2-1-1.jpg",
+  }];
+
+  let intPath = "https://i0.wp.com/www.car-revs-daily.com/wp-content/uploads/2014/11";
+  let interior = [{
+    path: "2016-Mazda6-Interior-4.jpg"
+  }];
 </script>
 
 <h1>Modal</h1>
@@ -28,14 +34,7 @@
     showCloseButton={true}
     hideOnEscape={true}
   >
-    <ModalGallery>
-      <h1 class="mb-0">Lorem ipsum dolor sit amet</h1>
-      <Hr />
-      <div class="image-wrapper">
-        <a href={interior} target="_blank">
-          <img class="modal-gallery-image" src={interior} alt="" />
-        </a>
-      </div>
+    <ModalGallery images={mazda} imagesPath={mazdaPath} thumbnailsPath={mazdaPath} currentImage={0}>
     </ModalGallery>
   </Modal>
 {/if}
@@ -49,14 +48,7 @@
     showCloseButton={true}
     hideOnEscape={true}
   >
-    <ModalGallery>
-      <h1 class="mb-0">Lorem ipsum dolor sit amet</h1>
-      <Hr />
-      <div class="image-wrapper">
-        <a href={mazda} target="_blank">
-          <img class="modal-gallery-image" src={mazda} alt="" />
-        </a>
-      </div>
+  <ModalGallery images={interior} imagesPath={intPath} thumbnailsPath={intPath} currentImage={0}>
     </ModalGallery>
   </Modal>
 {/if}
