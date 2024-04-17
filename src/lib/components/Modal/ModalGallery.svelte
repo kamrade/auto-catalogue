@@ -9,6 +9,7 @@
 
   $: {
     imagePath = `${imagesPath}/${images[currentImage || 0].path}.jpg`;
+    console.log(imagePath);
   }
 
   const nextImage = () => {
@@ -24,15 +25,19 @@
 </script>
 
 <div class="ModalGallery">
-  <div class="Gallery-buttons">
-    <button on:click={prevImage} class="Gallery-button">Previous</button>
-    <button on:click={nextImage} class="Gallery-button">Next</button>
-  </div>
+  {#if (images?.length || 0) > 1}
+    <div class="Gallery-buttons">
+      <button on:click={prevImage} class="Gallery-button">Previous</button>
+      <button on:click={nextImage} class="Gallery-button">Next</button>
+    </div>
+  {/if}  
+  
   <div class="image-wrapper">
     <a href={imagePath} target="_blank">
       <img class="modal-gallery-image" src={imagePath} alt="" />
     </a>
   </div>
+  
 </div>
 
 <style lang="scss">

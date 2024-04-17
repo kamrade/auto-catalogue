@@ -7,12 +7,12 @@
 
   let mazdaPath = "https://media-assets.mazda.eu/image/upload/c_fill,w_1800,h_851,q_auto,f_auto/mazdahr/globalassets/cars/2023-mazda6-wagon";
   let mazda: IGalleryPhoto[] =  [{
-    path: "221103_1800_851_gallery_sdn_item_2-1-1.jpg",
+    path: "221103_1800_851_gallery_sdn_item_2-1-1",
   }];
 
   let intPath = "https://i0.wp.com/www.car-revs-daily.com/wp-content/uploads/2014/11";
   let interior = [{
-    path: "2016-Mazda6-Interior-4.jpg"
+    path: "2016-Mazda6-Interior-4"
   }];
 </script>
 

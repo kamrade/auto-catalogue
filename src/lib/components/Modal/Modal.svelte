@@ -63,7 +63,7 @@
 
   .Modal-close-button-wrapper {
     position: fixed;
-    right: 0.25rem;
+    right: 1.5rem;
     top: 0.25rem;
   }
 
