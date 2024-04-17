@@ -10,7 +10,7 @@
   let interior = "https://i0.wp.com/www.car-revs-daily.com/wp-content/uploads/2014/11/2016-Mazda6-Interior-4.jpg";
 </script>
 
-<h1>Gallery and Modal</h1>
+<h1>Modal</h1>
 
 <div class="mb-3">
   <Button props={{ onClick: () => showModal(0) }}>Show Modal (0)</Button>
