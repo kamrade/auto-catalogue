@@ -4,7 +4,7 @@
   export let thumbnailsPath: string;
   export let imagesPath: string;
   export let currentImage: number | null;
-  
+
   let imagePath: string;
 
   $: {
@@ -14,14 +14,14 @@
 
   const nextImage = () => {
     if (images && currentImage !== null) {
-      currentImage = currentImage >= images.length-1 ? 0 : currentImage + 1;
+      currentImage = currentImage >= images.length - 1 ? 0 : currentImage + 1;
     }
-  }
+  };
   const prevImage = () => {
     if (images && currentImage !== null) {
       currentImage = currentImage === 0 ? images.length - 1 : currentImage - 1;
     }
-  }
+  };
 </script>
 
 <div class="ModalGallery">
@@ -30,14 +30,13 @@
       <button on:click={prevImage} class="Gallery-button">Previous</button>
       <button on:click={nextImage} class="Gallery-button">Next</button>
     </div>
-  {/if}  
-  
+  {/if}
+
   <div class="image-wrapper">
     <a href={imagePath} target="_blank">
       <img class="modal-gallery-image" src={imagePath} alt="" />
     </a>
   </div>
-  
 </div>
 
 <style lang="scss">

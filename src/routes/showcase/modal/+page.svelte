@@ -5,15 +5,20 @@
   const showModal = (index: number) => (isModalShowed[index] = true);
   const hideModal = (index: number) => (isModalShowed[index] = false);
 
-  let mazdaPath = "https://media-assets.mazda.eu/image/upload/c_fill,w_1800,h_851,q_auto,f_auto/mazdahr/globalassets/cars/2023-mazda6-wagon";
-  let mazda: IGalleryPhoto[] =  [{
-    path: "221103_1800_851_gallery_sdn_item_2-1-1",
-  }];
+  let mazdaPath =
+    "https://media-assets.mazda.eu/image/upload/c_fill,w_1800,h_851,q_auto,f_auto/mazdahr/globalassets/cars/2023-mazda6-wagon";
+  let mazda: IGalleryPhoto[] = [
+    {
+      path: "221103_1800_851_gallery_sdn_item_2-1-1"
+    }
+  ];
 
   let intPath = "https://i0.wp.com/www.car-revs-daily.com/wp-content/uploads/2014/11";
-  let interior = [{
-    path: "2016-Mazda6-Interior-4"
-  }];
+  let interior = [
+    {
+      path: "2016-Mazda6-Interior-4"
+    }
+  ];
 </script>
 
 <h1>Modal</h1>
@@ -34,8 +39,7 @@
     showCloseButton={true}
     hideOnEscape={true}
   >
-    <ModalGallery images={mazda} imagesPath={mazdaPath} thumbnailsPath={mazdaPath} currentImage={0}>
-    </ModalGallery>
+    <ModalGallery images={mazda} imagesPath={mazdaPath} thumbnailsPath={mazdaPath} currentImage={0}></ModalGallery>
   </Modal>
 {/if}
 
@@ -48,8 +52,7 @@
     showCloseButton={true}
     hideOnEscape={true}
   >
-  <ModalGallery images={interior} imagesPath={intPath} thumbnailsPath={intPath} currentImage={0}>
-    </ModalGallery>
+    <ModalGallery images={interior} imagesPath={intPath} thumbnailsPath={intPath} currentImage={0}></ModalGallery>
   </Modal>
 {/if}
 
@@ -140,16 +143,3 @@
     </ModalDialog>
   </Modal>
 {/if}
-
-<style lang="scss">
-  .image-wrapper {
-    max-width: 100%;
-    height: 90%;
-    position: relative;
-    text-align: center;
-  }
-  .modal-gallery-image {
-    max-width: 100%;
-    max-height: 100%;
-  }
-</style>
