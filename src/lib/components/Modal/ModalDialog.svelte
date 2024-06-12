@@ -1,3 +1,9 @@
+<!-- 
+
+  White panel for Modal Window
+
+-->
+
 <div class="ModalDialog">
   <slot />
 </div>

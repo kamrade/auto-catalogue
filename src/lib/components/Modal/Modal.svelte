@@ -1,3 +1,9 @@
+<!-- 
+
+  Tech wrapper for Modal Window with Backdrop, Close Button and handlers
+
+-->
+
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import { Portal } from "$lib";
