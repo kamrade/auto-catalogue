@@ -1,0 +1,32 @@
+@import "../../../../styles/mixins-and-variables.scss";
+
+.catalogue-feature {
+  display: flex;
+  gap: 1rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px dashed var(--line-base-100);
+}
+.catalogue-feature-label,
+.catalogue-feature-value {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.catalogue-gallery {
+  margin: 0 -4px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.catalogue-image {
+  width: 20%;
+  height: auto;
+  border: 4px solid white;
+
+  @include media-breakpoint-down(lg) {
+    width: 33.3%;
+  }
+
+  @include media-breakpoint-down(md) {
+    width: 50%;
+  }
+}

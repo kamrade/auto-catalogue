@@ -1,6 +1,6 @@
 import type { IMainMenuItem } from "$lib";
 
-export let uikitMenuLinks: (IMainMenuItem | string)[] = [
+export const uikitMenuLinks: (IMainMenuItem | string)[] = [
   {
     link: "/showcase/dropdowns",
     label: "Dropdowns"
@@ -43,7 +43,7 @@ export let uikitMenuLinks: (IMainMenuItem | string)[] = [
   }
 ];
 
-export let sectionsMenuLinks: (IMainMenuItem | string)[] = [
+export const sectionsMenuLinks: (IMainMenuItem | string)[] = [
   {
     link: "/showcase/payment-form",
     label: "Payment Form"
@@ -58,13 +58,9 @@ export let sectionsMenuLinks: (IMainMenuItem | string)[] = [
   }
 ];
 
-export let appMenuLinks: (IMainMenuItem | string)[] = [
+export const appMenuLinks: (IMainMenuItem | string)[] = [
   {
     link: "/showcase/catalogue",
     label: "Catalogue"
-  },
-  {
-    link: "/showcase/catalogue2",
-    label: "Catalogue v2"
   }
 ];

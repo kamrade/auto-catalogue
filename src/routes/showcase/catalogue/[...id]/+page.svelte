@@ -3,7 +3,8 @@
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
-  import { Select, type SelectOption, type ICatalogueData, Link, addToast } from "$lib";
+  import { Select, type SelectOption, type ICatalogueData, Link } from "$lib";
+  import { checkParams } from "./modules";
 
   export let data: ICatalogueData;
 
@@ -11,24 +12,16 @@
   let isPreNavigation = false;
   let imagesStorage = "http://cat.primavistalab.com/images/thumbnail-w200";
 
-  onMount(() => {
-    lastSelection = "";
-  });
+  onMount( () => lastSelection = "" );
 
-  let openBrandDropdown: any;
-  let openModelDropdown: any;
-  let openGenerationDropdown: any;
-  let openModificationDropdown: any;
+  let openBrandDropdown: () => void;
+  let openModelDropdown: () => void;
+  let openGenerationDropdown: () => void;
+  let openModificationDropdown: () => void;
 
-  // prettier-ignore
-  page.subscribe((url) => {
+  page.subscribe(( /* url */ ) => {
 
-    if (data.invalidUrlParam !== "") {
-      addToast({ 
-        text: `Invalid ${data.invalidUrlParam} URL. Select random ${data.invalidUrlParam}`,
-        type: 'warning'
-      });
-    }
+    checkParams(data); // Show alert if user entered wrong URL
 
     if (!isPreNavigation) {
       if (browser && data) {
@@ -65,7 +58,7 @@
     }
   }
 
-  // Brand
+  // Brand change handler
   let brandValue: SelectOption | null = null;
   const onBrandChange = (option: SelectOption) => {
     lastSelection = "brand";
@@ -75,7 +68,7 @@
   };
   $: brandValue = data.brands?.find((option: SelectOption) => option.value === data.currentBrand) || null;
 
-  // Model
+  // Model change handler
   let modelValue: SelectOption | null = null;
   const onModelChange = (option: SelectOption) => {
     lastSelection = "model";
@@ -85,7 +78,7 @@
   };
   $: modelValue = data.models?.find((option: SelectOption) => option.value === data.currentModel) || null;
 
-  // Generation
+  // Generation change handler
   let generationValue: SelectOption | null = null;
   const onGenerationChange = (option: SelectOption) => {
     lastSelection = "generation";
@@ -96,7 +89,7 @@
   $: generationValue =
     data.generations?.find((option: SelectOption) => option.value === data.currentGeneration) || null;
 
-  // Modification
+  // Modification change handler
   let modificationValue: SelectOption | null = null;
   const onModificationChange = (option: SelectOption) => {
     lastSelection = "modification";
@@ -108,7 +101,7 @@
 </script>
 
 <div class="mb-3">
-  <Link href="/showcase/catalogue/0000000000">Get random</Link>
+  <Link href="/showcase/catalogue/random">Get random</Link>
 </div>
 
 <div class="mb-3">
@@ -194,37 +187,4 @@
   {/each}
 {/if}
 
-<style lang="scss">
-  @import "../../../../styles/mixins-and-variables.scss";
-
-  .catalogue-feature {
-    display: flex;
-    gap: 1rem;
-    padding: 0.25rem 0;
-    border-bottom: 1px dashed var(--line-base-100);
-  }
-  .catalogue-feature-label,
-  .catalogue-feature-value {
-    display: flex;
-    gap: 0.5rem;
-  }
-
-  .catalogue-gallery {
-    margin: 0 -4px;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .catalogue-image {
-    width: 20%;
-    height: auto;
-    border: 4px solid white;
-
-    @include media-breakpoint-down(lg) {
-      width: 33.3%;
-    }
-
-    @include media-breakpoint-down(md) {
-      width: 50%;
-    }
-  }
-</style>
+<style lang="scss"> @import './catalogue.scss'; </style>
