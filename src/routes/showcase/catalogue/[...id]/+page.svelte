@@ -3,7 +3,7 @@
   import { page } from "$app/stores";
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
-  import { Select, type SelectOption, type ICatalogueData, Link } from "$lib";
+  import { Select, type SelectOption, type ICatalogueData, Link, Gallery } from "$lib";
   import { checkParams } from "./modules";
 
   export let data: ICatalogueData;
@@ -11,6 +11,7 @@
   let lastSelection: "" | "brand" | "model" | "generation" | "modification" = "";
   let isPreNavigation = false;
   let imagesStorage = "http://cat.primavistalab.com/images/thumbnail-w200";
+  let fullImagesPath = "http://cat.primavistalab.com/images";
 
   onMount( () => lastSelection = "" );
 
@@ -98,6 +99,7 @@
   };
   $: modificationValue =
     data.modifications?.find((option: SelectOption) => option.value === data.currentModification) || null;
+
 </script>
 
 <div class="mb-3">
@@ -156,12 +158,16 @@
   />
 </div>
 
+<!--{#if data?.photos && brandValue && modelValue && generationValue && modificationValue}-->
+<!--  <div class="catalogue-gallery">-->
+<!--    {#each data.photos as photo}-->
+<!--      <img class="catalogue-image" src={`${imagesStorage}/${photo.photo_name}.jpg`} alt="" />-->
+<!--    {/each}-->
+<!--  </div>-->
+<!--{/if}-->
+
 {#if data?.photos && brandValue && modelValue && generationValue && modificationValue}
-  <div class="catalogue-gallery">
-    {#each data.photos as photo}
-      <img class="catalogue-image" src={`${imagesStorage}/${photo.photo_name}.jpg`} alt="" />
-    {/each}
-  </div>
+  <Gallery images={data?.photos} thumbnailsPath={imagesStorage} imagesPath={fullImagesPath}   />
 {/if}
 
 {#if brandValue && modelValue && generationValue && modificationValue}

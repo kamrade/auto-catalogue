@@ -2,42 +2,42 @@ import { type IGalleryPhoto } from "$lib";
 
 export const galleryPhotos: IGalleryPhoto[] = [
   {
-    path: "1159"
+    photo_name: "1159"
   },
   {
-    path: "1160"
+    photo_name: "1160"
   },
   {
-    path: "1161"
+    photo_name: "1161"
   },
   {
-    path: "1162"
+    photo_name: "1162"
   },
   {
-    path: "1163"
+    photo_name: "1163"
   },
   {
-    path: "1164"
+    photo_name: "1164"
   },
   {
-    path: "1165"
+    photo_name: "1165"
   },
   {
-    path: "1166"
+    photo_name: "1166"
   },
   {
-    path: "1167"
+    photo_name: "1167"
   },
   {
-    path: "1168"
+    photo_name: "1168"
   },
   {
-    path: "1169"
+    photo_name: "1169"
   },
   {
-    path: "1170"
+    photo_name: "1170"
   },
   {
-    path: "1171"
+    photo_name: "1171"
   }
 ];

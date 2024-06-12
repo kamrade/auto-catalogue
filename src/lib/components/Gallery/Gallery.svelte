@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { Modal, ModalGallery } from "$lib";
-  import type { IGalleryPhoto } from "./Gallery";
+  import { Modal, ModalGallery, type IGalleryPhoto } from "$lib";
   export let images: IGalleryPhoto[];
   export let thumbnailsPath: string;
   export let imagesPath: string;
@@ -25,9 +24,9 @@
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img
       class="Gallery-image"
-      src={`${thumbnailsPath}/${image.path}.jpg`}
+      src={`${thumbnailsPath}/${image.photo_name}.jpg`}
       alt={image.alt || ""}
-      on:mouseup={() => clickOnImg($i, image.path)}
+      on:mouseup={() => clickOnImg($i, image.photo_name)}
     />
   {/each}
 

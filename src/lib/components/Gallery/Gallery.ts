@@ -1,4 +1,4 @@
 export interface IGalleryPhoto {
-  path: string;
+  photo_name: string;
   alt?: string;
 }

@@ -23,8 +23,14 @@
     }
   };
 
-  onMount(() => document.addEventListener("keydown", handleKeyDown));
-  onDestroy(() => document.removeEventListener("keydown", handleKeyDown));
+  onMount(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = 'hidden';
+  });
+  onDestroy(() => {
+    document.removeEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = 'auto';
+  });
 
   const backdropClick = (e: MouseEvent) =>
     closeOnBackdrop && (e.target as HTMLElement).classList.contains("Modal-content") && hideModal();
@@ -83,6 +89,12 @@
     cursor: pointer;
     display: flex;
     color: white;
+    border-radius: var(--border-radius-control);
+    transition: var(--transition-base);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
 
     > i {
       margin: auto;
