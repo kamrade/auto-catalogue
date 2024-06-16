@@ -14,6 +14,13 @@ export interface IValuesSet {
   shapeValue: string,
 }
 
+export interface IBooleanValuesSet {
+  isBlock: boolean;
+  isDisabled: boolean;
+  isConvex: boolean;
+  isLoading: boolean;
+}
+
 export const radioThemeDataDefault: IRadioGroupData[] = [{
   name: 'primary',
   label: 'Primary',
@@ -70,12 +77,14 @@ export const radioShapeDataDefault: IRadioGroupData[] = [{
   checked: true
 }];
 
-export const getButtonProps: (th: ThemeType, variant: VariantType, size: SizeType, shape: ShapeType, block: boolean, disabled: boolean) => ICatButtonProps =
-  (th, variant, size, shape, block, disabled) => ({
+export const getButtonProps: (th: ThemeType, variant: VariantType, size: SizeType, shape: ShapeType, block: boolean, disabled: boolean, convex: boolean, loading: boolean) => ICatButtonProps =
+  (th, variant, size, shape, block, disabled, convex, loading) => ({
     theme: th,
-    variant: variant,
-    size: size,
-    shape: shape,
-    block: block,
-    disabled: disabled,
+    variant,
+    size,
+    shape,
+    block,
+    disabled,
+    convex,
+    loading
   });
