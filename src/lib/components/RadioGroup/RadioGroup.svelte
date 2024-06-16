@@ -4,11 +4,11 @@
 
   export let direction: RadioGroupDirection = 'x';
   export let radioGroupData: IRadioGroupData[];
+  export let onChange: (val: string) => void;
 
   const onClickHandler: MouseEventHandler<HTMLInputElement > = (e) => {
-    let radioName = (e.target as HTMLInputElement).name
-    radioGroupData = radioGroupData.map((data) =>
-      data.name === radioName ? { ...data, checked: true} : { ...data, checked: false })
+    let val = (e.target as HTMLInputElement).name;
+    onChange( val );
   }
 
 </script>

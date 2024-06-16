@@ -1,58 +1,88 @@
 <script lang="ts">
-  import { Button, Checkbox, type ThemeType, type ICatButtonProps } from "$lib";
+  import { Button, RadioGroup, Hr, Checkbox } from "$lib";
+  import type { ThemeType, VariantType, SizeType, ShapeType } from "$lib";
+  import { radioThemeDataDefault, radioVariantDataDefault, radioSizeDataDefault, radioShapeDataDefault, getButtonProps } from './showcase-data';
+  import type { IOptionsSet, IValuesSet } from './showcase-data';
 
-  let theme: ThemeType = 'primary';
-  let primary_checkbox_value = true;
-  let secondary_checkbox_value = false;
-
-  const getButtonProps: (th: ThemeType) => ICatButtonProps = (th: ThemeType) => ({
-    theme: th,
-    variant: 'contained',
-    size: 'lg',
-    shape: 'rounded',
-  });
-
-  let buttonProps = getButtonProps(theme);
-
-  const checkboxClick = (e: MouseEvent) => {
-    let th = (e.target as HTMLInputElement).id;
-
-    if (th.includes('primary')) {
-      theme = 'primary';
-    }
-    if (th.includes('secondary')) {
-      theme = 'secondary';
-    }
-
-    primary_checkbox_value = theme === 'primary';
-    secondary_checkbox_value = theme === 'secondary';
-    buttonProps = getButtonProps(theme);
-
+  const optionsSet: IOptionsSet = {
+    radioThemeData: radioThemeDataDefault,
+    radioVariantData: radioVariantDataDefault,
+    radioSizeData: radioSizeDataDefault,
+    radioShapeData: radioShapeDataDefault
   }
 
+  const valuesSet: IValuesSet = {
+    themeValue: 'primary',
+    variantValue: 'contained',
+    sizeValue: 'lg',
+    shapeValue: 'rounded',
+  }
+
+  let isBlock = false;
+  let isDisabled = false;
+
+  const updateButtonProps = () =>
+    getButtonProps(
+      valuesSet.themeValue as ThemeType,
+      valuesSet.variantValue as VariantType,
+      valuesSet.sizeValue as SizeType,
+      valuesSet.shapeValue as ShapeType,
+      isBlock,
+      isDisabled
+    );
+
+  let buttonProps = updateButtonProps();
+
+  const onChangeGeneric = (val: string, setName: keyof IOptionsSet, valueName: keyof IValuesSet) => {
+    valuesSet[valueName] = val;
+    optionsSet[setName] = optionsSet[setName].map((data) =>
+      data.name === val ? { ...data, checked: true } : { ...data, checked: false });
+    buttonProps = updateButtonProps();
+  }
+
+  const blockChangeHandler = (e: Event) => {
+    isBlock = (e.target as HTMLInputElement).checked;
+    buttonProps = updateButtonProps();
+  }
+
+  const disabledChangeHandler = (e: Event) => {
+    isDisabled = (e.target as HTMLInputElement).checked;
+    buttonProps = updateButtonProps();
+  }
 
 </script>
 
+<h1>Button Showcase</h1>
 
-<div>
-  <div>
-    <label for="theme_primary_checkbox">
-      <Checkbox id="theme_primary_checkbox" name="theme_primary_checkbox" value={primary_checkbox_value} onClick={checkboxClick} />
-      <span class="pl-1">Primary</span>
-    </label>
-  </div>
-  <div>
-    <label for="theme_secondary_checkbox">
-      <Checkbox id="theme_secondary_checkbox" name="theme_secondary_checkbox" value={secondary_checkbox_value} onClick={checkboxClick} />
-      <span class="pl-1">Secondary</span>
-    </label>
-  </div>
+<div class="fieldset">
+  <RadioGroup
+    onChange={(val) => onChangeGeneric(val, 'radioThemeData', 'themeValue' )}
+    radioGroupData={optionsSet['radioThemeData']} direction="y" />
+  <RadioGroup
+    onChange={(val) => onChangeGeneric(val, 'radioVariantData', 'variantValue' )}
+    radioGroupData={optionsSet.radioVariantData} direction="y" />
+  <RadioGroup
+    onChange={(val) => onChangeGeneric(val, 'radioSizeData', 'sizeValue' )}
+    radioGroupData={optionsSet.radioSizeData} direction="y" />
+  <RadioGroup
+    onChange={(val) => onChangeGeneric(val, 'radioShapeData', 'shapeValue' )}
+    radioGroupData={optionsSet.radioShapeData} direction="y" />
 </div>
 
+<Hr />
+<Checkbox name="block" value={isBlock} onChange={blockChangeHandler}>Block</Checkbox>
+<Checkbox name="block" value={isDisabled} onChange={disabledChangeHandler}>Disabled</Checkbox>
+<Hr />
+
+<h4>Value: {valuesSet.themeValue}, {valuesSet.variantValue}, {valuesSet.sizeValue}</h4>
+
 <div class="my-6">
-  <Button props="{buttonProps}">Primary Button</Button>
+  <Button props={buttonProps}>Primary Button</Button>
 </div>
 
 <style lang="scss">
-
+  .fieldset {
+    display: flex;
+    gap: 2rem;
+  }
 </style>
