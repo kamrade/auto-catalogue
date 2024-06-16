@@ -13,6 +13,9 @@
         <b>
           <Link inverted={true} href="/showcase">Showcase</Link>
         </b>
+        <b>
+          <Link inverted={true} href="/applications">Applications</Link>
+        </b>
       </div>
     </Container>
   </header>

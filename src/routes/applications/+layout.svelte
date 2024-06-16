@@ -1,13 +1,12 @@
 <script lang="ts">
   import { MainMenuSection, Container, Notification } from "$lib";
-  import { uikitMenuLinks, sectionsMenuLinks } from "./nav-data";
+  import { appMenuLinks } from "./nav-data";
 </script>
 
 <header class="header">
   <Container>
     <div class="header-content">
-      <MainMenuSection label="UIKit" menuLinks={uikitMenuLinks} />
-      <MainMenuSection label="Sections" menuLinks={sectionsMenuLinks} />
+      <MainMenuSection label="Auto" menuLinks={appMenuLinks} />
     </div>
   </Container>
 </header>

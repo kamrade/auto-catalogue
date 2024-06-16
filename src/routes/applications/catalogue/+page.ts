@@ -2,7 +2,7 @@ import type { PageLoad } from "./$types";
 import { redirect } from "@sveltejs/kit";
 
 export const load: PageLoad = async ( /* { fetch, params } */ ) => {
-  redirect(307, "/showcase/catalogue/random");
+  redirect(307, "/applications/catalogue/random");
 
   // const brands = await fetch('http://cat.primavistalab.com/api/v1/api.php?method=LOAD_BRANDS');
   // const allBrands = await brands.json();

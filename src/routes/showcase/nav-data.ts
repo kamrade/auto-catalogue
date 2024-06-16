@@ -65,10 +65,3 @@ export const sectionsMenuLinks: (IMainMenuItem | string)[] = [
     label: "Menu"
   }
 ];
-
-export const appMenuLinks: (IMainMenuItem | string)[] = [
-  {
-    link: "/showcase/catalogue",
-    label: "Catalogue"
-  }
-];

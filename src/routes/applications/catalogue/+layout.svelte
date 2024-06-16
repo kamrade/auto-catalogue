@@ -8,7 +8,7 @@
 
   // $: {
   //   if (brandValue) {
-  //     goto(`/showcase/catalogue/${brandValue.value}`);
+  //     goto(`/applications/catalogue/${brandValue.value}`);
   //   }
   // }
 </script>

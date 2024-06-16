@@ -50,7 +50,7 @@
   $: {
     if (browser && (data.randomBrand || data.randomModel || data.randomGeneration || data.randomModification)) {
       let path =
-        "/showcase/catalogue/" +
+        "/applications/catalogue/" +
         `${data.randomBrand?.value || data.currentBrand}/` +
         `${data.randomModel?.value || data.currentModel}/` +
         `${data.randomGeneration?.value || data.currentGeneration}/` +
@@ -64,7 +64,7 @@
   const onBrandChange = (option: SelectOption) => {
     lastSelection = "brand";
     isPreNavigation = true;
-    goto(`/showcase/catalogue/${option.value}`);
+    goto(`/applications/catalogue/${option.value}`);
     brandValue = option;
   };
   $: brandValue = data.brands?.find((option: SelectOption) => option.value === data.currentBrand) || null;
@@ -74,7 +74,7 @@
   const onModelChange = (option: SelectOption) => {
     lastSelection = "model";
     isPreNavigation = true;
-    goto(`/showcase/catalogue/${brandValue?.value}/${option.value}`);
+    goto(`/applications/catalogue/${brandValue?.value}/${option.value}`);
     modelValue = option;
   };
   $: modelValue = data.models?.find((option: SelectOption) => option.value === data.currentModel) || null;
@@ -84,7 +84,7 @@
   const onGenerationChange = (option: SelectOption) => {
     lastSelection = "generation";
     isPreNavigation = true;
-    goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${option.value}`);
+    goto(`/applications/catalogue/${brandValue?.value}/${modelValue?.value}/${option.value}`);
     generationValue = option;
   };
   $: generationValue =
@@ -94,7 +94,7 @@
   let modificationValue: SelectOption | null = null;
   const onModificationChange = (option: SelectOption) => {
     lastSelection = "modification";
-    goto(`/showcase/catalogue/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}/${option.value}`);
+    goto(`/applications/catalogue/${brandValue?.value}/${modelValue?.value}/${generationValue?.value}/${option.value}`);
     modificationValue = option;
   };
   $: modificationValue =
@@ -103,7 +103,7 @@
 </script>
 
 <div class="mb-3">
-  <Link href="/showcase/catalogue/random">Get random</Link>
+  <Link href="/applications/catalogue/random">Get random</Link>
 </div>
 
 <div class="mb-3">
