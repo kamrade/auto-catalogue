@@ -2,6 +2,14 @@ import type { IMainMenuItem } from "$lib";
 
 export const uikitMenuLinks: (IMainMenuItem | string)[] = [
   {
+    link: "/showcase/buttons",
+    label: "Buttons"
+  },
+  {
+    link: "/showcase/radio",
+    label: "Radio"
+  },
+  {
     link: "/showcase/dropdowns",
     label: "Dropdowns"
   },

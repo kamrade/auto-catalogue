@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Button, Checkbox, Hr } from '$lib';
   let isLoading = false;
-  const toggleIsLoading = (_v: boolean) => (isLoading = !isLoading);
+  const toggleIsLoading = () => (isLoading = !isLoading);
 </script>
 
 <h1>Links</h1>

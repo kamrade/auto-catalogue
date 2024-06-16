@@ -1,8 +1,9 @@
 <script lang="ts">
-  import type { MouseEventHandler } from 'svelte/elements';
+  import type { MouseEventHandler, ChangeEventHandler } from 'svelte/elements';
 
   export let value: boolean = false;
-  export let onClick: ((v: boolean) => void) | null = null;
+  export let onClick: ((e: MouseEvent, checked: boolean) => void) | null = null;
+  export let onChange: (e: Event) => unknown = (e) => e;
   export let name: string;
   export let disabled: boolean = false;
 
@@ -10,11 +11,15 @@
     let checked = (e?.target as HTMLInputElement).checked;
 
     if (onClick) {
-      onClick(checked);
+      onClick(e, checked);
     } else {
       value = checked;
     }
   };
+
+  const changeHandler: ChangeEventHandler<HTMLInputElement> =
+    (e: Event) => onChange(e);
+
 </script>
 
 <label class={`Checkbox ${disabled ? 'Checkbox-disabled' : ''}`}>
@@ -22,6 +27,7 @@
     <span class="CheckboxLabel"><slot name="prefix" /></span>
   {/if}
   <span class={`CheckboxIndicator CheckboxIndicator--${value ? 'on' : 'off'}`}></span>
+
   <input
     {disabled}
     {name}
@@ -29,6 +35,7 @@
     checked={value}
     type="checkbox"
     on:click={clickHandler}
+    on:change={changeHandler}
     {...$$restProps}
   />
   {#if $$slots.default}

@@ -193,4 +193,4 @@
   {/each}
 {/if}
 
-<style lang="scss"> @import './catalogue.scss'; </style>
+<style lang="scss">  @import './catalogue.scss';  </style>
