@@ -6,3 +6,7 @@
 *, ::after, ::before {
   box-sizing: border-box;
 }
+
+body {
+  color: var(--text-color-base);
+}
