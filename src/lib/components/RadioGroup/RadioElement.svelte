@@ -23,6 +23,10 @@
 <style lang="scss">
   .RadioGroup-label {
     cursor: pointer;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
 
     &:focus-within {
       .RadioIndicator {

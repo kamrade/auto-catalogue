@@ -1,7 +1,7 @@
-import { mainClassName } from "./Button.js";
-import type { ICatButtonProps } from "./Button.js";
+import { mainClassName } from "./Button";
+import type { ICatButtonProps } from "./Button";
 
-export let defaultProps: ICatButtonProps = {
+export const defaultProps: ICatButtonProps = {
   className: mainClassName,
   theme: 'secondary',
   variant: 'contained',

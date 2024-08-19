@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { ICatButtonProps } from "./Button.js";
-  import { mergeProps } from "./Button.js";
+  import type { ICatButtonProps } from "$lib";
+  import { mergeProps } from "$lib";
   import { defaultProps } from "./Button.defaults.js";
   import { DynamicButton } from "@kamrade/svelte-dynamic-button";
   export let props: ICatButtonProps = {};
